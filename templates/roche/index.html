@@ -14,22 +14,44 @@
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
       <div class="row">
+        <div class="col-md-4">
+          <h2>{% trans "Browse Library" %}</h2>
+          <p>
+          {% blocktrans %}Browse our library and explore collections, author or time frames.{% endblocktrans %}
+          </p>
+          <p><a class="btn btn-default" href="browse/" role="button">{% trans "View details" %} &raquo;</a></p>
+        </div>
         <div class="col-md-4">
           <h2>{% trans "Full Text Search" %}</h2>
           <p>
-          {% blocktrans %}We provide a simple and an extended semantic full text search interface for our repository of texts currently mainly from the Siku quanshu.  Of currently #number of texts with #number characters by #number authors.{% endblocktrans %}
+          {% blocktrans %}Semanticly search  in over #number texts by #number authors.{% endblocktrans %}
+          </p>
+          <p><a class="btn btn-default" href="search/" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>{% trans "OCR Service" %}</h2>
+          <p></p>
+          <p><a class="btn btn-default" href="ocr/" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <!-- column 2 -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>{% trans "Semantic Editor" %}</h2>
+          <p>
+          {% blocktrans %}Annotate text in the semantic editor.{% endblocktrans %}
           </p>
           <p><a class="btn btn-default" href="#" role="button">{% trans "View details" %} &raquo;</a></p>
         </div>
         <div class="col-md-4">
-          <h2>{% trans "OCR Service" %}</h2>
+          <h2>{% trans "Documentation" %}</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
        </div>
         <div class="col-md-4">
-          <h2>{% trans "Semantic Editor" %}</h2>
+          <h2>{% trans "Ontology" %}</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
