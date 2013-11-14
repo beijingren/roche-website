@@ -4,6 +4,7 @@
 #
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '../')
@@ -26,6 +27,16 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+LANGUAGES = (
+    ('de', _('German')),
+    ('en', _('English')),
+    ('zh', _('Chinese (Mainland)')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(PROJECT_ROOT, 'locale'),
+)
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -100,6 +111,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'roche.urls'
@@ -109,6 +121,16 @@ WSGI_APPLICATION = 'roche.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
 )
 
 INSTALLED_APPS = (
