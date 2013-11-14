@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +17,6 @@
   <!-- css stylesheets -->
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
-  <!-- javascript files -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
-  <script type="text/javascript" src="{% static 'js/bootstrap-switch.min.js' %}"></script>
 </head>
 
 <body>
@@ -38,6 +36,20 @@
         <form class="navbar-form navbar-right">
           <button type="submit" class="btn btn-success">Sign in</button>
         </form>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ LANGUAGE_CODE }} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+          {% for l in LANGUAGES %}
+          {% if not l.0 == LANGUAGE_CODE %}
+              <li><a href="/{{ l.0 }}/">{{ l.1 }}</a></li>
+          {% endif %}
+          {% endfor %}
+          </ul>
+          </li>
+         </ul>
+
       </div><!--/.navbar-collapse -->
     </div>
   </div>
@@ -52,7 +64,11 @@
       </footer>
   </div>
 
-
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </body>
 </html>
