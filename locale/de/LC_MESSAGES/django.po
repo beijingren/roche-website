@@ -32,7 +32,7 @@ msgstr ""
 
 #: templates/roche/index.html:9
 msgid "The Digital Siki Quanshu Project"
-msgstr "Das digitale Siku quanshu Projekt"
+msgstr "Das digitale Siku Quanshu Projekt"
 
 #: templates/roche/index.html:11
 msgid ""
