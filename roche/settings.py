@@ -10,8 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 
 # Read master password for postgres access
 # TODO: path should be env var, apache wsgi
-with open("/docker-volume1/master-password.txt") as f:
-    DOCKER_MASTER_PASSWORD = f.read()
+with open("/docker/volume1/master-password.txt") as f:
+    DOCKER_MASTER_PASSWORD = f.read().rstrip()
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '../')
 
