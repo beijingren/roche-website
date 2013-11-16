@@ -4,10 +4,17 @@
 #
 
 import os
+
 from django.utils.translation import ugettext_lazy as _
 
 
+# Read master password for postgres access
+# TODO: path should be env var, apache wsgi
+with open("/docker-volume1/master-password.txt") as f:
+    DOCKER_MASTER_PASSWORD = f.read()
+
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '../')
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -22,7 +29,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'docker',
         'USER': 'docker',
-        'PASSWORD': 'docker',
+        'PASSWORD': DOCKER_MASTER_PASSWORD,
         'HOST': 'localhost',
         'PORT': '',
     }
