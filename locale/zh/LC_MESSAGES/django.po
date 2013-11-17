@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-14 12:49+0100\n"
+"POT-Creation-Date: 2013-11-17 08:54-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,20 +17,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: roche/settings.py:32
+#: roche/settings.py:34
 msgid "German"
 msgstr ""
 
-#: roche/settings.py:33
+#: roche/settings.py:35
 msgid "English"
 msgstr ""
 
-#: roche/settings.py:34
+#: roche/settings.py:36
 msgid "Chinese (Mainland)"
 msgstr ""
 
 #: templates/roche/index.html:9
-msgid "The Digital Siki Quanshu Project"
+#, fuzzy
+msgid "The Digital Siku Quanshu Project"
 msgstr "四庫全书"
 
 #: templates/roche/index.html:11
@@ -42,4 +43,44 @@ msgstr ""
 
 #: templates/roche/index.html:12
 msgid "Learn more"
+msgstr ""
+
+#: templates/roche/index.html:19
+msgid "Browse Library"
+msgstr ""
+
+#: templates/roche/index.html:21
+msgid "Browse our library and explore collections, author or time frames."
+msgstr ""
+
+#: templates/roche/index.html:23 templates/roche/index.html.py:46
+msgid "View details"
+msgstr ""
+
+#: templates/roche/index.html:26
+msgid "Full Text Search"
+msgstr ""
+
+#: templates/roche/index.html:28
+msgid "Semanticly search  in over #number texts by #number authors."
+msgstr ""
+
+#: templates/roche/index.html:33
+msgid "OCR Service"
+msgstr ""
+
+#: templates/roche/index.html:42
+msgid "Semantic Editor"
+msgstr ""
+
+#: templates/roche/index.html:44
+msgid "Annotate text in the semantic editor."
+msgstr ""
+
+#: templates/roche/index.html:49
+msgid "Documentation"
+msgstr ""
+
+#: templates/roche/index.html:54
+msgid "Ontology"
 msgstr ""
