@@ -1,1 +1,8 @@
+#
+# Requirements
+#
+
 wiki
+
+eulxml
+eulexistdb
