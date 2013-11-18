@@ -8,7 +8,6 @@ from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
 
 
-urlpatterns = i18n_patterns('',
-    url(r'^$', TemplateView.as_view(template_name='roche/index.html')),
-    url(r'^browse/$', include('browser.urls', namespace='browse')),
+urlpatterns = patterns('',
+    url(r'^$', TemplateView.as_view(template_name='browser/index.html')),
 )
