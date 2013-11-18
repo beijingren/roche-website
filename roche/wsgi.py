@@ -33,6 +33,8 @@ def application(environ, start_response):
     os.environ['DOCKER_PASSWORD'] = environ['DOCKER_PASSWORD']
     os.environ['DB_PORT_5432_TCP_ADDR'] = environ['DB_PORT_5432_TCP_ADDR']
     os.environ['DB_PORT_5432_TCP_PORT'] = environ['DB_PORT_5432_TCP_PORT']
+    os.environ['XMLDB_PORT_8080_TCP_ADDR'] = environ['XMLDB_PORT_8080_TCP_ADDR']
+    os.environ['XMLDB_PORT_8080_TCP_PORT'] = environ['XMLDB_PORT_8080_TCP_PORT']
 
     return django_wsgi_application(environ, start_response)
 

@@ -20,11 +20,9 @@ sudo pip install -r requirements.txt
 
 python manage.py compilemessages
 
-# Docker link variables
-DOCKER_PASSWORD=''
-DB_PORT_5432_TCP_ADDR='localhost'
-DB_PORT_5432_TCP_PORT='5432'
-
-export DOCKER_PASSWORD
-export DB_PORT_5432_TCP_ADDR
-export DB_PORT_5432_TCP_PORT
+# Export Docker link variables
+export DOCKER_PASSWORD=''
+export DB_PORT_5432_TCP_ADDR='localhost'
+export DB_PORT_5432_TCP_PORT='5432'
+export XMLDB_PORT_8080_TCP_ADDR='localhost'
+export XMLDB_PORT_8080_TCP_PORT='8080'
