@@ -15,6 +15,12 @@ framework.
 """
 import os
 
+
+# Get Docker link vars
+os.environ['DOCKER_PASSWORD'] = environ['DOCKER_PASSWORD']
+os.environ['DB_PORT_5432_TCP_ADDR'] = environ['DB_PORT_5432_TCP_ADDR']
+os.environ['DB_PORT_5432_TCP_PORT'] = environ['DB_PORT_5432_TCP_PORT']
+
 # We defer to a DJANGO_SETTINGS_MODULE already in the environment. This breaks
 # if running multiple sites in the same mod_wsgi process. To fix this, use
 # mod_wsgi daemon mode with each site in its own daemon process, or use
