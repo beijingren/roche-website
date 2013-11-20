@@ -2,8 +2,6 @@
 # Keep in sync with dedalus-infrastructure (but without apache2)
 sudo apt-get install -y		\
 	python-django		\
-	python-django-mptt	\
-	python-django-sekizai	\
 	python-django-south	\
 	python-imaging		\
 	python-lxml		\
@@ -25,4 +23,5 @@ export DB_PORT_5432_TCP_PORT='5432'
 export XMLDB_PORT_8080_TCP_ADDR='localhost'
 export XMLDB_PORT_8080_TCP_PORT='8080'
 
+python manage.py syncdb
 python manage.py compilemessages

@@ -2,7 +2,8 @@
 # Requirements
 #
 
-wiki
+creole
+djiki
 
 eulxml
 eulexistdb

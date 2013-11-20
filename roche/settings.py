@@ -14,6 +14,7 @@ EXISTDB_SERVER_URL = 'http://{0}:{1}/exist'.format(
     os.environ['XMLDB_PORT_8080_TCP_ADDR'],
     os.environ['XMLDB_PORT_8080_TCP_PORT'])
 
+DJIKI_IMAGES_PATH = '/tmp'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -139,7 +140,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
-    'sekizai.context_processors.sekizai',
 )
 
 INSTALLED_APPS = (
@@ -151,11 +151,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'south',
-    'django_notify',
-    'mptt',
-    'sekizai',
     'sorl.thumbnail',
-    'wiki',
+    'djiki',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
