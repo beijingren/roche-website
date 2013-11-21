@@ -30,7 +30,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Project name</a>
+        <a class="navbar-brand" href="/">Project name</a>
       </div>
       <div class="navbar-collapse collapse">
         <form class="navbar-form navbar-right">
@@ -51,6 +51,13 @@
          </ul>
       </div><!--/.navbar-collapse -->
     </div>
+  </div>
+
+  <div class="jumbotron">
+  <div class="container">
+  {% block jumbotron %}
+  {% endblock %}
+  </div>
   </div>
 
   {% block content %}
