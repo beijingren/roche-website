@@ -2,6 +2,7 @@
 # Keep in sync with dedalus-infrastructure (but without apache2)
 sudo apt-get install -y		\
 	python-django		\
+	python-django-celery	\
 	python-django-south	\
 	python-imaging		\
 	python-lxml		\
