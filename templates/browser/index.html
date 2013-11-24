@@ -4,10 +4,12 @@
 {% block content %}
 
 <div class="container">
+<h3>Last modified</h3>
 <table>
 	<thead>
 		<tr>
 			<th>Title</th>
+			<th>Author</th>
 		</tr>
 	</thead>
 
@@ -15,6 +17,7 @@
 	{% for document in tei_documents %}
 		<tr>
 			<td>{{document.title}}</td>
+			<td>{{document.author}}</td>
 		</tr>
 	{% endfor %}
 	</tbody>

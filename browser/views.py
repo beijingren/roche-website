@@ -7,7 +7,9 @@ from eulxml.xmlmap.teimap import Tei
 
 
 def index(request):
-    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
+    from browser.models import RocheTEI
+
+    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=RocheTEI)
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
@@ -26,3 +28,6 @@ def index_title(request, letter):
     qs = qs.filter(title__startswith=letter)
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
+
+def text_view(request):
+    return render_to_response('browser/index.html')
