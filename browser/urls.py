@@ -9,5 +9,7 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = patterns('',
+    url(r'^author/(?P<letter>[A-Z])$', 'browser.views.index_author'),
+    url(r'^title/(?P<letter>[A-Z])$', 'browser.views.index_title'),
     url(r'^$', 'browser.views.index'),
 )
