@@ -29,5 +29,5 @@ def index_title(request, letter):
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
-def text_view(request):
+def text_view(request, title):
     return render_to_response('browser/index.html')

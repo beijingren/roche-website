@@ -2,6 +2,8 @@
 # Requirements
 #
 
+celery >= 3.1
+
 creole
 djiki
 

@@ -10,11 +10,17 @@ from django.utils.translation import ugettext_lazy as _
 
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '../')
 
+#
+# eXist-db
+#
 EXISTDB_ROOT_COLLECTION = '/docker'
 EXISTDB_SERVER_URL = 'http://{0}:{1}/exist'.format(
     os.environ['XMLDB_PORT_8080_TCP_ADDR'],
     os.environ['XMLDB_PORT_8080_TCP_PORT'])
 
+#
+# djiki
+#
 DJIKI_IMAGES_PATH = '/tmp'
 
 DEBUG = True
@@ -151,7 +157,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'djcelery',
     'south',
     'sorl.thumbnail',
     'djiki',

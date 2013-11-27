@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = i18n_patterns('',
     url(r'^browse/', include('browser.urls', namespace='browse')),
+    url(r'^browse/text/(?P<title>.*)$', 'browser.views.text_view'),
     url(r'^ocr/', include('ocr.urls', namespace='ocr')),
     url(r'^wiki/', include('djiki.urls')),
 

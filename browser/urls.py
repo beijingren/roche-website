@@ -5,7 +5,7 @@ from django.conf.urls import url
 
 
 urlpatterns = patterns('',
-    url(r'^text$', 'browser.views.text_view', name='text-view'),
+    #url(r'^text$', 'browser.views.text_view', name='text-view'),
 
     # index views
     url(r'^author/(?P<letter>[A-Z])$', 'browser.views.index_author'),

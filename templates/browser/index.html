@@ -16,8 +16,8 @@
 	<tbody>
 	{% for document in tei_documents %}
 		<tr>
-			<td>{{document.title}}</td>
-			<td>{{document.author}}</td>
+			<td><a href="{% url 'browser.views.text_view' document.title %}">{{document.title}}</a></td>
+			<td><a href="{% url 'browser.views.text_view' document.title %}">{{document.author}}</a></td>
 		</tr>
 	{% endfor %}
 	</tbody>
