@@ -30,4 +30,9 @@ def index_title(request, letter):
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
 def text_view(request, title):
-    return render_to_response('browser/index.html')
+    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
+
+    # filter by title
+    qs = qs.filter(title=title)
+
+    return render_to_response('browser/text_view.html', {'tei_documents': qs})

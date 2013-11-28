@@ -1,0 +1,13 @@
+{% extends 'roche/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container">
+	{% for document in tei_documents %}
+	<h2>{{document.title}}</h2>
+	{{document.body}}
+	{% endfor %}
+</div>
+
+{% endblock %}
