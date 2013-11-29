@@ -6,12 +6,43 @@ from eulexistdb.query import QuerySet
 from eulxml.xmlmap.teimap import Tei
 
 
+XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
+<xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    version="1.0">
+
+<xsl:output method="html" omit-xml-declaration="yes" indent="no" />
+
+<xsl:template match="/">
+<div>
+<xsl:apply-templates/>
+</div>
+</xsl:template>
+
+<xsl:template match="tei:persName">
+<a class="persName" href="">
+<xsl:value-of select="."/>
+</a>
+</xsl:template>
+
+<xsl:template match="tei:placeName">
+<a class="placeName" href="">
+<xsl:value-of select="."/>
+</a>
+</xsl:template>
+
+</xsl:stylesheet>
+'''
+
+
 def index(request):
     from browser.models import RocheTEI
 
     qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=RocheTEI)
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
+
 
 def index_author(request, letter):
     qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
@@ -21,6 +52,7 @@ def index_author(request, letter):
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
+
 def index_title(request, letter):
     qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
 
@@ -29,10 +61,13 @@ def index_title(request, letter):
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
+
 def text_view(request, title):
     qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
 
     # filter by title
     qs = qs.filter(title=title)
+    result = qs[0].body.xsl_transform(xsl=XSL_TRANSFORM_1)
 
-    return render_to_response('browser/text_view.html', {'tei_documents': qs})
+    return render_to_response('browser/text_view.html', {'tei_documents': qs,
+                              'tei_transform': result.serialize()})
