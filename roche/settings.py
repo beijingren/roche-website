@@ -13,6 +13,8 @@ PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '../')
 #
 # eXist-db
 #
+EXISTDB_SERVER_USER = 'admin'
+EXISTDB_SERVER_PASSWORD = 'glen32'
 EXISTDB_ROOT_COLLECTION = '/docker'
 EXISTDB_SERVER_URL = 'http://{0}:{1}/exist'.format(
     os.environ['XMLDB_PORT_8080_TCP_ADDR'],
