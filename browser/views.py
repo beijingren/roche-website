@@ -20,6 +20,12 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </div>
 </xsl:template>
 
+<xsl:template match="tei:div">
+<p>
+    <xsl:apply-templates/>
+</p>
+</xsl:template>
+
 <xsl:template match="tei:persName">
 <a class="persName" href="">
 <xsl:value-of select="."/>
@@ -27,7 +33,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:placeName">
-<a class="placeName" href="">
+<a class="placeName" style="color: red;" href="">
 <xsl:value-of select="."/>
 </a>
 </xsl:template>
