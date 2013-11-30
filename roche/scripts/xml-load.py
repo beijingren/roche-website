@@ -8,6 +8,7 @@ import sys
 sys.path.append('.')
 import roche.settings
 
+from os import walk
 from eulexistdb.db import ExistDB
 from roche.settings import EXISTDB_SERVER_URL
 
@@ -17,8 +18,10 @@ from roche.settings import EXISTDB_SERVER_URL
 xmldb = ExistDB(timeout=30)
 
 xmldb.createCollection('docker', True)
-xmldb.createCollection(u'docker/浙江大學圖書館', True)
 
-with open('../dublin-store/db/test_001.xml') as f:
-    xmldb.load(f, '/docker/001.xml', True)
-
+for (dirpath, dirnames, filenames) in walk('浙江大學圖書館'):
+    xmldb.createCollection(dirpath, True)
+    if filenames:
+        for filename in filenames:
+            with open(dirpath + '/' + filename) as f:
+                xmldb.load(f, dirpath + '/' + filename, True)
