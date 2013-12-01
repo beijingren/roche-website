@@ -1,13 +1,14 @@
 {% extends 'roche/base.html' %}
 {% load i18n %}
 
-{% block jumbotron %}
-	<h2>{{tei_documents.0.title}} ({{tei_documents.0.title_en}})</h2>
+{% block page_title %}
+  {{tei_documents.0.title}} ({{tei_documents.0.title_en}})
 {% endblock %}
 
 {% block content %}
 
 <div class="container" style="font-size: 220%;">
+
 	{% autoescape off %}
 	{{tei_transform}}
 	{% endautoescape %}

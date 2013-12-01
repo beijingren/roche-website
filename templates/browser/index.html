@@ -4,27 +4,19 @@
 {% block content %}
 
 <div class="container">
-<h3>Last modified</h3>
+<h4>Texts</h4>
 <table>
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Author</th>
-		</tr>
-	</thead>
-
 	<tbody>
 	{% for document in tei_documents %}
 		<tr>
-			<td><a href="{% url 'browser.views.text_view' document.title %}">{{document.title}} ({{document.title_en}})</a></td>
-			<td><a href="{% url 'browser.views.text_view' document.author %}">{{document.author}}</a></td>
+			<td><a href="{% url 'browser.views.text_view' document.title %}">{{document.title}} ({{document.title_en}})</a> by <a href="{% url 'browser.views.text_view' document.author %}">{{document.author}}</a></td>
 		</tr>
 	{% endfor %}
 	</tbody>
 
 </table>
 
-<h3>Place Names</h3>
+<h4>Names</h4>
 
 </div>
 
