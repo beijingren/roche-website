@@ -27,7 +27,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:persName">
-<a class="persName" href="">
+<a class="persName"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#persName</xsl:attribute> 
 <xsl:value-of select="."/>
 </a>
 </xsl:template>
@@ -36,6 +36,18 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 <a class="placeName" style="color: red;" href="">
 <xsl:value-of select="."/>
 </a>
+</xsl:template>
+
+<xsl:template match="tei:term">
+<a class="term" style="color: green;" href="">
+<xsl:value-of select="."/>
+</a>
+</xsl:template>
+
+<xsl:template match="tei:l">
+<span class="term" style="background-color: Gainsboro;">
+<xsl:value-of select="."/>
+</span>
 </xsl:template>
 
 </xsl:stylesheet>
