@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container" style="font-size: 300%;">
 
 	<h2>{{tei_documents.0.title}}</h2>
 
@@ -11,15 +11,6 @@
 	{{tei_transform}}
 	{% endautoescape %}
 
-	{% for document in tei_documents %}
-
-	<h2>{{document.title}}</h2>
-
-	{% autoescape off %}
-	{{document.body.serialize}}
-	{% endautoescape %}
-
-	{% endfor %}
 </div>
 
 {% endblock %}

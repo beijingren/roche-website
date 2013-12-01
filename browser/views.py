@@ -75,5 +75,5 @@ def text_view(request, title):
     qs = qs.filter(title=title)
     result = qs[0].body.xsl_transform(xsl=XSL_TRANSFORM_1)
 
-    return render_to_response('browser/text_view.html', {'tei_documents': qs,
+    return render_to_response('browser/text_view.html', {
                               'tei_transform': result.serialize()})
