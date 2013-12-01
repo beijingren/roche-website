@@ -5,6 +5,8 @@ from eulexistdb.db import ExistDB
 from eulexistdb.query import QuerySet
 from eulxml.xmlmap.teimap import Tei
 
+from browser.models import RocheTEI
+
 
 XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet
@@ -55,8 +57,6 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 
 
 def index(request):
-    from browser.models import RocheTEI
-
     qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=RocheTEI)
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
@@ -81,11 +81,11 @@ def index_title(request, letter):
 
 
 def text_view(request, title):
-    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
+    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=RocheTEI)
 
     # filter by title
     qs = qs.filter(title=title)
     result = qs[0].body.xsl_transform(xsl=XSL_TRANSFORM_1)
 
-    return render_to_response('browser/text_view.html', {
+    return render_to_response('browser/text_view.html', {'tei_documents': qs,
                               'tei_transform': result.serialize()})
