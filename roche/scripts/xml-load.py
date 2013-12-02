@@ -20,12 +20,13 @@ from roche.settings import EXISTDB_SERVER_URL
 xmldb = ExistDB(timeout=30)
 
 xmldb.createCollection('docker', True)
+xmldb.createCollection('docker/texts', True)
 
 os.chdir('../dublin-store')
 
 for (dirpath, dirnames, filenames) in walk('浙江大學圖書館'):
-    xmldb.createCollection('docker' + '/' + dirpath, True)
+    xmldb.createCollection('docker/texts' + '/' + dirpath, True)
     if filenames:
         for filename in filenames:
             with open(dirpath + '/' + filename) as f:
-                xmldb.load(f, 'docker' + '/' + dirpath + '/' + filename, True)
+                xmldb.load(f, 'docker/texts' + '/' + dirpath + '/' + filename, True)
