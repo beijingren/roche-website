@@ -57,13 +57,13 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 
 
 def index(request):
-    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=RocheTEI)
+    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
 
 def index_author(request, letter):
-    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
+    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=Tei)
 
     # filter by authors starting with letter
     gs = gs.filter(author__startswith=letter)
@@ -72,7 +72,7 @@ def index_author(request, letter):
 
 
 def index_title(request, letter):
-    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=Tei)
+    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=Tei)
 
     # filter by titles starting with letter
     qs = qs.filter(title__startswith=letter)
@@ -81,7 +81,7 @@ def index_title(request, letter):
 
 
 def text_view(request, title):
-    qs = QuerySet(using=ExistDB(), xpath='/*:TEI', model=RocheTEI)
+    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
 
     # filter by title
     qs = qs.filter(title=title)
