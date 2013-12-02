@@ -5,6 +5,7 @@
 celery >= 3.1
 
 creole
+diff_match_patch
 
 eulxml
 eulexistdb
