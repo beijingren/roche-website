@@ -137,6 +137,7 @@ ROOT_URLCONF = 'roche.urls'
 WSGI_APPLICATION = 'roche.wsgi.application'
 
 TEMPLATE_DIRS = (
+    os.path.join(PROJECT_ROOT, os.path.join('dijiki', 'templates')),
     os.path.join(PROJECT_ROOT, 'templates'),
 )
 
