@@ -23,7 +23,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:div">
-<p>
+<p style="margin: 0 0 4%;">
     <xsl:apply-templates/>
 </p>
 </xsl:template>
