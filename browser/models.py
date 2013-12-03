@@ -16,3 +16,10 @@ class RocheTEI(teimap.Tei):
         """Return the first letter of the title"""
 
         return self.title
+
+
+class DDBCPlaceName(teimap._TeiBase):
+    place_names = xmlmap.StringListField('tei:placeName')
+    district = xmlmap.StringField('tei:district')
+    notes = xmlmap.StringListField('tei:note')
+    geo = xmlmap.StringField('tei:location/tei:geo')

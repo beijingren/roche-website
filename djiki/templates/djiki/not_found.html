@@ -1,5 +1,5 @@
 {% extends 'djiki/base.html' %}
-{% load i18n djiki_tags %}
+{% load i18n djiki_tags roche_tags %}
 {% load url from future %}
 {% block djiki_main %}
 <p>
@@ -12,4 +12,10 @@ Please make sure your spelling is correct.
 named <strong>{{ title }}</strong>.
 {% endblocktrans %}
 </p>
+
+<h3>DDBC</h3>
+<p>
+{% ddbc_place_name title %}
+</p>
+
 {% endblock %}
