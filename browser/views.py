@@ -62,11 +62,14 @@ def index(request):
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
 
-def index_author(request, letter):
+def index_author(request, author, startswith):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=Tei)
 
-    # filter by authors starting with letter
-    gs = gs.filter(author__startswith=letter)
+    if startswith:
+        # filter by authors starting with letter
+        qs = qs.filter(author__startswith=author)
+    else:
+        qs = qs.filter(author=author)
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
