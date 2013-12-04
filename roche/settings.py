@@ -19,6 +19,7 @@ EXISTDB_ROOT_COLLECTION = '/docker'
 EXISTDB_SERVER_URL = 'http://{0}:{1}/exist'.format(
     os.environ['XMLDB_PORT_8080_TCP_ADDR'],
     os.environ['XMLDB_PORT_8080_TCP_PORT'])
+EXISTDB_INDEX_CONFIGFILE = os.path.join(PROJECT_ROOT, 'roche', 'exist_index.xconf')
 
 #
 # djiki
