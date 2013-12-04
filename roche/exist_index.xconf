@@ -5,16 +5,9 @@
         <!-- Lucene index is configured below -->
         <lucene>
             <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
-            <text match="//TEI"/>
-            <text match="//tei:TEI"/>
 
-            <text qname="TEI">
+            <text match="//tei:body"/>
 
-            <text qname="p"/>
-            <text qname="tei:p"/>
-
-            <text match="//foo/*"/>
-            <text qname="tei:TEI"/>
         </lucene>
     </index>
 </collection>
