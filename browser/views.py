@@ -46,6 +46,25 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </a>
 </xsl:template>
 
+<!--
+<xsl:template match="tei:lg[@type='poem']">
+<h1>
+<xsl:value-of select="tei:head"/>
+</h1>
+</xsl:template>
+-->
+
+<xsl:template match="tei:head">
+<h1 style="background-color: grey;">
+<xsl:value-of select="."/>
+</h1>
+</xsl:template>
+
+<xsl:template match="tei:l[../@type='poem' or ../../@type='poem']">
+<xsl:value-of select="."/>
+<br/>
+</xsl:template>
+
 <xsl:template match="tei:l|tei:time">
 <span class="term" style="background-color: Gainsboro;">
 <xsl:value-of select="."/>
