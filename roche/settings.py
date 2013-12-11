@@ -22,6 +22,13 @@ EXISTDB_SERVER_URL = 'http://{0}:{1}/exist'.format(
 EXISTDB_INDEX_CONFIGFILE = os.path.join(PROJECT_ROOT, 'roche', 'exist_index.xconf')
 
 #
+# fuseki
+#
+FUSEKI_SERVER_URL = 'http://{0}:{1}/ds/query'.format(
+    os.environ['SPARQL_PORT_3030_TCP_ADDR'],
+    os.environ['SPARQL_PORT_3030_TCP_PORT'])
+
+#
 # djiki
 #
 DJIKI_IMAGES_PATH = '/tmp'

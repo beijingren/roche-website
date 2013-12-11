@@ -35,6 +35,8 @@ def application(environ, start_response):
     os.environ['DB_PORT_5432_TCP_PORT'] = environ['DB_PORT_5432_TCP_PORT']
     os.environ['XMLDB_PORT_8080_TCP_ADDR'] = environ['XMLDB_PORT_8080_TCP_ADDR']
     os.environ['XMLDB_PORT_8080_TCP_PORT'] = environ['XMLDB_PORT_8080_TCP_PORT']
+    os.environ['SPARQL_PORT_3030_TCP_ADDR'] = environ['SPARQL_PORT_3030_TCP_ADDR']
+    os.environ['SPARQL_PORT_3030_TCP_PORT'] = environ['SPARQL_PORT_3030_TCP_PORT']
 
     return django_wsgi_application(environ, start_response)
 

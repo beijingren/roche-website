@@ -12,6 +12,23 @@ from . import models, forms, utils
 _templating = utils.get_templating_backend()
 
 def view(request, title, revision_pk=None):
+	from SPARQLWrapper import SPARQLWrapper
+	from SPARQLWrapper import JSON
+	from roche.settings import FUSEKI_SERVER_URL
+
+	sparql = SPARQLWrapper(FUSEKI_SERVER_URL)
+	sparql_query = u"""
+	    PREFIX : <http://example.org/owl/sikuquanshu#>
+	    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+	    SELECT *
+	    WHERE {{ ?s ?p :{0} . }}""".format(title)
+	sparql.setQuery(sparql_query)
+	sparql.setReturnFormat(JSON)
+	try:
+		sparql_results = sparql.query().convert()
+	except:
+		sparql_results = {}
+
 	url_title = utils.urlize_title(title)
 	if title != url_title:
 		if revision_pk:
@@ -23,7 +40,7 @@ def view(request, title, revision_pk=None):
 	try:
 		page = models.Page.objects.get(title=page_title)
 	except models.Page.DoesNotExist:
-		html = _templating.render_to_string('djiki/not_found.html', {'title': page_title}, request)
+		html = _templating.render_to_string('djiki/not_found.html', {'title': page_title, 'sparql_results': sparql_results}, request)
 		return HttpResponseNotFound(html)
 	if not auth.can_view(request, page):
 		raise PermissionDenied
@@ -47,7 +64,7 @@ def view(request, title, revision_pk=None):
 		response.write(revision.content)
 		return response
 	return _templating.render_to_response(request, 'djiki/view.html',
-			{'page': page, 'revision': revision})
+			{'page': page, 'revision': revision, 'sparql_results': sparql_results})
 
 def _prepare_preview(request, form):
 	messages.info(request, mark_safe(_("The content you see on this page is shown only as "

@@ -13,4 +13,4 @@ def index(request):
                   model=RocheTEI, fulltext_options={'default-operator': 'and'})    
     qs = qs.filter(body__fulltext_terms='至')
 
-    return render_to_response('search/index.html')
+    return render_to_response('search/index.html', {'tei_documents': qs})

@@ -2,6 +2,11 @@
 {% load i18n djiki_tags roche_tags %}
 {% load url from future %}
 {% block djiki_main %}
+
+<h3>SPARQL</h3>
+{{sparql_results}}
+
+<h3>Wiki</h3>
 <p>
 {% blocktrans %}The page with title <strong>{{ title }}</strong> does not exist.
 Please make sure your spelling is correct.

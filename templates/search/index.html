@@ -4,6 +4,13 @@
 {% block content %}
 
 <div class="container">
+
+{% for document in tei_documents %}
+
+{{document.body}}
+
+{% endfor %}
+
 </div>
 
 {% endblock %}

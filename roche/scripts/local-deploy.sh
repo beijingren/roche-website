@@ -22,6 +22,8 @@ export DB_PORT_5432_TCP_ADDR='localhost'
 export DB_PORT_5432_TCP_PORT='5432'
 export XMLDB_PORT_8080_TCP_ADDR='localhost'
 export XMLDB_PORT_8080_TCP_PORT='8080'
+export SPARQL_PORT_3030_TCP_ADDR='localhost'
+export SPARQL_PORT_3030_TCP_PORT='3030'
 
 python manage.py syncdb --noinput
 python manage.py compilemessages

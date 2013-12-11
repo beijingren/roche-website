@@ -9,3 +9,5 @@ diff_match_patch
 
 eulxml
 eulexistdb
+
+SPARQLWrapper
