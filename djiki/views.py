@@ -12,6 +12,10 @@ from . import models, forms, utils
 _templating = utils.get_templating_backend()
 
 def view(request, title, revision_pk=None):
+
+        #
+        # SPARQL
+        #
 	from SPARQLWrapper import SPARQLWrapper
 	from SPARQLWrapper import JSON
 	from roche.settings import FUSEKI_SERVER_URL
@@ -28,6 +32,13 @@ def view(request, title, revision_pk=None):
 		sparql_results = sparql.query().convert()
 	except:
 		sparql_results = {}
+
+	p_sparql = []
+        for result in sparql_results["results"]["bindings"]:
+            p_sparql.append(result["p"]["value"])
+
+        # Just pass the predicate for now to the view
+        sparql_results = p_sparql
 
 	url_title = utils.urlize_title(title)
 	if title != url_title:
