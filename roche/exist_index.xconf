@@ -7,6 +7,7 @@
             <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
 
             <text match="//tei:body"/>
+	    <text match="//tei:p"/>
 
         </lucene>
     </index>

@@ -4,7 +4,10 @@
 {% block djiki_main %}
 
 <h3>SPARQL</h3>
-{{sparql_results}}
+        {% autoescape off %}
+	{{sparql_results}}
+        {% endautoescape %}
+
 
 <h3>Wiki</h3>
 <p>
