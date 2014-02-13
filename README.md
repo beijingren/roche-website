@@ -11,5 +11,5 @@ after you did insert the docker password DOCKER_PASSWORD
 
 ```shell
 vagrant ssh
-view /var/lib/volume1/master-password.txt
+view /docker/master-password.txt
 ```
