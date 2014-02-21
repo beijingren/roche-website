@@ -10,3 +10,13 @@
   color: #999;
   text-align: center;
 }
+
+.jumbotron {
+	height: 400px;
+	background-image: url("/static/images/img_003.jpg");
+	background-size: cover;
+}
+
+.navbar.transparent {
+   background: rgba(0,0,0,0.7);
+}

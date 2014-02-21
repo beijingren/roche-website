@@ -17,7 +17,7 @@ sudo apt-get install -y		\
 sudo pip install -r requirements.txt
 
 # Export Docker link variables
-export DOCKER_PASSWORD=''
+export DOCKER_PASSWORD='aathood'
 export DB_PORT_5432_TCP_ADDR='localhost'
 export DB_PORT_5432_TCP_PORT='5432'
 export XMLDB_PORT_8080_TCP_ADDR='localhost'
