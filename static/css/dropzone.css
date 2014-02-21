@@ -1,0 +1,11 @@
+/* The MIT License */
+.dropzone {
+        border: 3px dashed #ccc;
+        padding: 10px;
+        background: #fff;
+        min-height: 200px;
+
+  padding: 1em;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}

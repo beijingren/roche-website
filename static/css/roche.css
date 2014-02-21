@@ -1,0 +1,12 @@
+
+#droparea {
+	border: 3px dashed #ccc;
+	padding: 10px;
+	background: #fff;
+	min-height: 200px;
+}
+
+#droparea .droparea-info {
+  color: #999;
+  text-align: center;
+}

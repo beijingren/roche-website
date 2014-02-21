@@ -12,7 +12,7 @@ urlpatterns = i18n_patterns('',
     url(r'^browse/author/(?P<author>[A-Z])$', 'browser.views.index_author', {'startswith': True}),
     url(r'^browse/author/(?P<author>.*)$', 'browser.views.index_author', {'startswith': False}),
 
-    url(r'^ocr/', include('ocr.urls', namespace='ocr')),
+    url(r'^ocr/', 'ocr.views.index'),
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^wiki/', include('djiki.urls')),
 

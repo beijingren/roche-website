@@ -3,15 +3,18 @@
 {% load url from future %}
 {% block djiki_main %}
 
+{% block page_title %}
+<h1> {{ title }} </h1>
+{% endblock %}
+
 <h3>SPARQL</h3>
         {% autoescape off %}
 	{{sparql_results}}
         {% endautoescape %}
 
-
 <h3>Wiki</h3>
 <p>
-{% blocktrans %}The page with title <strong>{{ title }}</strong> does not exist.
+{% blocktrans %}A wiki page with title <strong>{{ title }}</strong> does not exist.
 Please make sure your spelling is correct.
 {% endblocktrans %}
 </p>
