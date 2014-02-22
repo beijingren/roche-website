@@ -29,7 +29,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:persName">
-<a class="persName"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#persName</xsl:attribute> 
+<a class="persName"><xsl:attribute name="href">/sparql/<xsl:value-of select="." />#persName</xsl:attribute> 
 <xsl:value-of select="."/>
 </a>
 </xsl:template>

@@ -1,0 +1,44 @@
+{% extends 'roche/base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 60px;">
+<h2>Results for {{ r.lemma }}</h2>
+{% if r.is_person %}
+<h3>{{ r.lemma }}
+{% if r.birthYear and r.deathYear %}
+(r.birthYear -- r.deathYear)
+{% elif r.birthYear %}
+(b. {{ r.birthYear }})
+{% elif r.deathYear %}
+(d. {{ r.deathYear }})
+{% endif %}
+</h3>
+
+{% if r.zi or r.hao %}
+<ul>
+{% if r.zi %}
+<li>字 <a href="{{ r.zi }}">{{ r.zi }}</a></li>
+{% endif %}
+{% if r.hao %}
+<li>號 {{ r.hao }}</li>
+{% endif %}
+</ul>
+{% endif %}
+{% endif %}
+
+{% if r.birthPlace or r.deathPlace %}
+<ul>
+{% if r.birthPlace %}
+<li>born in <a href="{{ r.birthPlace }}">{{ r.birthPlace }}</a></li>
+{% endif %}
+{% if r.deathPlace %}
+<li>died in <a href="{{ r.deathPlace }}">{{ r.deathPlace }}</a></li>
+{% endif %}
+</ul>
+{% endif %}
+
+{{ r }}
+
+</div>
+
+{% endblock %}
