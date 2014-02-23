@@ -22,6 +22,13 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </div>
 </xsl:template>
 
+<xsl:template match="tei:div[@type='chapter']">
+<h1 style="text-align: center; color: grey;">
+<xsl:value-of select="@n"/>
+</h1>
+<xsl:apply-templates/>
+</xsl:template>
+
 <xsl:template match="tei:div">
 <p style="margin: 0 0 4%;">
     <xsl:apply-templates/>
