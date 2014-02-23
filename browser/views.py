@@ -108,6 +108,23 @@ def text_view(request, title):
 
     # filter by title
     qs = qs.filter(title=title)
+
+    result = ""
+    for q in qs:
+        result = result + q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
+
+    return render_to_response('browser/text_view.html', {'tei_documents': qs,
+                              'tei_transform': result})
+
+def text_view_juan(request, title, juan):
+    """
+    Return a single chapter from a title.
+    """
+
+    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
+
+    # filter by title
+    qs = qs.filter(title=title, chapter=juan)
     result = qs[0].body.xsl_transform(xsl=XSL_TRANSFORM_1)
 
     return render_to_response('browser/text_view.html', {'tei_documents': qs,
