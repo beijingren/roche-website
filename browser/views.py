@@ -114,7 +114,7 @@ def text_view(request, title):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
 
     # filter by title
-    qs = qs.filter(title=title)
+    qs = qs.filter(title=title).order_by('chapter')
 
     result = ""
     for q in qs:

@@ -4,7 +4,7 @@ from eulxml.xmlmap import teimap
 
 class RocheTEI(teimap.Tei):
     title_en  = xmlmap.StringField('tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@xml:lang="en"]')
-    chapter = xmlmap.StringField('tei:text/tei:body/tei:div/@n')
+    chapter = xmlmap.IntegerField('tei:text/tei:body/tei:div/@n')
 
     @property
     def first_letter_author(self):
