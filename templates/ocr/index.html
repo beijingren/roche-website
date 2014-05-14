@@ -5,7 +5,13 @@
 {% block content %}
 
 <div class="container" style="margin-top: 60px;">
-<h1>OCR</h1>
+<h1>Optical Character Recognition Service</h1>
+
+<p>
+Drop tiff files here for now (we plan to expand the upload form to accept other file types and links).
+You will be redirected to a page containing the ocr text and your corresponding images.
+</p>
+
 <form class="dropzone" action="/en/ocr/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 </form>

@@ -12,7 +12,9 @@ sudo apt-get install -y		\
 	python-sorl-thumbnail	\
 	gettext			\
 	git			\
-	libpython-dev
+	libpython-dev		\
+	tesseract-ocr		\
+	tesseract-ocr-chi-tra
 
 sudo pip install -r requirements.txt
 
