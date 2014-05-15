@@ -8,16 +8,17 @@
 <h1>Optical Character Recognition Service</h1>
 
 <p>
-Drop tiff files here for now (we plan to expand the upload form to accept other file types and links).
+Drop tiff files or zip archives of tiff file here. For now we only support tiff uploads (support for other file types and links will be added in the future).  As OCR engine we use tesseract.  Scan of the Siku quanshu as tiff images, can
+be found at archive.org.
+</p>
+
+<p>
 You will be redirected to a page containing the ocr text and your corresponding images.
 </p>
 
 <form class="dropzone" action="/en/ocr/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 </form>
-<button id="submit-all">
-            Submit all files
-</button>
  
 <script src="{% static 'js/dropzone.js' %}"></script>
 <script type="text/javascript">
