@@ -1,11 +1,14 @@
 {% extends 'roche/base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block page_title %}
   {{tei_documents.0.title}} ({{tei_documents.0.title_en}})
 {% endblock %}
 
 {% block content %}
+
+<script src="{% static 'js/zepto.min.js' %}"></script>
 
 <div class="container" style="font-size: 220%; margin-top: 70px;">
 
@@ -14,5 +17,26 @@
 	{% endautoescape %}
 
 </div>
+
+<script type="text/javascript">
+$('.container').bind('mouseup', bindingMouseup);
+
+function bindingMouseup(event) {
+	var selectedText = "NO-RESULT";
+
+	if (window.getSelection) {
+		var range = window.getSelection();
+
+		selectedText = range.toString();
+	} else if (document.selection.createRange) {
+		var range = document.selection.createRange();
+
+		selectedText = range.text;
+	}
+
+	console.log(selectedText);
+};
+
+</script>
 
 {% endblock %}
