@@ -53,6 +53,18 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </a>
 </xsl:template>
 
+<xsl:template match="tei:title">
+<a class="term" style="color: green;"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#title</xsl:attribute>
+<xsl:value-of select="."/>
+</a>
+</xsl:template>
+
+<xsl:template match="tei:pc">
+<span class="pc" style="color: LightGray;">
+<xsl:value-of select="."/>
+</span>
+</xsl:template>
+
 <!--
 <xsl:template match="tei:lg[@type='poem']">
 <h1>
