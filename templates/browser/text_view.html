@@ -1,4 +1,4 @@
-{% extends 'roche/base.html' %}
+{% extends 'roche/base_text.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -6,11 +6,19 @@
   {{tei_documents.0.title}} ({{tei_documents.0.title_en}})
 {% endblock %}
 
+{% block info_area %}
+ {{tei_documents.0.title}}
+{% endblock %}
+
 {% block content %}
 
 <script src="{% static 'js/zepto.min.js' %}"></script>
 
 <div class="container" style="font-size: 220%; margin-top: 70px;">
+
+<!--
+<span class="glyphicon glyphicon-info-sign"></span>
+-->
 
 	{% autoescape off %}
 	{{tei_transform}}
