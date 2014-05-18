@@ -19,7 +19,34 @@
 </div>
 
 <script type="text/javascript">
+
+function BrowserView() {
+	this.hidingInterpuction = false;
+};
+
+BrowserView.prototype.keyUp = function (event) {
+	var pressedKey = event.keyCode;
+
+	console.log(pressedKey);
+
+	if (pressedKey == 190) {
+		if (this.hidingInterpuction) {
+			$(".pc").removeClass("hide");
+			this.hidingInterpuction = false;
+		} else {
+			$(".pc").addClass("hide");
+			this.hidingInterpuction = true;
+		}
+		console.log("Hiding 'pc' elems");
+	}
+
+};
+
+var browserView = new BrowserView();
+
 $('.container').bind('mouseup', bindingMouseup);
+$(document).bind('keyup', browserView.keyUp);
+
 
 function bindingMouseup(event) {
 	var selectedText = "NO-RESULT";
