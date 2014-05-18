@@ -96,6 +96,9 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 
 def index(request):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
+
+    # Make titles unique (maybe there is a better method?)
+    qs = qs.filter(chapter='1')
     qs = qs.only('title', 'title_en', 'author')
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
