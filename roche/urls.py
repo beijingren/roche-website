@@ -22,5 +22,8 @@ urlpatterns = i18n_patterns('',
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^wiki/', include('djiki.urls')),
 
+    url(r'^documentation/',
+        TemplateView.as_view(template_name='documentation/index.html')),
+
     url(r'^$', 'roche.views.index'),
 )
