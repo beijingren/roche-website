@@ -173,6 +173,7 @@ INSTALLED_APPS = (
     'eulexistdb',
     'sparql',
     'ocr',
+    'r',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

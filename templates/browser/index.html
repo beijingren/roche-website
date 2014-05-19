@@ -6,17 +6,24 @@
 <div class="container" style="margin-top: 70px;">
 <h4>Texts</h4>
 <table class="table table-hover">
+	<thead>
+	<tr>
+	<th>Title</th>
+	<th>Author</th>
+	<th></th>
+	</tr>
+	<thead>
+
 	<tbody>
 	{% for document in tei_documents %}
 	<tr>
 	<td><a href="{% url 'browser.views.text_view' document.title %}">{{document.title}} ({{document.title_en}})</a></td>
-	<td style="text-align: right;"><a href="{% url 'browser.views.index_author' document.author %}">{{document.author}}</a></td>
+	<td><a href="{% url 'browser.views.index_author' document.author %}">{{document.author}}</a></td>
+	<td><a href="{% url 'r.views.text_info' document.title %}"><span class="glyphicon glyphicon-info-sign"></span></a></td>
 	</tr>
 	{% endfor %}
 	</tbody>
 </table>
-
-<h4>Names</h4>
 
 </div>
 
