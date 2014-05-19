@@ -17,7 +17,7 @@ from roche.settings import EXISTDB_SERVER_URL
 #
 # Timeout higher?
 #
-xmldb = ExistDB(timeout=30)
+xmldb = ExistDB(timeout=60)
 
 xmldb.createCollection('docker', True)
 xmldb.createCollection('docker/texts', True)
