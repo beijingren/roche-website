@@ -23,7 +23,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:div[@type='chapter']">
-<h1 style="text-align: center; color: grey;">
+<h1 style="text-align: center; color: grey; margin: 20px 0px 30px 0px;">
 <xsl:value-of select="@n"/>
 </h1>
 <xsl:apply-templates/>
@@ -60,7 +60,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:pc">
-<span class="pc" style="color: LightGray;">
+<span class="pc" style="color: Gray;">
 <xsl:value-of select="."/>
 </span>
 </xsl:template>
