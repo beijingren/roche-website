@@ -1,8 +1,12 @@
+# coding=utf8
+
 from django.shortcuts import render
 
 from SPARQLWrapper import SPARQLWrapper
 from SPARQLWrapper import JSON
 from roche.settings import FUSEKI_SERVER_URL
+
+import requests
 
 
 prefix_default = "http://example.org/owl/sikuquanshu#"
@@ -15,15 +19,28 @@ sparql_query = u"""
     SELECT *
     WHERE {{ :{0} ?p ?o . }}"""
 
+CBDB_API_URL = u"http://cbdb.fas.harvard.edu/cbdbapi/person.php?name={}&o=json"
+
+
 def index(request, lemma):
     sparql = SPARQLWrapper(FUSEKI_SERVER_URL)
     sparql.setQuery(sparql_query.format(lemma))
     sparql.setReturnFormat(JSON)
 
     try:
-        sparql_results = sparql.query().convert()
+        sparql_results = sparql.queryAndConvert()
     except:
         sparql_results = {}
+
+    #
+    # Check if we found something in our own sparql repository.  If not
+    # query CBDB.
+    #
+    # TODO: We need a better check (persons with the same name).
+    #
+    if not sparql_results["results"]["bindings"]:
+        cbdb_results = requests.get(CBDB_API_URL.format(lemma))
+        print cbdb_results.json()
 
     is_person = False
     template_result = {}
