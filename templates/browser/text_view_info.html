@@ -9,25 +9,35 @@
 
 
 <div class="container" style="font-size: 220%; margin-top: 70px;">
+<h1>{{tei_documents.0.title}} ({{tei_documents.0.title_en}})</h1>
 
-<h3>Persons</h3>
-{% for person in persons %}
-{{ person }}
-{% endfor %}
-
-<h3>Terms</h3>
-{% for term in terms %}
-{{ term }}
-{% endfor %}
-
-<h3>Place names</h3>
+<div class="panel panel-warning">
+<div class="panel-heading">Places</div>
+<div class="panel-body">
 {% for place in place_names %}
-{{place}}
+<a href="">{{place}}</a>
 {% endfor %}
+</div>
+</div>
 
-	{% autoescape off %}
-	{{tei_transform}}
-	{% endautoescape %}
+<div class="panel panel-info">
+<div class="panel-heading">Persons</div>
+<div class="panel-body">
+{% for person in persons %}
+<a href="">{{ person }}</a>
+{% endfor %}
+</div>
+</div>
+
+<div class="panel panel-success">
+<div class="panel-heading">Terms</div>
+<div class="panel-body">
+{% for term in terms %}
+<a href="">{{ term }}</a>
+{% endfor %}
+</div>
+</div>
+
 
 </div>
 
