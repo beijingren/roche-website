@@ -8,14 +8,14 @@
 {% block content %}
 
 
-<div class="container" style="font-size: 220%; margin-top: 70px;">
+<div class="container" style="margin-top: 70px;">
 <h1>{{tei_documents.0.title}} ({{tei_documents.0.title_en}})</h1>
 
 <div class="panel panel-warning">
 <div class="panel-heading">Places</div>
 <div class="panel-body">
 {% for place in place_names %}
-<a href="">{{place}}</a>
+<a href="{% url 'sparql.views.index' place %}">{{place}}</a>
 {% endfor %}
 </div>
 </div>
@@ -24,7 +24,7 @@
 <div class="panel-heading">Persons</div>
 <div class="panel-body">
 {% for person in persons %}
-<a href="">{{ person }}</a>
+<a href="{% url 'sparql.views.index' person %}">{{ person }}</a>
 {% endfor %}
 </div>
 </div>
@@ -33,7 +33,7 @@
 <div class="panel-heading">Terms</div>
 <div class="panel-body">
 {% for term in terms %}
-<a href="">{{ term }}</a>
+<a href="{% url 'sparql.views.index' term %}">{{ term }}</a>
 {% endfor %}
 </div>
 </div>
