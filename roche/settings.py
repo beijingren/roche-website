@@ -24,7 +24,11 @@ EXISTDB_INDEX_CONFIGFILE = os.path.join(PROJECT_ROOT, 'roche', 'exist_index.xcon
 #
 # fuseki
 #
-FUSEKI_SERVER_URL = 'http://{0}:{1}/ds/query'.format(
+FUSEKI_QUERY_URL = 'http://{0}:{1}/ds/query'.format(
+    os.environ['SPARQL_PORT_3030_TCP_ADDR'],
+    os.environ['SPARQL_PORT_3030_TCP_PORT'])
+
+FUSEKI_UPDATE_URL = 'http://{0}:{1}/ds/update'.format(
     os.environ['SPARQL_PORT_3030_TCP_ADDR'],
     os.environ['SPARQL_PORT_3030_TCP_PORT'])
 
