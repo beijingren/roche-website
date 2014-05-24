@@ -66,27 +66,3 @@ def text_view_juan(request, title, juan):
 
     return render_to_response('browser/text_view.html', {'tei_documents': qs,
                               'tei_transform': result.serialize()})
-
-def text_view_info(request, title):
-    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
-
-    qs = qs.filter(title=title)
-
-    result = ""
-    place_names = []
-    persons = []
-    terms = []
-    for q in qs:
-        place_names.extend(q.place_names)
-        persons.extend(q.persons)
-        terms.extend(q.terms)
-
-        result = result + q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
-
-    place_names = list(set(place_names))
-    persons = list(set(persons))
-    terms = list(set(terms))
-
-    return render_to_response('browser/text_view_info.html', {'tei_documents': qs,
-                              'tei_transform': result, 'place_names': place_names,
-                              'persons': persons, 'terms': terms})
