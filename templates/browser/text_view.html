@@ -15,10 +15,9 @@
 <script src="{% static 'js/zepto.min.js' %}"></script>
 
 <div class="container" style="font-size: 220%; margin-top: 70px;">
-
-<!--
-<span class="glyphicon glyphicon-info-sign"></span>
--->
+<div class="page-header">
+  <h1>{{tei_documents.0.title}} <small>{{tei_documents.0.title_en}}</small></h1>
+</div>
 
 	{% autoescape off %}
 	{{tei_transform}}
