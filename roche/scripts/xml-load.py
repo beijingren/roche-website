@@ -29,6 +29,7 @@ for (dirpath, dirnames, filenames) in walk('浙江大學圖書館'):
     if filenames:
         for filename in filenames:
             with open(dirpath + '/' + filename) as f:
+                print "--" + dirpath + '/' + filename
                 xmldb.load(f, 'docker/texts' + '/' + dirpath + '/' + filename, True)
 
 #
