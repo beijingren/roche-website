@@ -1,3 +1,5 @@
+# coding=utf-8
+RE_INTERPUCTION = u"[，。！、“”「」：？《》]"
 
 XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 <xsl:stylesheet

@@ -1,3 +1,6 @@
+# coding=utf-8
+import re
+
 from django.shortcuts import render_to_response
 
 from eulexistdb.db import ExistDB
@@ -6,6 +9,7 @@ from eulxml.xmlmap.teimap import Tei
 
 from browser.models import RocheTEI
 from common.utils import XSL_TRANSFORM_1
+from common.utils import RE_INTERPUCTION
 
 
 def text_info(request, title):
@@ -19,7 +23,18 @@ def text_info(request, title):
     terms = []
     chapter_titles = []
     for q in qs:
-        chapter_titles.append([q.chapter, q.chapter_title.replace(" ", "").replace("\n", "")[:70]])
+
+        number_characters = 0
+        for d in q.body.div:
+            text = re.sub(RE_INTERPUCTION, '', d.text)
+            text = text.replace("\n", "")
+            text = text.replace("", "")
+            number_characters += len(text)
+
+
+        chapter_titles.append([q.chapter,
+                               q.chapter_title.replace(" ", "").replace("\n", "")[:70],
+                               number_characters])
 
         place_names.extend(q.place_names)
         persons.extend(q.persons)
