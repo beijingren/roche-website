@@ -17,7 +17,10 @@ def text_info(request, title):
     place_names = []
     persons = []
     terms = []
+    chapter_titles = []
     for q in qs:
+        chapter_titles.append([q.chapter, q.chapter_title.replace(" ", "").replace("\n", "")[:70]])
+
         place_names.extend(q.place_names)
         persons.extend(q.persons)
         terms.extend(q.terms)
@@ -28,5 +31,5 @@ def text_info(request, title):
 
     return render_to_response('browser/text_view_info.html', {'tei_documents': qs,
                               'tei_transform': result, 'place_names': place_names,
-                              'persons': persons, 'terms': terms})
-    return
+                              'persons': persons, 'terms': terms,
+                              'chapter_titles': sorted(chapter_titles)})

@@ -7,12 +7,11 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = i18n_patterns('',
-    url(r'^browse/', include('browser.urls', namespace='browse')),
-    url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[1-9]+)$', 'browser.views.text_view_juan'),
-    url(r'^browse/text/(?P<title>([^/])+)/info$', 'browser.views.text_view_info'),
-    url(r'^browse/text/(?P<title>.*)$', 'browser.views.text_view'),
+    url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)$', 'browser.views.text_view_juan'),
+    url(r'^browse/text/(?P<title>[^/]+)$', 'browser.views.text_view'),
     url(r'^browse/author/(?P<author>[A-Z])$', 'browser.views.index_author', {'startswith': True}),
     url(r'^browse/author/(?P<author>.*)$', 'browser.views.index_author', {'startswith': False}),
+    url(r'^browse/', include('browser.urls', namespace='browse')),
 
     url(r'^r/(?P<title>([^/])+)/info$', 'r.views.text_info'),
 

@@ -11,6 +11,35 @@
 <div class="container" style="margin-top: 70px;">
 <h1>{{tei_documents.0.title}} ({{tei_documents.0.title_en}})</h1>
 
+<h3>Contents</h3>
+<table class="table table-striped">
+
+<thead>
+<tr>
+<th># juan</th>
+<th></th>
+<th># Words</th>
+</tr>
+</thead>
+
+<tbody>
+{% for ct in chapter_titles %}
+<tr>
+<td>
+<a href="{% url 'browser.views.text_view_juan' tei_documents.0.title ct.0 %}">{{ct.0}}</a>
+</td>
+<td>
+{{ct.1}}
+</td>
+<td>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+<h3>TEI Annotations</h3>
 <div class="panel panel-warning">
 <div class="panel-heading">Places</div>
 <div class="panel-body">

@@ -5,6 +5,7 @@ from eulxml.xmlmap import teimap
 class RocheTEI(teimap.Tei):
     title_en  = xmlmap.StringField('tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@xml:lang="en"]')
     chapter = xmlmap.IntegerField('tei:text/tei:body/tei:div/@n')
+    chapter_title = xmlmap.StringField('tei:text/tei:body/tei:div/tei:div/descendant::tei:p[1]')
     place_names = xmlmap.StringListField('//tei:placeName')
     persons = xmlmap.StringListField('//tei:persName')
     terms = xmlmap.StringListField('//tei:term')
