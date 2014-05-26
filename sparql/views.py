@@ -42,7 +42,8 @@ SPARQL_FUSEKI_UPDATE_QUERY = u"""
     """
 
 CBDB_API_URL = u"http://cbdb.fas.harvard.edu/cbdbapi/person.php?name={}&o=json"
-DBPEDIA_QUERY_URL = "http://dbpedia.org/sparql/query"
+#DBPEDIA_QUERY_URL = "http://dbpedia.org/sparql/query"
+DBPEDIA_QUERY_URL = "http://dbpedia-live.openlinksw.com/sparql"
 
 #
 # Only look and insert canonical names.  Hao, zi names should be handled
@@ -66,7 +67,7 @@ def index(request, lemma):
     # TODO: We need a better check (persons with the same name).
     #
     #if not sparql_results or not sparql_results["results"]["bindings"]:
-    if True:
+    if False:
 
         #
         # DBPEDIA
@@ -91,29 +92,38 @@ def index(request, lemma):
                 from .utils import sparql_local_insert_person
 
                 sparql_local_insert_person(lemma, result)
-
-
-        #
-        # CBDB
-        #
-        r = requests.get(CBDB_API_URL.format(lemma)).json()
-        #if r.status_code == 200:
-        try:
-            persons = r['Package']['PersonAuthority']['PersonInfo']['Person']
-        except:
-            persons = []
-
-        if type(persons) is list:
-            for person in persons:
-                print person['BasicInfo']['ChName'], person['BasicInfo']['YearBirth'], person['BasicInfo']['PersonId']
         else:
-            person = persons
-            if person:
-                print person['BasicInfo']['ChName'], person['BasicInfo']['YearBirth'], person['BasicInfo']['PersonId']
+
+
+            #
+            # CBDB
+            #
+            r = requests.get(CBDB_API_URL.format(lemma)).json()
+            #if r.status_code == 200:
+            try:
+                persons = r['Package']['PersonAuthority']['PersonInfo']['Person']
+            except:
+                persons = []
+
+            if type(persons) is list:
+                for person in persons:
+                    print person['BasicInfo']['ChName'], person['BasicInfo']['YearBirth'], person['BasicInfo']['PersonId']
+            else:
+                person = persons
+                if person:
+                    print person['BasicInfo']['ChName'], person['BasicInfo']['YearBirth'], person['BasicInfo']['PersonId']
 
             return HttpResponse("Found persons")
 
-        return HttpResponse("SPARQL INSERT")
+
+        sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+        sparql.setQuery(sparql_query.format(lemma))
+        sparql.setReturnFormat(JSON)
+
+        try:
+            sparql_results = sparql.queryAndConvert()
+        except:
+            sparql_results = {}
 
     is_person = False
     template_result = {}
