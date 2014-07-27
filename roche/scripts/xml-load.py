@@ -7,6 +7,9 @@
 import sys
 import os
 
+
+DJANGO_SETTINGS_MODULE="roche.settings"
+
 sys.path.append('.')
 import roche.settings
 
