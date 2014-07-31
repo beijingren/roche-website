@@ -83,6 +83,12 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </span>
 </xsl:template>
 
+<xsl:template match="tei:pb/@n">
+<sup style="color:  SlateGray;">
+<xsl:value-of select="."/>
+</sup>
+</xsl:template>
+
 </xsl:stylesheet>
 '''
 
