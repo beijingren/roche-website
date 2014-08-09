@@ -11,3 +11,5 @@ eulxml
 eulexistdb
 
 SPARQLWrapper
+
+wikipedia

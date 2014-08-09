@@ -35,7 +35,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:placeName">
-<a class="placeName" style="color: red;"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#placeName</xsl:attribute>
+<a class="placeName" style="color: red;"><xsl:attribute name="href">/sparql/<xsl:value-of select="." />#placeName</xsl:attribute>
 <xsl:value-of select="."/>
 </a>
 </xsl:template>

@@ -50,15 +50,8 @@ DBPEDIA_QUERY_URL = "http://dbpedia-live.openlinksw.com/sparql"
 # in tagging process.
 #
 def index(request, lemma):
+    import wikipedia
     from django.http import HttpResponse
-    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
-    sparql.setQuery(sparql_query.format(lemma))
-    sparql.setReturnFormat(JSON)
-
-    try:
-        sparql_results = sparql.queryAndConvert()
-    except:
-        sparql_results = {}
 
     #
     # Check if we found something in our own sparql repository.  If not
@@ -67,7 +60,7 @@ def index(request, lemma):
     # TODO: We need a better check (persons with the same name).
     #
     #if not sparql_results or not sparql_results["results"]["bindings"]:
-    if False:
+    if True:
 
         #
         # DBPEDIA
@@ -87,14 +80,14 @@ def index(request, lemma):
         print SPARQL_DBPEDIA_QUERY.format(lemma)
         print sparql_results
 
-        if sparql_results and sparql_results["results"]["bindings"]:
-            for result in sparql_results["results"]["bindings"]:
-                from .utils import sparql_local_insert_person
+        #if sparql_results and sparql_results["results"]["bindings"]:
+        #    for result in sparql_results["results"]["bindings"]:
+        #        from .utils import sparql_local_insert_person
+        #
+        #        sparql_local_insert_person(lemma, result)
+        #else:
 
-                sparql_local_insert_person(lemma, result)
-        else:
-
-
+        if True:
             #
             # CBDB
             #
@@ -113,8 +106,6 @@ def index(request, lemma):
                 if person:
                     print person['BasicInfo']['ChName'], person['BasicInfo']['YearBirth'], person['BasicInfo']['PersonId']
 
-            return HttpResponse("Found persons")
-
 
         sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
         sparql.setQuery(sparql_query.format(lemma))
@@ -124,6 +115,15 @@ def index(request, lemma):
             sparql_results = sparql.queryAndConvert()
         except:
             sparql_results = {}
+
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(sparql_query.format(lemma))
+    sparql.setReturnFormat(JSON)
+
+    try:
+        sparql_results = sparql.queryAndConvert()
+    except:
+        sparql_results = {}
 
     is_person = False
     template_result = {}
@@ -143,4 +143,10 @@ def index(request, lemma):
     template_result['is_person'] = is_person
     template_result['lemma'] = lemma
 
-    return render(request, 'sparql/index.html', {'r': template_result})
+
+    try:
+        wikipedia_result = wikipedia.summary(lemma)
+    except:
+        wikipedia_result = ''
+
+    return render(request, 'sparql/index.html', {'r': template_result, 'wikipedia_result': wikipedia_result})
