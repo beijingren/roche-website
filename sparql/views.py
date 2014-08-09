@@ -127,17 +127,18 @@ def index(request, lemma):
 
     is_person = False
     template_result = {}
-    for result in sparql_results["results"]["bindings"]:
-        p = result["p"]["value"].replace(prefix_default, '')
-        p = p.replace(prefix_schema, '')
-        p = p.replace(prefix_syntax, '')
+    if sparql_results.get("results", False):
+        for result in sparql_results["results"]["bindings"]:
+            p = result["p"]["value"].replace(prefix_default, '')
+            p = p.replace(prefix_schema, '')
+            p = p.replace(prefix_syntax, '')
 
-        o = result["o"]["value"].replace(prefix_default, '')
+            o = result["o"]["value"].replace(prefix_default, '')
 
-        if p == "type" and o == "Person":
-            is_person = True
+            if p == "type" and o == "Person":
+                is_person = True
 
-        template_result[p] = o
+            template_result[p] = o
 
     template_result['is_person'] = is_person
     template_result['lemma'] = lemma
