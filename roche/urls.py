@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = i18n_patterns('',
+    url(r'^annotate$', 'annotate.views.index'),
+
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)$', 'browser.views.text_view_juan'),
     url(r'^browse/text/(?P<title>[^/]+)$', 'browser.views.text_view'),
     url(r'^browse/author/(?P<author>[A-Z])$', 'browser.views.index_author', {'startswith': True}),

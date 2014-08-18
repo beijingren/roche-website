@@ -17,6 +17,11 @@
 	background-size: cover;
 }
 
+.homepage-slideshow-a {
+
+	background-image: url("/static/images/img_003.jpg");
+}
+
 .navbar.transparent {
    background: rgba(0,0,0,0.7);
 }

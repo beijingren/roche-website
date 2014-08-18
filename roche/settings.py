@@ -178,6 +178,7 @@ INSTALLED_APPS = (
     'sparql',
     'ocr',
     'r',
+    'annotate',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

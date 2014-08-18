@@ -8,9 +8,8 @@ The Digital Siku Quanshu Project
 
 
 {% block content %}
-<div class="jumbotron">
-</div>
 
+<!--
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -34,7 +33,6 @@ The Digital Siku Quanshu Project
         </div>
       </div>
 
-      <!-- column 2 -->
       <div class="row">
         <div class="col-md-4">
           <h2>{% trans "Semantic Editor" %}</h2>
@@ -54,6 +52,62 @@ The Digital Siku Quanshu Project
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
       </div>
+-->
+
+<div class="slide-wrapper slide-featured">
+<div class="flexslider slide-direction-nav slide-auto" style="margin-top: 50px;">
+  <ul class="slides">
+
+
+    <li class="cover-image">
+      <a class="coverhomepage-slideshow-a" href="/annotate">
+<div class="container">
+<div class="row">
+<div class="span5">
+<div class="slide-content">
+<h1 class="slide-title">Annotations</h1>
+<p
+class="slide-caption">UIMA analysis engine</p></div></div></div></div> </a>
+
+    </li>
+
+
+    <li>
+      <img src="http://studiompls.com/assets/homepage_slideshow_weinstein8.jpg">
+    </li>
+
+    <li>
+      <img src="http://studiompls.com/assets/homepage_slideshow_weinstein8.jpg">
+    </li>
+
+    <li>
+      <img src="http://studiompls.com/assets/homepage_slideshow_weinstein8.jpg">
+    </li>
+  </ul>
+</div>
+</div>
+
+<div class="container">
+<table class="table table-hover">
+        <thead>
+        <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th></th>
+        </tr>
+        <thead>
+
+        <tbody>
+        {% for document in tei_documents %}
+        <tr>
+        <td><a href="{% url 'browser.views.text_view' document.title %}">{{document.title}} <small style="color: gray;">{{document.title_en}}</small></a></td>
+        <td><a href="{% url 'browser.views.index_author' document.author %}">{{document.author}}</a></td>
+        <td><a href="{% url 'r.views.text_info' document.title %}"><span class="glyphicon glyphicon-info-sign"></span></a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
  </div> <!-- /container -->
 
 {% endblock %}
