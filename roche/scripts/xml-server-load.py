@@ -13,6 +13,10 @@ from eulexistdb.db import ExistDB
 #
 # Timeout higher?
 #
+
+#
+# http://username:password@54.220.97.75:8080/exist
+#
 xmldb = ExistDB('http://54.220.97.75:8080/exist')
 
 xmldb.createCollection('docker', True)
