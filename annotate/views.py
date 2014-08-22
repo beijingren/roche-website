@@ -1,5 +1,10 @@
 # coding=utf-8
 
+import tempfile
+import os
+import subprocess
+
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
@@ -14,7 +19,19 @@ INITIAL_TEXT = u"""歐陽修，字永叔，廬陵人。四歲而孤，母鄭，�
 def index(request):
     
     if request.method == 'POST':
-        pass
+        form = TextAnnotationForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['text']
+            f = tempfile.NamedTemporaryFile()
+            f.write(text.encode('utf-8'))
+
+            # Call UIMA analysis engine
+
+            # XSLT transform result
+
+            f.close()
+
+            return HttpResponseRedirect('/')
     else:
         form = TextAnnotationForm(initial={'text': INITIAL_TEXT})
 

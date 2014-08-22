@@ -8,4 +8,4 @@ class TextAnnotation(models.Model):
     )
 
     text = models.TextField()
-    text_type = models.CharField(max_length=128, choices=ANALYSIS_CHOICES)
+    #text_type = models.CharField(max_length=128, choices=ANALYSIS_CHOICES)
