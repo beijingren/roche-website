@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = i18n_patterns('',
-    url(r'^annotate/$', 'annotate.views.index'),
+    url(r'^annotate/', 'annotate.views.index'),
 
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)$', 'browser.views.text_view_juan'),
     url(r'^browse/text/(?P<title>[^/]+)$', 'browser.views.text_view'),
@@ -19,8 +19,8 @@ urlpatterns = i18n_patterns('',
 
     url(r'^sparql/(?P<lemma>.*)$', 'sparql.views.index'),
 
-    url(r'^ocr/', 'ocr.views.index'),
     url(r'^ocr/.*$', 'ocr.views.show_processed'),
+    url(r'^ocr/', 'ocr.views.index'),
 
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^wiki/', include('djiki.urls')),
