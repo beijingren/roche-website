@@ -5,46 +5,22 @@
 {% block content %}
 
 <div class="container" style="margin-top: 60px;">
-<h1>Optical Character Recognition Service</h1>
+<h1>OCR Service</h1>
 
-<p>
-Drop tiff files or zip archives of tiff file here. For now we only support tiff uploads (support for other file types and links will be added in the future).  As OCR engine we use tesseract.  Scan of the Siku quanshu as tiff images, can
-be found at archive.org.
-</p>
-
-<p>
-You will be redirected to a page containing the ocr text and your corresponding images.
-</p>
-
-<form class="dropzone" action="/en/ocr/" method="post" enctype="multipart/form-data">
+<form action="/en/ocr/" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
+{{ form.non_field_errors }}
+
+{{ form.non_field_errors }}
+<div class="fieldWrapper">
+{{ form.subject.errors }}
+{{ form.file }}
+</div>
+
+ <input type="submit" value="Submit">
 </form>
  
-<script src="{% static 'js/dropzone.js' %}"></script>
-<script type="text/javascript">
-            Dropzone.options.myDropzone = {
- 
-                // Prevents Dropzone from uploading dropped files immediately
-                autoProcessQueue : false,
- 
-                init : function() {
-                    var submitButton = document.querySelector("#submit-all")
-                    myDropzone = this;
- 
-                    submitButton.addEventListener("click", function() {
-                        myDropzone.processQueue();
-                        // Tell Dropzone to process all queued files.
-                    });
- 
-                    // You might want to show the submit button only when
-                    // files are dropped here:
-                    this.on("addedfile", function() {
-                        // Show submit button here and/or inform user to click it.
-                    });
- 
-                }
-            };
-        </script>
 </div>
 
 {% endblock %}

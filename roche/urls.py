@@ -19,8 +19,8 @@ urlpatterns = i18n_patterns('',
 
     url(r'^sparql/(?P<lemma>.*)$', 'sparql.views.index'),
 
-    url(r'^ocr/.*$', 'ocr.views.show_processed'),
-    url(r'^ocr/', 'ocr.views.index'),
+    url(r'^ocr/(?P<ocr_id>[0-9]+)$', 'ocr.views.show_processed'),
+    url(r'^ocr/$', 'ocr.views.index'),
 
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^wiki/', include('djiki.urls')),
