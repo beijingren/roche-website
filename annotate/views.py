@@ -22,8 +22,10 @@ INITIAL_TEXT = u"""歐陽修，字永叔，廬陵人。四歲而孤，母鄭，�
 # UIMA standalone analysis engine pipeline
 #
 BERTIE_JAR = "/docker/bertie-uima/target/bertie-uima-0.0.1-SNAPSHOT.jar"
-#BERTIE_JAR = "/home/david/SKQS/bertie-uima/target/bertie-uima-0.0.1-SNAPSHOT.jar"
 
+#
+# TEI header
+#
 TEI_HEADER = """<?xml version="1.0" encoding="UTF-8" ?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
 <teiHeader>
