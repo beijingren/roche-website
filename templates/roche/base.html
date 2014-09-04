@@ -46,7 +46,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">The Digital Siku Quanshu Project</a>
+        <a class="navbar-brand" href="/">
+{% if LANGUAGE_CODE == "de" %}
+Digitales Siku Quanshu Projekt
+{% elif LANGUAGE_CODE == "zh" %}
+数字四庫全書
+{% else %}
+The Digital Siku Quanshu Project
+{% endif %}
+	</a>
       </div>
       <div class="navbar-collapse collapse">
 <!--
@@ -56,8 +64,24 @@
 -->
         <ul class="nav navbar-nav navbar-right">
 
-	<li><a href="/about/">About</a></li>
-	<li><a href="/documentation/">Documentation</a></li>
+	<li><a href="about/">
+{% if LANGUAGE_CODE == "de" %}
+Über uns
+{% elif LANGUAGE_CODE == "zh" %}
+關於我們
+{% else %}
+About
+{% endif %}
+	</a></li>
+	<li><a href="/documentation/">
+{% if LANGUAGE_CODE == "de" %}
+Dokumentation
+{% elif LANGUAGE_CODE == "zh" %}
+资料
+{% else %}
+Documentation
+{% endif %}
+	</a></li>
 
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ LANGUAGE_CODE }} <b class="caret"></b></a>

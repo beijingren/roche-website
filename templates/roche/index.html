@@ -3,11 +3,14 @@
 {% load i18n %}
 
 {% block page_title %}
+{% if LANGUAGE_CODE == "en" %}
 The Digital Siku Quanshu Project
+{% endif %}
 {% endblock %}
 
 
 {% block content %}
+
 
 <!--
     <div class="container">
@@ -67,7 +70,15 @@ The Digital Siku Quanshu Project
 <div class="span5">
 <div class="slide-content">
 <h1 class="slide-title">UIMA Analysis Engines</h1>
-<p class="slide-caption">for automatic annotations</p>
+<p class="slide-caption">
+{% if LANGUAGE_CODE == "de" %}
+für automatische Auszeichnungen
+{% elif LANGUAGE_CODE == "en" %}
+for automatic annotations
+{% elif LANGUAGE_CODE == "zh" %}
+XXX
+{% endif %}
+</p>
 </div>
 </div>
 </div>
@@ -84,7 +95,15 @@ The Digital Siku Quanshu Project
 <div class="span5">
 <div class="slide-content">
 <h1 class="slide-title">OCR Service</h1>
-<p class="slide-caption">for fulltext extraction</p>
+<p class="slide-caption">
+{% if LANGUAGE_CODE == "de" %}
+für eine Volltexterkennung
+{% elif LANGUAGE_CODE == "en" %}
+for fulltext extraction
+{% elif LANGUAGE_CODE == "zh" %}
+XXX
+{% endif %}
+</p>
 </div>
 </div>
 </div>
@@ -94,7 +113,7 @@ The Digital Siku Quanshu Project
     </li>
 
     <li>
-<a class="coverhomepage-slideshow-a" href="/sparql/">
+<a class="coverhomepage-slideshow-a" href="/documentation/sparql/">
 <div class="container">
 <div class="row">
 <div class="span5">
@@ -120,8 +139,24 @@ The Digital Siku Quanshu Project
 <table class="table table-hover">
         <thead>
         <tr>
-        <th>Title</th>
-        <th>Author</th>
+        <th>
+{% if LANGUAGE_CODE == "de" %}
+Titel
+{% elif LANGUAGE_CODE == "en" %}
+Title
+{% elif LANGUAGE_CODE == "zh" %}
+書名
+{% endif %}
+	</th>
+        <th>
+{% if LANGUAGE_CODE == "de" %}
+Verfasser
+{% elif LANGUAGE_CODE == "en" %}
+Author
+{% elif LANGUAGE_CODE == "zh" %}
+作者
+{% endif %}
+	</th>
         <th></th>
         </tr>
         <thead>

@@ -1,0 +1,30 @@
+{% extends 'roche/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 70px;">
+
+<h2>SPARQL</h2>
+<p>
+<strong>SPARQL</strong> (SPARQL Protocol And RDF Query Language) provides languages and protocols to query
+and manipulate <strong>RDF</strong> (Resource Description Framework) graphs.  Check out the <a href="http://www.w3.org/TR/sparql11-overview/">specification</a> or the book "Learning SPARQL" by Bob DuCharme to learn more.
+We run a local public SPARQL endpoint you can query directly through a web interface.
+Currently we use <a href="http://jena.apache.org/documentation/serving_data/">Fuseki</a>
+as our SPARQL server implementation.
+</p>
+
+<p>
+For example if you want query for all female persons from the Qing dynasty
+those died over the age of 50, paste the following into the our <a href="http://localhost:3030">endpoint</a>.
+</p>
+
+<h2>OWL</h2>
+OWL (Web Ontology Language)
+<a href="http://www.w3.org/TR/owl2-overview/">specification</a>
+
+<a href="http://protege.stanford.edu/">Protégé</a>
+
+</div>
+
+{% endblock %}
