@@ -60,7 +60,7 @@ def index(request, lemma):
     # TODO: We need a better check (persons with the same name).
     #
     #if not sparql_results or not sparql_results["results"]["bindings"]:
-    if True:
+    if False:
 
         #
         # DBPEDIA
@@ -75,10 +75,6 @@ def index(request, lemma):
             import traceback
             print traceback.format_exc()
             sparql_results = {}
-
-        # print "DBPEDIA"
-        # print SPARQL_DBPEDIA_QUERY.format(lemma)
-        # print sparql_results
 
         #if sparql_results and sparql_results["results"]["bindings"]:
         #    for result in sparql_results["results"]["bindings"]:
