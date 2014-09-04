@@ -76,9 +76,9 @@ def index(request, lemma):
             print traceback.format_exc()
             sparql_results = {}
 
-        print "DBPEDIA"
-        print SPARQL_DBPEDIA_QUERY.format(lemma)
-        print sparql_results
+        # print "DBPEDIA"
+        # print SPARQL_DBPEDIA_QUERY.format(lemma)
+        # print sparql_results
 
         #if sparql_results and sparql_results["results"]["bindings"]:
         #    for result in sparql_results["results"]["bindings"]:
