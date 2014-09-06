@@ -141,8 +141,17 @@ def index(request, lemma):
 
 
     try:
-        wikipedia_result = wikipedia.summary(lemma)
+        wikipedia.set_lang("en")
+        wikipedia_result_en = wikipedia.summary(lemma)
     except:
-        wikipedia_result = ''
+        wikipedia_result_en = ''
 
-    return render(request, 'sparql/index.html', {'r': template_result, 'wikipedia_result': wikipedia_result})
+    try:
+        wikipedia.set_lang("zh")
+        wikipedia_result_zh = wikipedia.summary(lemma)
+    except:
+        wikipedia_result_zh = ''
+
+    return render(request, 'sparql/index.html', {'r': template_result,
+                  'wikipedia_result_en': wikipedia_result_en,
+                  'wikipedia_result_zh': wikipedia_result_zh,})
