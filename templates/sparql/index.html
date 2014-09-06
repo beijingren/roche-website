@@ -37,15 +37,19 @@
 {% endif %}
 
 <h4 style="margin-top: 30px; color: grey;">Wikipedia</h4>
+{% if wikipedia_en %}
 <p>
 {{ wikipedia_en }}
 <a href="{{ wikipedia_en_url }}"><strong>&hellip;</strong></a>
 </p>
+{% endif %}
 
+{% if wikipedia_zh %}
 <p>
 {{ wikipedia_zh }}
 <a href="{{ wikipedia_zh_url }}"><strong>&hellip;</strong></a>
 </p>
+{% endif %}
 
 {% if not r.is_person %}
 <h4>CBDB</h4>
