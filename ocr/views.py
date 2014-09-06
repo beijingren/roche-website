@@ -20,7 +20,7 @@ def index(request):
             new_file.save()
 
             file_name = '/' + unicode(new_file.file)
-            print file_name
+
             # Call tesseract
             cmd_exit = subprocess.call(["/usr/bin/tesseract",
                                        MEDIA_ROOT + file_name,
@@ -31,12 +31,12 @@ def index(request):
             else:
                 error_msg = ""
 
-            print error_msg
-
             f = open(MEDIA_ROOT + "/" + file_name + ".txt")
-            print f.read()
-            print new_file.file
-            ocr_id = '123123'
+            new_file.text = f.read()
+            new_file.save()
+
+            ocr_id = new_file.id
+
             return HttpResponseRedirect(reverse('ocr.views.show_processed', args=(ocr_id,)))
     else:
         form = UploadFileForm()
@@ -46,7 +46,13 @@ def index(request):
                               context_instance=RequestContext(request))
 
 def show_processed(request, ocr_id):
-    tesseract = 'TEST'
-    data = {'tesseract': tesseract }
+    try:
+        ocr = UploadFile.objects.get(pk=int(ocr_id))
+        tesseract = ocr.text
+    except:
+        tesseract = ''
+
+
+    data = {'tesseract': tesseract}
     return render_to_response('ocr/processed.html', data,
                               context_instance=RequestContext(request))

@@ -7,3 +7,4 @@ from .models import UploadFile
 class UploadFileForm(forms.ModelForm):
     class Meta:
         model = UploadFile
+        exclude = ['tag', 'text']
