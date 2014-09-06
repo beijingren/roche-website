@@ -89,6 +89,12 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </sup>
 </xsl:template>
 
+<xsl:template match="tei:num|tei:measure">
+<span class="num" style="background-color: Gainsboro;">
+<xsl:value-of select="."/>
+</span>
+
+</xsl:template>
 </xsl:stylesheet>
 '''
 
