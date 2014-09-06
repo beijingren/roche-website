@@ -1,6 +1,9 @@
 # coding=utf8
 
 import requests
+import wikipedia
+
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from SPARQLWrapper import SPARQLWrapper
@@ -50,8 +53,6 @@ DBPEDIA_QUERY_URL = "http://dbpedia-live.openlinksw.com/sparql"
 # in tagging process.
 #
 def index(request, lemma):
-    import wikipedia
-    from django.http import HttpResponse
 
     #
     # Check if we found something in our own sparql repository.  If not
@@ -139,19 +140,27 @@ def index(request, lemma):
     template_result['is_person'] = is_person
     template_result['lemma'] = lemma
 
-
     try:
         wikipedia.set_lang("en")
-        wikipedia_result_en = wikipedia.summary(lemma)
+        en = wikipedia.page(lemma, auto_suggest=True, redirect=True)
+        wikipedia_en = en.summary
+        wikipedia_en_url = en.url
     except:
-        wikipedia_result_en = ''
+        wikipedia_en = ''
+        wikipedia_en_url = ''
 
     try:
         wikipedia.set_lang("zh")
-        wikipedia_result_zh = wikipedia.summary(lemma)
+        zh = wikipedia.page(lemma, auto_suggest=True, redirect=True)
+        wikipedia_zh = zh.summary
+        wikipedia_zh_url = zh.url
     except:
-        wikipedia_result_zh = ''
+        wikipedia_zh = ''
+        wikipedia_zh_url = ''
 
     return render(request, 'sparql/index.html', {'r': template_result,
-                  'wikipedia_result_en': wikipedia_result_en,
-                  'wikipedia_result_zh': wikipedia_result_zh,})
+                  'wikipedia_en': wikipedia_en,
+                  'wikipedia_zh': wikipedia_zh,
+                  'wikipedia_en_url': wikipedia_en_url,
+                  'wikipedia_zh_url': wikipedia_zh_url,
+                  })

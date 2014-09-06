@@ -19,7 +19,7 @@
 <li>字 <a href="{{ r.zi }}">{{ r.zi }}</a></li>
 {% endif %}
 {% if r.hao %}
-<li>號 {{ r.hao }}</li>
+<li>號 <a href="{{ r.hao }}">{{ r.hao }}</a></li>
 {% endif %}
 </ul>
 {% endif %}
@@ -36,13 +36,15 @@
 </ul>
 {% endif %}
 
-<h4 style="margin-top: 40px;">Wikipedia</h4>
+<h4 style="margin-top: 30px; color: grey;">Wikipedia</h4>
 <p>
-{{ wikipedia_result_en }}
+{{ wikipedia_en }}
+<a href="{{ wikipedia_en_url }}"><strong>&hellip;</strong></a>
 </p>
 
 <p>
-{{ wikipedia_result_zh }}
+{{ wikipedia_zh }}
+<a href="{{ wikipedia_zh_url }}"><strong>&hellip;</strong></a>
 </p>
 
 {% if not r.is_person %}
