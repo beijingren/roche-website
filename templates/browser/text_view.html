@@ -29,12 +29,15 @@
 
 function BrowserView() {
 	this.hidingInterpuction = false;
+        this.selectedText = '';
 };
 
 BrowserView.prototype.keyUp = function (event) {
 	var pressedKey = event.keyCode;
 
 	console.log(pressedKey);
+
+	lemma = this.selectedText;
 
 	if (pressedKey == 190) {
 		if (this.hidingInterpuction) {
@@ -45,17 +48,25 @@ BrowserView.prototype.keyUp = function (event) {
 			this.hidingInterpuction = true;
 		}
 		console.log("Hiding 'pc' elems");
-	}
+	} else if (pressedKey == 49) {
+		$.ajax({
+			type: 'GET',
+			url: '/annotate/persname/' + lemma,
+			data: {},
+			success: function(data, status) {
+				console.log("Success " + data);
+				},
+			}).done(function (msg) {
+				console.log("Ajax done");
+			});
 
+		console.log("Annotate persName " + this.selectedText);
+	} else if (pressedKey == 51) {
+		console.log("Annotate placeName " + this.selectedText);
+	}
 };
 
-var browserView = new BrowserView();
-
-$('.container').bind('mouseup', bindingMouseup);
-$(document).bind('keyup', browserView.keyUp);
-
-
-function bindingMouseup(event) {
+BrowserView.prototype.mouseUp = function (event) {
 	var selectedText = "NO-RESULT";
 
 	if (window.getSelection) {
@@ -68,8 +79,15 @@ function bindingMouseup(event) {
 		selectedText = range.text;
 	}
 
-	console.log(selectedText);
+	this.selectedText = selectedText;
+
+	console.log(this.selectedText);
 };
+
+var browserView = new BrowserView();
+
+$(document).bind('mouseup', browserView.mouseUp);
+$(document).bind('keyup', browserView.keyUp);
 
 </script>
 

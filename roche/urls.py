@@ -5,9 +5,13 @@ from django.conf.urls import url
 from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
 
+from django.contrib import admin
 
 urlpatterns = i18n_patterns('',
-    url(r'^annotate/', 'annotate.views.index'),
+    url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^annotate/uima/', 'annotate.views.index'),
+    url(r'^annotate/(?P<function>.*)/(?P<lemma>.*)$', 'annotate.views.annotate'),
 
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)$', 'browser.views.text_view_juan'),
     url(r'^browse/text/(?P<title>[^/]+)$', 'browser.views.text_view'),

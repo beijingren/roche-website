@@ -5,6 +5,7 @@ import os
 import subprocess
 
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
@@ -110,3 +111,16 @@ def index(request):
 
     data = {'form': form }
     return render_to_response('annotate/index.html', data, context_instance=RequestContext(request))
+
+def annotate(request, function, lemma):
+    from .models import Annotation
+
+    print "POST", function, lemma
+
+    annotation = Annotation()
+    annotation.tei_tag = function
+    annotation.lemma = lemma
+    annotation.ip = request.META['REMOTE_ADDR']
+    annotation.save()
+
+    return HttpResponse("OK")
