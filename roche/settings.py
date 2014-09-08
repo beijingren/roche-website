@@ -176,6 +176,7 @@ INSTALLED_APPS = (
     'djiki',
     'eulxml',
     'eulexistdb',
+    'leaflet',
     'sparql',
     'ocr',
     'r',

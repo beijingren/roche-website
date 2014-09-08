@@ -1,5 +1,6 @@
 # coding=utf-8
 import re
+import json
 
 from django.shortcuts import render_to_response
 
@@ -44,7 +45,10 @@ def text_info(request, title):
     persons = list(set(persons))
     terms = list(set(terms))
 
+    # Place names for leaflet
+    js_data = json.dumps([[[50.5, 30.5], "test"]])
+
     return render_to_response('browser/text_view_info.html', {'tei_documents': qs,
                               'tei_transform': result, 'place_names': place_names,
-                              'persons': persons, 'terms': terms,
+                              'persons': persons, 'terms': terms, 'js_data': js_data,
                               'chapter_titles': sorted(chapter_titles)})

@@ -1,5 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
+{% load leaflet_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +33,8 @@
   });
 </script>
 
+	{% leaflet_js %}
+	{% leaflet_css %}
 </head>
 
 <body>

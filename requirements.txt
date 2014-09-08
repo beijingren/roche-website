@@ -13,3 +13,4 @@ eulexistdb
 SPARQLWrapper
 
 wikipedia
+django-leaflet
