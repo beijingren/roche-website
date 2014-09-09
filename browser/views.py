@@ -7,6 +7,7 @@ from eulxml.xmlmap.teimap import Tei
 
 from browser.models import RocheTEI
 from common.utils import XSL_TRANSFORM_1
+from common.utils import XSL_TRANSFORM_2
 
 
 def index(request):

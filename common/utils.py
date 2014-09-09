@@ -99,3 +99,35 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 '''
 
 
+XSL_TRANSFORM_2 = '''<?xml version="1.0" encoding="UTF-8" ?>
+<xsl:stylesheet
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    version="1.0">
+
+<xsl:output method="text" omit-xml-declaration="yes" indent="no" />
+
+<xsl:template match="tei:p">
+<p>
+<xsl:apply-templates/>
+</p>
+</xsl:template>
+
+<xsl:template match="tei:persName|tei:placeName|tei:term|tei:title|tei:pc|tei:head|tei:l|tei:time">
+<xsl:value-of select="."/>
+</xsl:template>
+
+<xsl:template match="tei:l[../@type='poem' or ../../@type='poem']">
+<xsl:value-of select="."/>
+</xsl:template>
+
+<xsl:template match="tei:pb/@n">
+<xsl:value-of select="."/>
+</xsl:template>
+
+<xsl:template match="tei:num|tei:measure">
+<xsl:value-of select="."/>
+
+</xsl:template>
+</xsl:stylesheet>
+'''
