@@ -4,12 +4,18 @@ import tempfile
 import os
 import subprocess
 
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from eulxml import xmlmap
+from common.utils import XSL_TRANSFORM_1
+from browser.models import RocheTEI
+
 from .forms import TextAnnotationForm
+from .models import TextAnnotation
 
 #
 # Sample test for analysis
@@ -25,6 +31,10 @@ INITIAL_TEXT = u"""歐陽修，字永叔，廬陵人。四歲而孤，母鄭，�
 BERTIE_JAR = "/docker/bertie-uima/target/bertie-uima-0.0.1-SNAPSHOT.jar"
 
 def index(request):
+    """
+    Show form to annotate a text by UIMA.
+    """
+
     if request.method == 'POST':
         form = TextAnnotationForm(request.POST)
         if form.is_valid():
@@ -44,23 +54,38 @@ def index(request):
             f2 = open(f.name, 'r')
             result = f2.read()
 
-            # XSLT transform result
-            from eulxml import xmlmap
-            from common.utils import XSL_TRANSFORM_1
-            from browser.models import RocheTEI
-
-            q = xmlmap.load_xmlobject_from_string(result, xmlclass=RocheTEI)
-            result = q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
+            textAnnotation = TextAnnotation()
+            textAnnotation.text = result
+            textAnnotation.save()
 
             os.unlink(f.name)
 
-            data = {'tei_document': result}
-            return render_to_response('annotate/show_result.html', data, context_instance=RequestContext(request))
+            return HttpResponseRedirect(reverse(
+                                        'annotate.views.show_annotated',
+                                        args=(textAnnotation.id,)))
     else:
         form = TextAnnotationForm(initial={'text': INITIAL_TEXT})
 
     data = {'form': form }
     return render_to_response('annotate/index.html', data, context_instance=RequestContext(request))
+
+def show_annotated(request, uima_id):
+    """
+    Show previously annotated UIMA result.
+    """
+
+    try:
+        uima = TextAnnotation.objects.get(pk=int(uima_id))
+        result = uima.text
+    except:
+        result = ''
+
+    # XSLT transform result
+    q = xmlmap.load_xmlobject_from_string(result.encode("UTF-8"), xmlclass=RocheTEI)
+    result = q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
+
+    data = {'tei_documents': [q], 'tei_transform': result}
+    return render_to_response('browser/text_view.html', data)
 
 def annotate(request, function, lemma):
     from .models import Annotation
