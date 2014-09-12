@@ -50,21 +50,22 @@ For easy development and deployment we provide vagrant and docker files.  If you
 <td>.</td>
 <td>Toggle hiding of Interpunction.</td>
 </tr>
+
+<tr>
+<td>1</td>
+<td>Mark text selection as a person.</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Mark text selection as a place name.</td>
+</tr>
 </tbody>
 
 </table>
 
 <h2>Annotations</h2>
 
-<h4>How To Markup Texts Manually?</h4>
-
-<p>
-After you have set up your Github account and fetched the file from the repository you will notice that all texts are stored in XML files. The content of the files is follows the standards of the Text Encoding Initiative. A short introduction to the topic can be found here:  <a href="http://www.teibyexample.org/">http://www.teibyexample.org/</a>.  If you intend to contribute your own text the best method is to open one of the texts from our repositry and fill the standardized structure of the TEI document with the content.
-</p>
-
-<p>
-To provide the reader on the website with visual aids for a quicker understanding of the texts the following semantic markups are currently supported: place names, personal names, dates, and terms. The respective tags are &lt;persName&gt;, &lt;placeName&gt;, &lt;date&gt;, and &lt;term&gt;. Characters marked up with these texts appear later coloured on the website and can be clicked on the get further information.
-</p>
 
 
 <table class="table table-striped">
@@ -80,7 +81,7 @@ To provide the reader on the website with visual aids for a quicker understandin
 <tbody>
 <tr>
 <td>Time and Dates</td>
-<td>time</td>
+<td>time, date</td>
 <td></td>
 </tr>
 
@@ -92,7 +93,7 @@ To provide the reader on the website with visual aids for a quicker understandin
 
 <tr>
 <td>Numbers and Units</td>
-<td>num</td>
+<td>num, measure</td>
 <td></td>
 </tr>
 
@@ -107,9 +108,26 @@ To provide the reader on the website with visual aids for a quicker understandin
 <td>pc</td>
 <td></td>
 </tr>
+
+<tr>
+<td>Special expressions</td>
+<td>term</td>
+<td></td>
+</tr>
+
 </tbody>
 
 </table>
+
+<h4>How To Markup Texts Manually?</h4>
+
+<p>
+After you have set up your Github account and fetched the file from the repository you will notice that all texts are stored in XML files. The content of the files is follows the standards of the Text Encoding Initiative. A short introduction to the topic can be found here:  <a href="http://www.teibyexample.org/">http://www.teibyexample.org/</a>.  If you intend to contribute your own text the best method is to open one of the texts from our repositry and fill the standardized structure of the TEI document with the content.
+</p>
+
+<p>
+To provide the reader on the website with visual aids for a quicker understanding of the texts the following semantic markups are currently supported: place names, personal names, dates, and terms. The respective tags are &lt;persName&gt;, &lt;placeName&gt;, &lt;date&gt;, and &lt;term&gt;. Characters marked up with these texts appear later coloured on the website and can be clicked on the get further information.
+</p>
 
 <h4>How To Markup Texts Automatically?</h4>
 <p>
