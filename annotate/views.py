@@ -24,55 +24,6 @@ INITIAL_TEXT = u"""歐陽修，字永叔，廬陵人。四歲而孤，母鄭，�
 #
 BERTIE_JAR = "/docker/bertie-uima/target/bertie-uima-0.0.1-SNAPSHOT.jar"
 
-#
-# TEI header
-#
-TEI_HEADER = """<?xml version="1.0" encoding="UTF-8" ?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
-<teiHeader>
-<fileDesc>
-<titleStmt>
-<title xml:lang="zh">欽定四庫全書總目提要</title>
-<title xml:lang="en">Annotated Catalog of the Complete Imperial Library</title>
-<author>
-<name>
-<choice>
-<sic>紀昀</sic>
-</choice>
-</name>
-</author>
-</titleStmt>
-
-<publicationStmt>
-<p>This document is published under a CC Attribution-Share Alike License</p>
-</publicationStmt>
-
-<sourceDesc>
-<p>XXX</p>
-</sourceDesc>
-</fileDesc>
-</teiHeader>
-
-<text>
-<body>
-
-<div type="chapter" n="1">
-
-<div>
-<p>
-"""
-
-TEI_FOOTER = """</p>
-</div>
-
-</div> <!-- Chapter -->
-
-</body>
-</text>
-</TEI>
-"""
-
-
 def index(request):
     if request.method == 'POST':
         form = TextAnnotationForm(request.POST)
@@ -98,7 +49,6 @@ def index(request):
             from common.utils import XSL_TRANSFORM_1
             from browser.models import RocheTEI
 
-            result = TEI_HEADER + result + TEI_FOOTER
             q = xmlmap.load_xmlobject_from_string(result, xmlclass=RocheTEI)
             result = q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
 
