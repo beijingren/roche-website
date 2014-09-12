@@ -89,6 +89,12 @@ var browserView = new BrowserView();
 $(document).bind('mouseup', browserView.mouseUp);
 $(document).bind('keyup', browserView.keyUp);
 
+$(function(){
+$('[data-toggle="tooltip"]').tooltip({
+    'placement': 'top'
+});
+});
+
 </script>
 
 {% endblock %}
