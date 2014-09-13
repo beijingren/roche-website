@@ -53,7 +53,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:pc">
-<span class="pc" style="color: Gray;">
+<span class="pc">
 <xsl:value-of select="."/>
 </span>
 </xsl:template>
@@ -78,7 +78,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:l|tei:time">
-<span class="term" style="background-color: Gainsboro;">
+<span class="time">
 <xsl:value-of select="."/>
 </span>
 </xsl:template>
@@ -96,7 +96,10 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:measure">
-<span style="background-color: Gainsboro;" data-toggle="tooltip"><xsl:attribute name="title"><xsl:value-of select="." />Years</xsl:attribute>
+<span class="measure" data-toggle="tooltip">
+<xsl:attribute name="title">
+<xsl:value-of select="@quantity" /> <xsl:value-of select="@unit" />
+</xsl:attribute>
 <xsl:value-of select="."/>
 </span>
 </xsl:template>

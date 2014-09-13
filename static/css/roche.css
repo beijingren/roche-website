@@ -25,3 +25,15 @@
 .navbar.transparent {
    background: rgba(0,0,0,0.7);
 }
+
+.measure {
+	background: WhiteSmoke;
+}
+
+.time {
+	background: WhiteSmoke;
+}
+
+.pc {
+	color: Gray;
+}

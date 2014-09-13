@@ -80,6 +80,7 @@ def show_annotated(request, uima_id):
     except:
         result = ''
 
+    # TODO: catch XMLSyntaxError
     # XSLT transform result
     q = xmlmap.load_xmlobject_from_string(result.encode("UTF-8"), xmlclass=RocheTEI)
     result = q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
