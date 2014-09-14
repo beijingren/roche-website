@@ -54,6 +54,9 @@ BrowserView.prototype.keyUp = function (event) {
 			url: '/annotate/persname/' + lemma,
 			data: {},
 			success: function(data, status) {
+				if (data == "OK") {
+					$('#infoarea').text("Person name " + lemma + " added.");
+				}
 				console.log("Success " + data);
 				},
 			}).done(function (msg) {
@@ -62,6 +65,19 @@ BrowserView.prototype.keyUp = function (event) {
 
 		console.log("Annotate persName " + this.selectedText);
 	} else if (pressedKey == 51) {
+		$.ajax({
+			type: 'GET',
+			url: '/annotate/placename/' + lemma,
+			data: {},
+			success: function(data, status) {
+				if (data == "OK") {
+					$('#infoarea').text("Place name " + lemma + " added.");
+				}
+				console.log("Success " + data);
+				},
+			}).done(function (msg) {
+				console.log("Ajax done");
+			});
 		console.log("Annotate placeName " + this.selectedText);
 	}
 };

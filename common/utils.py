@@ -83,6 +83,12 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </span>
 </xsl:template>
 
+<xsl:template match="tei:date">
+<span class="date">
+<xsl:value-of select="."/>
+</span>
+</xsl:template>
+
 <xsl:template match="tei:pb/@n">
 <sup style="color:  SlateGray;">
 <xsl:value-of select="."/>
@@ -90,7 +96,10 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:num">
-<span class="num">
+<span class="num" data-toggle="tooltip">
+<xsl:attribute name="title">
+<xsl:value-of select="@value" />
+</xsl:attribute>
 <xsl:value-of select="."/>
 </span>
 </xsl:template>
@@ -98,7 +107,9 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 <xsl:template match="tei:measure">
 <span class="measure" data-toggle="tooltip">
 <xsl:attribute name="title">
-<xsl:value-of select="@quantity" /> <xsl:value-of select="@unit" />
+<xsl:value-of select="@quantity" />
+<xsl:text>&#xA0;</xsl:text>
+<xsl:value-of select="@unit" />
 </xsl:attribute>
 <xsl:value-of select="."/>
 </span>

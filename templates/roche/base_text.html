@@ -35,10 +35,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-<span class="navbar-brand" style="color: white;">
+        <a class="navbar-brand" href="/">
+{% if LANGUAGE_CODE == "de" %}
+Digitales Siku Quanshu Projekt
+{% elif LANGUAGE_CODE == "zh" %}
+数字四庫全書
+{% else %}
+The Digital Siku Quanshu Project
+{% endif %}
+        </a>
+
+<span class="navbar-brand" style="color: white;" id="infoarea">
 {% block info_area %}
 {% endblock %}
 </span>
+
       </div>
       <div class="navbar-collapse collapse">
 

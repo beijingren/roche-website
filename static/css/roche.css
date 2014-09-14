@@ -31,10 +31,15 @@
 }
 
 .measure {
+	/* background-color: Gainsboro; */
 	background: WhiteSmoke;
 }
 
 .time {
+	background: WhiteSmoke;
+}
+
+.date {
 	background: WhiteSmoke;
 }
 
@@ -51,5 +56,5 @@
 }
 
 .num {
-	background-color: Gainsboro;
+	background: WhiteSmoke;
 }
