@@ -16,3 +16,4 @@ wikipedia
 django-leaflet
 pinyin
 fpdf
+python-creole

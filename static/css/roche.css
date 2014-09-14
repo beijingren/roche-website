@@ -26,6 +26,10 @@
    background: rgba(0,0,0,0.7);
 }
 
+.placeName {
+	color: red;
+}
+
 .measure {
 	background: WhiteSmoke;
 }
@@ -36,4 +40,16 @@
 
 .pc {
 	color: Gray;
+}
+
+.term {
+	color: green;
+}
+
+.title {
+	color: green;
+}
+
+.num {
+	background-color: Gainsboro;
 }

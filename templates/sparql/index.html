@@ -36,25 +36,40 @@
 </ul>
 {% endif %}
 
-<h4 style="margin-top: 30px; color: grey;">Wikipedia</h4>
-{% if wikipedia_en %}
-<p>
-{{ wikipedia_en }}
-<a href="{{ wikipedia_en_url }}"><strong>&hellip;</strong></a>
-</p>
-{% endif %}
+<h4 style="margin-top: 50px;"></h4>
 
+<ul id="myTab" class="nav nav-tabs" role="tablist">
+<li class="active"><a href="#zh_wikipedia" role="tab" data-toggle="tab">维基百科</a></li>
+<li><a href="#en_wikipedia" role="tab" data-toggle="tab">Wikipedia</a></li>
+<li><a href="#sinology" role="tab" data-toggle="tab">Sinology</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+
+<div class="tab-pane active" id="zh_wikipedia">
 {% if wikipedia_zh %}
 <p>
 {{ wikipedia_zh }}
-<a href="{{ wikipedia_zh_url }}"><strong>&hellip;</strong></a>
+<a href="{{ wikipedia_zh_url }}"><strong>link</strong></a>
 </p>
 {% endif %}
-
-{% if not r.is_person %}
-<h4>CBDB</h4>
-{{ cbdb_result }}
 </div>
+
+<div class="tab-pane" id="en_wikipedia">
+{% if wikipedia_en %}
+<p>
+{{ wikipedia_en }}
+<a href="{{ wikipedia_en_url }}"><strong>link</strong></a>
+</p>
 {% endif %}
+</div>
+
+
+<div class="tab-pane" id="sinology">
+<p>
+{{ sinology |safe}}
+</p>
+</div>
+</div>
 
 {% endblock %}

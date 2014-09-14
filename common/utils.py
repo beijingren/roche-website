@@ -35,19 +35,19 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:placeName">
-<a class="placeName" style="color: red;"><xsl:attribute name="href">/sparql/<xsl:value-of select="." />#placeName</xsl:attribute>
+<a class="placeName"><xsl:attribute name="href">/sparql/<xsl:value-of select="." />#placeName</xsl:attribute>
 <xsl:value-of select="."/>
 </a>
 </xsl:template>
 
 <xsl:template match="tei:term">
-<a class="term" style="color: green;"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#term</xsl:attribute>
+<a class="term"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#term</xsl:attribute>
 <xsl:value-of select="."/>
 </a>
 </xsl:template>
 
 <xsl:template match="tei:title">
-<a class="term" style="color: green;"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#title</xsl:attribute>
+<a class="title"><xsl:attribute name="href">/wiki/<xsl:value-of select="." />#title</xsl:attribute>
 <xsl:value-of select="."/>
 </a>
 </xsl:template>
@@ -90,7 +90,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:num">
-<span class="num" style="background-color: Gainsboro;">
+<span class="num">
 <xsl:value-of select="."/>
 </span>
 </xsl:template>

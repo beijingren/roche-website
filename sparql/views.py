@@ -2,6 +2,8 @@
 
 import requests
 import wikipedia
+import creole
+import codecs
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -140,6 +142,7 @@ def index(request, lemma):
     template_result['is_person'] = is_person
     template_result['lemma'] = lemma
 
+    # Wikipedia
     try:
         wikipedia.set_lang("en")
         en = wikipedia.page(lemma, auto_suggest=True, redirect=True)
@@ -158,9 +161,20 @@ def index(request, lemma):
         wikipedia_zh = ''
         wikipedia_zh_url = ''
 
+    # Sinology
+    try:
+        f = codecs.open("/docker/dublin-store/sinology/mainSpace/" + lemma, "r", "utf-8")
+        # Skip first line
+        sinology = f.readlines()[1:]
+        sinology = '\n'.join(sinology)
+        sinology = creole.creole2html(sinology)
+    except:
+        sinology = ''
+
     return render(request, 'sparql/index.html', {'r': template_result,
                   'wikipedia_en': wikipedia_en,
                   'wikipedia_zh': wikipedia_zh,
                   'wikipedia_en_url': wikipedia_en_url,
                   'wikipedia_zh_url': wikipedia_zh_url,
+                  'sinology': sinology,
                   })
