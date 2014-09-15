@@ -41,7 +41,7 @@ def index(request):
 
             text = form.cleaned_data['text']
             f = tempfile.NamedTemporaryFile(delete=False)
-            f.write(text.encode('utf-8'))
+            f.write(text)
             f.close()
 
             error_msg = ''
