@@ -30,7 +30,6 @@ urlpatterns = i18n_patterns('',
     url(r'^ocr/$', 'ocr.views.index'),
 
     url(r'^search/', include('search.urls', namespace='search')),
-    url(r'^wiki/', include('djiki.urls')),
 
     url(r'^documentation/sparql/',
         TemplateView.as_view(template_name='documentation/sparql.html')),
