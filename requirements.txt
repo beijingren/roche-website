@@ -1,17 +1,18 @@
 #
 # Requirements
 #
+django
 
-creole
-diff_match_patch
+django-leaflet
+fpdf
+lxml
+pinyin
+psycopg2
+python-creole
+requests
+wikipedia
 
 eulxml
 eulexistdb
 
 SPARQLWrapper
-
-wikipedia
-django-leaflet
-pinyin
-fpdf
-python-creole
