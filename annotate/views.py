@@ -56,6 +56,7 @@ def index(request):
 
             textAnnotation = TextAnnotation()
             textAnnotation.text = result
+            textAnnotation.text_type = "prosa"
             textAnnotation.save()
 
             os.unlink(f.name)
