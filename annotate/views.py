@@ -41,7 +41,7 @@ def index(request):
 
             text = form.cleaned_data['text']
             f = tempfile.NamedTemporaryFile(delete=False)
-            f.write(text)
+            f.write(text.encode('utf8'))
             f.close()
 
             error_msg = ''
@@ -52,7 +52,7 @@ def index(request):
 
             # Read result back in
             f2 = open(f.name, 'r')
-            result = f2.read()
+            result = f2.read().decode('utf8')
 
             textAnnotation = TextAnnotation()
             textAnnotation.text = result
