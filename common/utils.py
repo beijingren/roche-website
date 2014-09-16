@@ -78,7 +78,10 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:l|tei:time">
-<span class="time">
+<span class="time" data-toggle="tooltip">
+<xsl:attribute name="title">
+<xsl:value-of select="@when" />
+</xsl:attribute>
 <xsl:value-of select="."/>
 </span>
 </xsl:template>
