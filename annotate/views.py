@@ -46,7 +46,7 @@ def index(request):
 
             error_msg = ''
             # Call UIMA analysis engine
-            result = subprocess.call(["/usr/bin/java", "-jar", BERTIE_JAR, f.name])
+            result = subprocess.call(["/usr/bin/java", "-Dfile.encoding=UTF-8", "-jar", BERTIE_JAR, f.name])
             if result == -1:
                 error_msg = "UIMA error"
 
