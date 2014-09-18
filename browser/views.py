@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.shortcuts import render_to_response
+from django.views.decorators.cache import cache_page
 
 from eulexistdb.db import ExistDB
 from eulexistdb.query import QuerySet
@@ -31,7 +32,6 @@ def index_author(request, author, startswith):
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
-
 def index_title(request, letter):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=Tei)
 
@@ -40,7 +40,7 @@ def index_title(request, letter):
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
-
+@cache_page(60 * 60)
 def text_view(request, title):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
 

@@ -8,10 +8,9 @@ from eulexistdb.query import QuerySet
 from browser.models import RocheTEI
 
 
-cache_page(60 * 60)
+@cache_page(60 * 60)
 def index(request):
     # XML and SPARQL numbers
-    # Page should be cached
 
     # Count texts and authors
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
