@@ -1,21 +1,10 @@
 
 # Keep in sync with dedalus-infrastructure (but without apache2)
 sudo apt-get install -y		\
-	python-django		\
-	python-django-south	\
-	python-imaging		\
 	python-lxml		\
-	python-markdown		\
-	python-memcache		\
 	python-pip		\
 	python-ply		\
-	python-psycopg2		\
-	python-sorl-thumbnail	\
-	gettext			\
-	git			\
-	libpython-dev		\
-	tesseract-ocr		\
-	tesseract-ocr-chi-tra
+	libpython-dev
 
 sudo pip install -r requirements.txt
 

@@ -40,7 +40,6 @@ def index_title(request, letter):
 
     return render_to_response('browser/index.html', {'tei_documents': qs})
 
-@cache_page(60 * 60)
 def text_view(request, title):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
 
@@ -51,8 +50,10 @@ def text_view(request, title):
     for q in qs:
         result = result + q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
 
+    text_title = qs[0].title
+
     return render_to_response('browser/text_view.html', {'tei_documents': qs,
-                              'tei_transform': result})
+                              'tei_transform': result, 'text_title': text_title})
 
 def text_view_juan(request, title, juan):
     """

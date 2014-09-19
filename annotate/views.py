@@ -9,8 +9,10 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.cache import get_cache_key
 
 from eulxml import xmlmap
+from eulexistdb.db import ExistDB
 from common.utils import XSL_TRANSFORM_1
 from browser.models import RocheTEI
 
@@ -94,6 +96,64 @@ def annotate(request, function, lemma):
     from .models import Annotation
 
     print "POST", function, lemma
+
+    annotation = Annotation()
+    annotation.tei_tag = function
+    annotation.lemma = lemma
+    annotation.ip = request.META['REMOTE_ADDR']
+    annotation.save()
+
+    return HttpResponse("OK")
+
+def annotate_text(request, text, function, lemma):
+    from .models import Annotation
+
+    print "ANNOTATING", text, function, lemma
+
+    print get_cache_key(request)
+
+    # Find path text
+    collection_path = ""
+    collection_dirpath = ""
+    os.chdir('../dublin-store')
+    for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
+        if dirpath.endswith(unicode(text)):
+            collection_path = '../dublin-store/' + dirpath
+            break
+
+    if not collection_path:
+        print "XXX"
+
+    print collection_path
+
+    # Build owl
+    owl_file = open("../dublin-store/rdf/placename_fragment.rdf")
+    owl_fragment = owl_file.read().decode('utf-8')
+    owl_fragment = owl_fragment.format(lemma)
+
+    f = tempfile.NamedTemporaryFile(delete=False)
+    f.write(owl_fragment.encode('utf-8'))
+    f.close()
+
+    # Call UIMA analysis engine
+    result = subprocess.call(["/usr/bin/java", "-Dfile.encoding=UTF-8", "-jar", BERTIE_JAR,
+                              "--tei",
+                              "--directory", collection_path,
+                              "--owl", f.name])
+    #os.unlink(f.name)
+
+    # Invalidate page?
+
+    # Reload TEI files into existdb
+    xmldb = ExistDB(timeout=60)
+    for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
+        if dirpath.endswith(unicode(text)):
+            xmldb.createCollection('docker/texts' + '/' + dirpath, True)
+            if filenames:
+                for filename in filenames:
+                    with open(dirpath + '/' + filename) as f:
+                        print "--" + dirpath + '/' + filename
+                        xmldb.load(f, 'docker/texts' + '/' + dirpath + '/' + filename, True)
 
     annotation = Annotation()
     annotation.tei_tag = function

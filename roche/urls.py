@@ -12,7 +12,8 @@ urlpatterns = i18n_patterns('',
 
     url(r'^annotate/uima/(?P<uima_id>[0-9]+)$', 'annotate.views.show_annotated'),
     url(r'^annotate/uima/', 'annotate.views.index'),
-    url(r'^annotate/(?P<function>.*)/(?P<lemma>.*)$', 'annotate.views.annotate'),
+    #url(r'^annotate/(?P<function>.*)/(?P<lemma>.*)$', 'annotate.views.annotate'),
+    url(r'^annotate/(?P<text>.*)/(?P<function>.*)/(?P<lemma>.*)$', 'annotate.views.annotate_text'),
 
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)$', 'browser.views.text_view_juan'),
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)/(?P<file_format>(txt|pdf))$', 'r.views.text_download'),

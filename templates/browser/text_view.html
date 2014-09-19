@@ -51,11 +51,12 @@ BrowserView.prototype.keyUp = function (event) {
 	} else if (pressedKey == 49) {
 		$.ajax({
 			type: 'GET',
-			url: '/annotate/persname/' + lemma,
+			url: '/annotate/{{text_title}}/persname/' + lemma,
 			data: {},
 			success: function(data, status) {
 				if (data == "OK") {
 					$('#infoarea').text("Person name " + lemma + " added.");
+					location.reload();
 				}
 				console.log("Success " + data);
 				},
@@ -67,11 +68,12 @@ BrowserView.prototype.keyUp = function (event) {
 	} else if (pressedKey == 51) {
 		$.ajax({
 			type: 'GET',
-			url: '/annotate/placename/' + lemma,
+			url: '/annotate/{{text_title}}/placename/' + lemma,
 			data: {},
 			success: function(data, status) {
 				if (data == "OK") {
 					$('#infoarea').text("Place name " + lemma + " added.");
+					location.reload();
 				}
 				console.log("Success " + data);
 				},
