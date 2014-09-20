@@ -77,6 +77,9 @@ BrowserView.prototype.keyUp = function (event) {
 				}
 				console.log("Success " + data);
 				},
+			error: function(data) {
+				console.log("Error " + data);
+				},
 			}).done(function (msg) {
 				console.log("Ajax done");
 			});

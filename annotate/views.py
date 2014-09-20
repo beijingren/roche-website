@@ -167,7 +167,6 @@ def annotate_text(request, text, function, lemma):
             if filenames:
                 for filename in filenames:
                     with open(dirpath + '/' + filename) as f:
-                        print "--" + dirpath + '/' + filename
                         xmldb.load(f, 'docker/texts' + '/' + dirpath + '/' + filename, True)
 
     # Invalidate page?
