@@ -121,7 +121,7 @@ def annotate_text(request, text, function, lemma):
 
     collection_path = None
 
-    os.chdir('../dublin-store')
+    os.chdir('/docker/dublin-store/')
     for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
         if dirpath.endswith(unicode(text)):
             collection_path = '/docker/dublin-store/' + dirpath
