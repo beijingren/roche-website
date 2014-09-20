@@ -160,7 +160,6 @@ def annotate_text(request, text, function, lemma):
     #
     # Reload TEI files into existdb
     #
-    os.chdir('../dublin-store')
     xmldb = ExistDB(timeout=60)
     for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
         if dirpath.endswith(unicode(text)):
