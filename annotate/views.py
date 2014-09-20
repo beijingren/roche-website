@@ -119,13 +119,24 @@ def annotate_text(request, text, function, lemma):
     """
     from .models import Annotation
 
+    collection_path = None
+
+    os.chdir('../dublin-store')
+    for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
+        if dirpath.endswith(unicode(text)):
+            collection_path = '/docker/dublin-store/' + dirpath
+            break
+
     #
     # RPC
     #
     uima_response = {}
     uima_response['response'] = None
     uima_corr_id = str(uuid.uuid4())
-    uima_body = json.dumps({'text': text, 'function': function, 'lemma': lemma})
+    uima_body = json.dumps({'text': text,
+                            'function': function,
+                            'collection_path': collection_path,
+                            'lemma': lemma})
 
     def uima_on_response(channel, method, props, body):
         if uima_corr_id == props.correlation_id:
