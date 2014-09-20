@@ -1,8 +1,10 @@
 # coding=utf-8
 
-import tempfile
+import json
 import os
 import subprocess
+import tempfile
+import uuid
 
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -11,11 +13,17 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.cache import get_cache_key
 
+from pika import BasicProperties
+from pika import BlockingConnection
+from pika import ConnectionParameters
+
 from eulxml import xmlmap
 from eulexistdb.db import ExistDB
+
+
+from roche.settings import RABBITMQ_SERVER
 from common.utils import XSL_TRANSFORM_1
 from browser.models import RocheTEI
-
 from .forms import TextAnnotationForm
 from .models import TextAnnotation
 
@@ -106,45 +114,42 @@ def annotate(request, function, lemma):
     return HttpResponse("OK")
 
 def annotate_text(request, text, function, lemma):
+    """
+    Annotate a single text. Run UIMA through a remote procedure call.
+    """
     from .models import Annotation
 
-    print "ANNOTATING", text, function, lemma
+    #
+    # RPC
+    #
+    uima_response = {}
+    uima_response['response'] = None
+    uima_corr_id = str(uuid.uuid4())
+    uima_body = json.dumps({'text': text, 'function': function, 'lemma': lemma})
 
-    print get_cache_key(request)
+    def uima_on_response(channel, method, props, body):
+        if uima_corr_id == props.correlation_id:
+            uima_response['response'] = body
 
-    # Find path text
-    collection_path = ""
-    collection_dirpath = ""
-    os.chdir('../dublin-store')
-    for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
-        if dirpath.endswith(unicode(text)):
-            collection_path = '../dublin-store/' + dirpath
-            break
+    uima_connection = BlockingConnection(ConnectionParameters(host=RABBITMQ_SERVER))
+    uima_channel = uima_connection.channel()
+    uima_result = uima_channel.queue_declare(exclusive=True)
+    uima_callback_queue = uima_result.method.queue
+    uima_channel.basic_consume(uima_on_response, no_ack=True, queue=uima_callback_queue)
+    uima_channel.basic_publish(exchange='',
+                               routing_key='uima_worker',
+                               properties=BasicProperties(reply_to=uima_callback_queue,
+                                                          content_type='application/json',
+                                                          correlation_id = uima_corr_id,),
+                               body=uima_body)
 
-    if not collection_path:
-        print "XXX"
+    while uima_response['response'] is None:
+        uima_connection.process_data_events()
 
-    print collection_path
-
-    # Build owl
-    owl_file = open("../dublin-store/rdf/placename_fragment.rdf")
-    owl_fragment = owl_file.read().decode('utf-8')
-    owl_fragment = owl_fragment.format(lemma)
-
-    f = tempfile.NamedTemporaryFile(delete=False)
-    f.write(owl_fragment.encode('utf-8'))
-    f.close()
-
-    # Call UIMA analysis engine
-    result = subprocess.call(["/usr/bin/java", "-Dfile.encoding=UTF-8", "-jar", BERTIE_JAR,
-                              "--tei",
-                              "--directory", collection_path,
-                              "--owl", f.name])
-    #os.unlink(f.name)
-
-    # Invalidate page?
-
+    #
     # Reload TEI files into existdb
+    #
+    os.chdir('../dublin-store')
     xmldb = ExistDB(timeout=60)
     for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
         if dirpath.endswith(unicode(text)):
@@ -154,6 +159,9 @@ def annotate_text(request, text, function, lemma):
                     with open(dirpath + '/' + filename) as f:
                         print "--" + dirpath + '/' + filename
                         xmldb.load(f, 'docker/texts' + '/' + dirpath + '/' + filename, True)
+
+    # Invalidate page?
+    # TODO
 
     annotation = Annotation()
     annotation.tei_tag = function

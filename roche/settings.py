@@ -11,6 +11,11 @@ from django.utils.translation import ugettext_lazy as _
 PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '../')
 
 #
+# rabbitmq
+#
+RABBITMQ_SERVER = os.environ['RABBITMQ_PORT_5672_TCP_ADDR']
+
+#
 # eXist-db
 #
 EXISTDB_SERVER_USER = 'admin'

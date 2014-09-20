@@ -11,6 +11,7 @@ psycopg2
 python-creole
 requests
 wikipedia
+pika
 
 eulxml
 eulexistdb
