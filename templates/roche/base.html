@@ -22,7 +22,6 @@
   <!-- css stylesheets -->
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'css/roche.css' %}" rel="stylesheet">
-  <link href="{% static 'css/dropzone.css' %}" rel="stylesheet">
   <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -75,6 +74,15 @@ The Digital Siku Quanshu Project
 關於我們
 {% else %}
 About
+{% endif %}
+	</a></li>
+	<li><a href="/{{ LANGUAGE_CODE }}/activity/">
+{% if LANGUAGE_CODE == "de" %}
+Activity
+{% elif LANGUAGE_CODE == "zh" %}
+Activity
+{% else %}
+Activity
 {% endif %}
 	</a></li>
 	<li><a href="/{{ LANGUAGE_CODE }}/documentation/">

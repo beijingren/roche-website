@@ -187,6 +187,7 @@ INSTALLED_APPS = (
     'ocr',
     'r',
     'annotate',
+    'activity',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

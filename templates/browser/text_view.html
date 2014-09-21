@@ -66,6 +66,7 @@ BrowserView.prototype.keyUp = function (event) {
 
 		console.log("Annotate persName " + this.selectedText);
 	} else if (pressedKey == 51) {
+		$('#infoarea').text("Sending request...");
 		$.ajax({
 			type: 'GET',
 			url: '/annotate/{{text_title}}/placename/' + lemma,

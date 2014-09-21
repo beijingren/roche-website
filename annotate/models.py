@@ -10,6 +10,8 @@ class TextAnnotation(models.Model):
     )
 
     text = models.TextField()
+    comment = models.TextField(blank=True)
+    pub_date = models.DateField(auto_now_add=True)
 
 class Annotation(models.Model):
     tei_tag = models.CharField(max_length=1024)

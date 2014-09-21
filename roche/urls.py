@@ -10,6 +10,8 @@ from django.contrib import admin
 urlpatterns = i18n_patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^activity/$', 'activity.views.index'),
+
     url(r'^annotate/uima/(?P<uima_id>[0-9]+)$', 'annotate.views.show_annotated'),
     url(r'^annotate/uima/', 'annotate.views.index'),
     #url(r'^annotate/(?P<function>.*)/(?P<lemma>.*)$', 'annotate.views.annotate'),
