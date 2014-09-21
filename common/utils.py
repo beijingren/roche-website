@@ -52,6 +52,12 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </a>
 </xsl:template>
 
+<xsl:template match="tei:quote">
+<span class="quote">
+<xsl:value-of select="."/>
+</span>
+</xsl:template>
+
 <xsl:template match="tei:pc">
 <span class="pc">
 <xsl:value-of select="."/>
@@ -150,7 +156,6 @@ XSL_TRANSFORM_2 = '''<?xml version="1.0" encoding="UTF-8" ?>
 
 <xsl:template match="tei:num|tei:measure">
 <xsl:value-of select="."/>
-
 </xsl:template>
 </xsl:stylesheet>
 '''
