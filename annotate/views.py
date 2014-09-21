@@ -42,7 +42,7 @@ BERTIE_JAR = "/docker/bertie-uima/target/bertie-uima-0.0.1-SNAPSHOT.jar"
 
 def index(request):
     """
-    Show form to annotate a text by UIMA.
+    Show basic form to annotate a text by UIMA.
     """
 
     if request.method == 'POST':
@@ -99,19 +99,6 @@ def show_annotated(request, uima_id):
 
     data = {'tei_documents': [q], 'tei_transform': result}
     return render_to_response('browser/text_view.html', data)
-
-def annotate(request, function, lemma):
-    from .models import Annotation
-
-    print "POST", function, lemma
-
-    annotation = Annotation()
-    annotation.tei_tag = function
-    annotation.lemma = lemma
-    annotation.ip = request.META['REMOTE_ADDR']
-    annotation.save()
-
-    return HttpResponse("OK")
 
 def annotate_text(request, text, function, lemma):
     """
