@@ -55,6 +55,8 @@ BrowserView.prototype.keyUp = function (event) {
 
 	lemma = this.selectedText;
 
+	msg_send = "Sending and processing request...";
+
 	if (pressedKey == 190) {
 		if (this.hidingInterpuction) {
 			$(".pc").removeClass("hide");
@@ -65,7 +67,7 @@ BrowserView.prototype.keyUp = function (event) {
 		}
 		console.log("Hiding 'pc' elems");
 	} else if (pressedKey == 49) {
-		$('#infoarea').text("Sending request...");
+		$('#infoarea').text(send_msg);
 		$.ajax({
 			type: 'GET',
 			url: '/annotate/{{text_title}}/persname/' + lemma,
@@ -83,7 +85,7 @@ BrowserView.prototype.keyUp = function (event) {
 
 		console.log("Annotate persName " + this.selectedText);
 	} else if (pressedKey == 51) {
-		$('#infoarea').text("Sending request...");
+		$('#infoarea').text(send_msg);
 		$.ajax({
 			type: 'GET',
 			url: '/annotate/{{text_title}}/placename/' + lemma,
@@ -103,7 +105,7 @@ BrowserView.prototype.keyUp = function (event) {
 			});
 		console.log("Annotate placeName " + this.selectedText);
 	} else if (pressedKey == 84) {
-		$('#infoarea').text("Sending request...");
+		$('#infoarea').text(send_msg);
 		$.ajax({
 			type: 'GET',
 			url: '/annotate/{{text_title}}/term/' + lemma,
