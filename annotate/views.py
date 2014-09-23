@@ -7,8 +7,8 @@ import tempfile
 import uuid
 
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.cache import get_cache_key
@@ -100,6 +100,21 @@ def show_annotated(request, uima_id):
     data = {'tei_documents': [q], 'tei_transform': result}
     return render_to_response('browser/text_view.html', data)
 
+def annotated_download(request, uima_id, file_format):
+    try:
+        uima = TextAnnotation.objects.get(pk=int(uima_id))
+    except:
+        pass
+
+    if file_format == 'tei':
+        response = HttpResponse(content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename="{}.xml"'.format("001")
+        response.write(uima.text)
+    else:
+        response = HttpResponse(content_type='text/plain')
+
+    return response
+
 def annotate_text(request, text, function, lemma):
     """
     Annotate a single text. Run UIMA through a remote procedure call.
@@ -143,6 +158,10 @@ def annotate_text(request, text, function, lemma):
 
     while uima_response['response'] is None:
         uima_connection.process_data_events()
+
+    response = uima_response['response']
+    if response == 'JSON':
+        pass
 
     #
     # Reload TEI files into existdb

@@ -17,11 +17,12 @@ urlpatterns = i18n_patterns('',
 
     url(r'^activity/$', 'activity.views.index'),
 
-    url(r'^uima/basic/(?P<uima_id>[0-9]+)$', 'annotate.views.show_annotated'),
+    url(r'^uima/basic/(?P<uima_id>[0-9]+)/(?P<file_format>(txt|pdf|tei))$', 'annotate.views.annotated_download'),
+    url(r'^uima/basic/(?P<uima_id>[0-9]+)/$', 'annotate.views.show_annotated'),
     url(r'^uima/basic/$', 'annotate.views.index'),
     url(r'^uima/advanced/$', UIMAWizard.as_view([UIMAWizardForm, UIMAWizardForm2])),
 
-    url(r'^annotate/(?P<text>.*)/(?P<function>.*)/(?P<lemma>.*)$', 'annotate.views.annotate_text'),
+    url(r'^annotate/(?P<text>.*)/(?P<function>(persname|placename|term))/(?P<lemma>.*)$', 'annotate.views.annotate_text'),
 
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)$', 'browser.views.text_view_juan'),
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)/(?P<file_format>(txt|pdf))$', 'r.views.text_download'),

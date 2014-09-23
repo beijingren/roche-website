@@ -1,4 +1,4 @@
-{% extends 'roche/base_text.html' %}
+{% extends 'roche/base.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -15,6 +15,22 @@
 <script src="{% static 'js/zepto.min.js' %}"></script>
 
 <div class="container" style="font-size: 220%; margin-top: 70px;">
+
+<div class="nav navbar-right">
+
+<div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+Export
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+<li role="presentation"><a role="menuitem" tabindex="-1" href="txt">TXT</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="pdf">PDF</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="tei">TEI</a></li>
+</ul>
+</div>
+</div>
+
 <div class="page-header">
   <h1>{{tei_documents.0.title}} <small>{{tei_documents.0.title_en}}</small></h1>
 </div>
