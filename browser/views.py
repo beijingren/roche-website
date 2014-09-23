@@ -66,6 +66,7 @@ def text_view_juan(request, title, juan):
     qs = qs.filter(title=title, chapter=juan)
 
     result = qs[0].body.xsl_transform(xsl=XSL_TRANSFORM_1)
+    text_title = qs[0].title
 
     return render_to_response('browser/text_view.html', {'tei_documents': qs,
-                              'tei_transform': result.serialize()})
+                              'tei_transform': result.serialize(), 'text_title': text_title})
