@@ -24,8 +24,8 @@
   <link href="{% static 'css/roche.css' %}" rel="stylesheet">
   <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="/static/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.flexslider-min.js' %}"></script>
 <script type="text/javascript" charset="utf-8">
   $(window).load(function() {
     $('.flexslider').flexslider();
@@ -37,8 +37,6 @@
 </head>
 
 <body>
-
-
   <!-- Navigation Bar -->
   <div class="navbar transparent navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">

@@ -115,7 +115,7 @@ def annotated_download(request, uima_id, file_format):
 
     return response
 
-def annotate_text(request, text, function, lemma):
+def annotate_text(request, text, function, lemma, juan=-1):
     """
     Annotate a single text. Run UIMA through a remote procedure call.
     """
@@ -138,6 +138,7 @@ def annotate_text(request, text, function, lemma):
     uima_body = json.dumps({'text': text,
                             'function': function,
                             'collection_path': collection_path,
+                            'juan': juan,
                             'lemma': lemma})
 
     def uima_on_response(channel, method, props, body):

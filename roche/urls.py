@@ -22,17 +22,19 @@ urlpatterns = i18n_patterns('',
     url(r'^uima/basic/$', 'annotate.views.index'),
     url(r'^uima/advanced/$', UIMAWizard.as_view([UIMAWizardForm, UIMAWizardForm2])),
 
-    url(r'^annotate/(?P<text>.*)/(?P<function>(persname|placename|term))/(?P<lemma>.*)$', 'annotate.views.annotate_text'),
+    url(r'^annotate/(?P<text>\w+)/(?P<juan>[0-9]+)/(?P<function>(persname|placename|term))/(?P<lemma>.*)$',
+        'annotate.views.annotate_text'),
+    url(r'^annotate/(?P<text>\w+)/(?P<function>(persname|placename|term))/(?P<lemma>.*)$', 'annotate.views.annotate_text'),
 
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)$', 'browser.views.text_view_juan'),
-    url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)/(?P<file_format>(txt|pdf))$', 'r.views.text_download'),
+    url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)/(?P<file_format>(txt|pdf|tei))$', 'r.views.text_download'),
     url(r'^browse/text/(?P<title>[^/]+)$', 'browser.views.text_view'),
     url(r'^browse/author/(?P<author>[A-Z])$', 'browser.views.index_author', {'startswith': True}),
     url(r'^browse/author/(?P<author>.*)$', 'browser.views.index_author', {'startswith': False}),
     url(r'^browse/', include('browser.urls', namespace='browse')),
 
     url(r'^r/(?P<title>([^/])+)/info$', 'r.views.text_info'),
-    url(r'^r/(?P<title>([^/])+)/(?P<file_format>(txt|pdf))$', 'r.views.text_download'),
+    url(r'^r/(?P<title>([^/])+)/(?P<file_format>(txt|pdf|tei))$', 'r.views.text_download'),
 
     url(r'^sparql/(?P<lemma>.*)$', 'sparql.views.index'),
 

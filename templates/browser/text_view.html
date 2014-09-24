@@ -17,10 +17,27 @@
 <div class="container" style="font-size: 220%; margin-top: 70px;">
 
 <div class="nav navbar-right">
+<div class="container">
 
-<div class="dropdown">
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+
+<li class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown">
+Visuals
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Page Layout</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Phyme</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Phyme Groups</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Intertextual References</a></li>
+</ul>
+</li>
+
+<li class="dropdown">
 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-Export
+Exports
 <span class="caret"></span>
 </button>
 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
@@ -28,6 +45,55 @@ Export
 <li role="presentation"><a role="menuitem" tabindex="-1" href="pdf">PDF</a></li>
 <li role="presentation"><a role="menuitem" tabindex="-1" href="tei">TEI</a></li>
 </ul>
+</li>
+
+
+<li>
+<!-- Button trigger modal -->
+<button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+  Help
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+<h4 class="modal-title" id="myModalLabel">Help and Shortcuts</h4>
+</div>
+<div class="modal-body">
+<p>
+In this text view you can annotate expressions. Mark a section of the text
+and press a key to send the expression to the server. Press <strong>1</strong>
+for person names, <strong>3</strong> for place names and <strong>t</strong>
+for terms.
+</p>
+
+<p> 
+There is no need to wait for the server response. Annotations are send to
+a work queue and will be processed in sequence.  But the server response
+will cause a page reload to show the new annotation, so please reload
+the page yourself after a few second, if you annote a text in fast frequence.
+</p>
+
+<p>
+The UIMA worker will try to annotate the juan the annotation you selected
+occurs in first to provide a fast response.  The whole work is the processed
+afterwards.
+</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
 </div>
 </div>
 
@@ -46,6 +112,7 @@ Export
 function BrowserView() {
 	this.hidingInterpuction = false;
         this.selectedText = '';
+	this.selectedJuan;
 };
 
 BrowserView.prototype.keyUp = function (event) {
@@ -54,8 +121,21 @@ BrowserView.prototype.keyUp = function (event) {
 	console.log(pressedKey);
 
 	lemma = this.selectedText;
+	juan = this.selectedJuan;
 
 	send_msg = "Sending and processing request...";
+
+	if (isNaN(juan)) {
+		console.log("No juan found, falling back to generic annotation urls.");
+
+		url_persname = '/annotate/{{text_title}}/persname/' + lemma;
+		url_placename = '/annotate/{{text_title}}/placename/' + lemma;
+		url_term = '/annotate/{{text_title}}/term/' + lemma;
+	} else {
+		url_persname = '/annotate/{{text_title}}/' + juan + '/persname/' + lemma;
+		url_placename = '/annotate/{{text_title}}/' + juan + '/placename/' + lemma;
+		url_term = '/annotate/{{text_title}}/' + juan + '/term/' + lemma;
+	}
 
 	if (pressedKey == 190) {
 		if (this.hidingInterpuction) {
@@ -70,7 +150,7 @@ BrowserView.prototype.keyUp = function (event) {
 		$('#infoarea').text(send_msg);
 		$.ajax({
 			type: 'GET',
-			url: '/annotate/{{text_title}}/persname/' + lemma,
+			url: url_persname,
 			data: {},
 			success: function(data, status) {
 				if (data == "OK") {
@@ -88,7 +168,7 @@ BrowserView.prototype.keyUp = function (event) {
 		$('#infoarea').text(send_msg);
 		$.ajax({
 			type: 'GET',
-			url: '/annotate/{{text_title}}/placename/' + lemma,
+			url: url_placename,
 			data: {},
 			success: function(data, status) {
 				if (data == "OK") {
@@ -108,7 +188,7 @@ BrowserView.prototype.keyUp = function (event) {
 		$('#infoarea').text(send_msg);
 		$.ajax({
 			type: 'GET',
-			url: '/annotate/{{text_title}}/term/' + lemma,
+			url: url_term,
 			data: {},
 			success: function(data, status) {
 				if (data == "OK") {
@@ -129,19 +209,24 @@ BrowserView.prototype.keyUp = function (event) {
 
 BrowserView.prototype.mouseUp = function (event) {
 	var selectedText = "NO-RESULT";
+	var anchor;
 
 	if (window.getSelection) {
 		var range = window.getSelection();
+		anchor = range.anchorNode;
 
 		selectedText = range.toString();
 	} else if (document.selection.createRange) {
 		var range = document.selection.createRange();
+		anchor = range.anchorNode;
 
 		selectedText = range.text;
 	}
 
+	this.selectedJuan = parseInt(anchor.parentElement.parentElement.firstElementChild.innerHTML);
 	this.selectedText = selectedText;
 
+	console.log(this.selectedJuan);
 	console.log(this.selectedText);
 };
 
