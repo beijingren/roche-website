@@ -40,6 +40,7 @@ INITIAL_TEXT = u"""歐陽修，字永叔，廬陵人。四歲而孤，母鄭，�
 #
 BERTIE_JAR = "/docker/bertie-uima/target/bertie-uima-0.0.1-SNAPSHOT.jar"
 
+
 def index(request):
     """
     Show basic form to annotate a text by UIMA.
@@ -78,8 +79,9 @@ def index(request):
     else:
         form = TextAnnotationForm(initial={'text': INITIAL_TEXT})
 
-    data = {'form': form }
+    data = {'form': form, }
     return render_to_response('annotate/index.html', data, context_instance=RequestContext(request))
+
 
 def show_annotated(request, uima_id):
     """
@@ -100,6 +102,7 @@ def show_annotated(request, uima_id):
     data = {'tei_documents': [q], 'tei_transform': result}
     return render_to_response('browser/text_view.html', data)
 
+
 def annotated_download(request, uima_id, file_format):
     try:
         uima = TextAnnotation.objects.get(pk=int(uima_id))
@@ -114,6 +117,7 @@ def annotated_download(request, uima_id, file_format):
         response = HttpResponse(content_type='text/plain')
 
     return response
+
 
 def annotate_text(request, text, function, lemma, juan=-1):
     """
@@ -154,7 +158,7 @@ def annotate_text(request, text, function, lemma, juan=-1):
                                routing_key='uima_worker',
                                properties=BasicProperties(reply_to=uima_callback_queue,
                                                           content_type='application/json',
-                                                          correlation_id = uima_corr_id,),
+                                                          correlation_id=uima_corr_id, ),
                                body=uima_body)
 
     while uima_response['response'] is None:
