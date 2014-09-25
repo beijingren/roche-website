@@ -29,8 +29,8 @@ Visuals
 </button>
 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Page Layout</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Phyme</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Phyme Groups</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rhyme</a></li>
+<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rhyme Groups</a></li>
 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Intertextual References</a></li>
 </ul>
 </li>
@@ -66,7 +66,7 @@ Exports
 <div class="modal-body">
 <p>
 In this text view you can annotate expressions. Mark a section of the text
-and press a key to send the expression to the server. Press <strong>1</strong>
+and press a key to send the selection to the server. Press <strong>1</strong>
 for person names, <strong>3</strong> for place names and <strong>t</strong>
 for terms.
 </p>
@@ -75,13 +75,17 @@ for terms.
 There is no need to wait for the server response. Annotations are send to
 a work queue and will be processed in sequence.  But the server response
 will cause a page reload to show the new annotation, so please reload
-the page yourself after a few second, if you annote a text in fast frequence.
+the page yourself after a few second, if you annote a text in fast sequence.
 </p>
 
 <p>
-The UIMA worker will try to annotate the juan the annotation you selected
-occurs in first to provide a fast response.  The whole work is the processed
+The UIMA worker will try to annotate the <i>juan</i> the annotation you selected
+occurs in first to provide a fast response.  The whole work is then processed
 afterwards.
+</p>
+
+<p>
+Thanks for your contribution!
 </p>
 </div>
 <div class="modal-footer">
@@ -155,7 +159,7 @@ BrowserView.prototype.keyUp = function (event) {
 			success: function(data, status) {
 				if (data == "OK") {
 					$('#infoarea').text("Person name " + lemma + " added.");
-					location.reload();
+					location.reload(true);
 				}
 				console.log("Success " + data);
 				},
@@ -173,7 +177,7 @@ BrowserView.prototype.keyUp = function (event) {
 			success: function(data, status) {
 				if (data == "OK") {
 					$('#infoarea').text("Place name " + lemma + " added.");
-					location.reload();
+					location.reload(true);
 				}
 				console.log("Success " + data);
 				},
@@ -193,7 +197,7 @@ BrowserView.prototype.keyUp = function (event) {
 			success: function(data, status) {
 				if (data == "OK") {
 					$('#infoarea').text("Term" + lemma + " added.");
-					location.reload();
+					location.reload(true);
 				}
 				console.log("Success " + data);
 				},
@@ -204,7 +208,41 @@ BrowserView.prototype.keyUp = function (event) {
 				console.log("Ajax done");
 			});
 		console.log("Annotate term " + this.selectedText);
+	} else if (pressedKey == 39 || pressedKey == 37) {
+		var current_juan;
+		var url;
+
+		var matcher = location.pathname.match('(.*)/([0-9]+)$');
+		if (matcher == null) {
+			url = location.pathname;
+			current_juan = 1;
+		} else {
+			url = matcher[1];
+			current_juan = parseInt(matcher[2]);
+		}
+
+		var next_juan = current_juan + 1;
+		var prev_juan = current_juan - 1;
+
+		if (next_juan > {{max_juan}}) {
+			next_juan = 1;
+		}
+
+		if (prev_juan == 0) {
+			prev_juan = {{max_juan}};
+		}
+
+		var new_url = null;
+		if (pressedKey == 39) {
+			new_url = url + '/' + next_juan.toString();
+		} else {
+			new_url = url + '/' + prev_juan.toString();
+		}
+
+		location.assign(new_url);
 	}
+
+	console.log(pressedKey);
 };
 
 BrowserView.prototype.mouseUp = function (event) {
