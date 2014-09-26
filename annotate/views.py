@@ -127,6 +127,9 @@ def annotate_text(request, text, function, lemma, juan=-1):
 
     collection_path = None
 
+    #
+    # Find the collection path this text belongs to
+    #
     os.chdir('/docker/dublin-store/')
     for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
         if dirpath.endswith(unicode(text)):
@@ -134,7 +137,7 @@ def annotate_text(request, text, function, lemma, juan=-1):
             break
 
     #
-    # RPC
+    # RPC UIMA worker
     #
     uima_response = {}
     uima_response['response'] = None
@@ -165,20 +168,8 @@ def annotate_text(request, text, function, lemma, juan=-1):
         uima_connection.process_data_events()
 
     response = uima_response['response']
-    if response == 'JSON':
+    if response == 'ERROR':
         pass
-
-    #
-    # Reload TEI files into existdb
-    #
-    xmldb = ExistDB(timeout=60)
-    for (dirpath, dirnames, filenames) in os.walk(u'浙江大學圖書館'):
-        if dirpath.endswith(unicode(text)):
-            xmldb.createCollection('docker/texts' + '/' + dirpath, True)
-            if filenames:
-                for filename in filenames:
-                    with open(dirpath + '/' + filename) as f:
-                        xmldb.load(f, 'docker/texts' + '/' + dirpath + '/' + filename, True)
 
     # Invalidate page?
     # TODO
@@ -189,4 +180,4 @@ def annotate_text(request, text, function, lemma, juan=-1):
     annotation.ip = request.META['REMOTE_ADDR']
     annotation.save()
 
-    return HttpResponse("OK")
+    return HttpResponse(response)
