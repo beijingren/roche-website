@@ -258,7 +258,7 @@ BrowserView.prototype.keyUp = function (event) {
 		location.assign(new_url);
 	} else if (pressedKey == 87) {
 		var mwjs = new MediaWikiJS('https://zh.wikipedia.org',
-		     {action: 'query', prop: 'extracts', titles: '葛洪'},
+		     {action: 'query', prop: 'extracts', titles: lemma},
 		     function (data) {
 			'use strict';
 
