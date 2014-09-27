@@ -99,7 +99,8 @@ def show_annotated(request, uima_id):
     q = xmlmap.load_xmlobject_from_string(result.encode("utf-8"), xmlclass=RocheTEI)
     result = q.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
 
-    data = {'tei_documents': [q], 'tei_transform': result}
+    # TODO: need an other template...
+    data = {'tei_documents': [q], 'tei_transform': result, 'max_juan': 0, }
     return render_to_response('browser/text_view.html', data)
 
 

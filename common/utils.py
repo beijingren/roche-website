@@ -28,6 +28,16 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </p>
 </xsl:template>
 
+<xsl:template match="tei:name">
+<a class="name" data-toggle="tooltip">
+<xsl:attribute name="href">/sparql/<xsl:value-of select="@key" /></xsl:attribute>
+<xsl:attribute name="title">
+<xsl:value-of select="@key" />
+</xsl:attribute>
+<xsl:value-of select="."/>
+</a>
+</xsl:template>
+
 <xsl:template match="tei:persName">
 <a class="persName"><xsl:attribute name="href">/sparql/<xsl:value-of select="." />#persName</xsl:attribute> 
 <xsl:value-of select="."/>
@@ -93,7 +103,10 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </xsl:template>
 
 <xsl:template match="tei:date">
-<span class="date">
+<span class="date" data-toggle="tooltip">
+<xsl:attribute name="title">
+<xsl:value-of select="@when" />
+</xsl:attribute>
 <xsl:value-of select="."/>
 </span>
 </xsl:template>
