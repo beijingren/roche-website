@@ -9,10 +9,16 @@ from eulexistdb.db import ExistDB
 from eulexistdb.query import QuerySet
 from eulxml.xmlmap.teimap import Tei
 
+from SPARQLWrapper import SPARQLWrapper
+from SPARQLWrapper import SPARQLWrapper2
+from SPARQLWrapper import JSON
+
 from browser.models import RocheTEI
 from common.utils import XSL_TRANSFORM_1
 from common.utils import XSL_TRANSFORM_2
 from common.utils import RE_INTERPUCTION
+
+from roche.settings import FUSEKI_QUERY_URL
 
 
 def text_info(request, title):
@@ -31,7 +37,7 @@ def text_info(request, title):
         for d in q.body.div:
             text = re.sub(RE_INTERPUCTION, '', d.text)
             text = text.replace("\n", "")
-            text = text.replace("", "")
+            #text = text.replace("", "")
             number_characters += len(text)
 
 
@@ -95,3 +101,57 @@ def text_download(request, title, file_format, juan=0):
         response['Content-Disposition'] = 'attachment; filename="{}.pdf"'.format(pinyin_title)
 
     return response
+
+
+SPARQL_TIMELINE_QUERY = u"""
+    PREFIX : <http://example.org/owl/sikuquanshu#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+    SELECT
+        (strafter(str(?subject), str(:)) AS ?person)
+        (str(?birthY) AS ?birthYear)
+        (str(?deathY) AS ?deathYear)
+    {
+        ?subject rdf:type :Person ;
+        :birthYear ?birthY ;
+        :deathYear ?deathY .
+    }
+    ORDER BY xsd:integer(?birthYear)
+"""
+
+def visual_timeline(request, title, juan):
+    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
+    qs = qs.filter(title=title, chapter=juan)
+
+    persons = []
+    for q in qs:
+        persons.extend(q.persons)
+
+    sparql = SPARQLWrapper2(FUSEKI_QUERY_URL)
+    sparql.setQuery(SPARQL_TIMELINE_QUERY)
+
+    try:
+        sparql_result = sparql.query()
+    except:
+        sparql_result = {}
+
+    sparql_persons = {} 
+    for binding in sparql_result.bindings:
+         sparql_persons[binding[u"person"].value] = [binding[u"birthYear"].value, binding[u"deathYear"].value]
+
+    #persons = [u"范仲淹", u"蘇舜欽", u"韓愈"]
+    timeline_persons = []
+    for p in set(persons):
+        if sparql_persons.get(p, None):
+             row = [p, ]
+             row.append(int(sparql_persons[p][0]))
+             row.append(int(sparql_persons[p][1]))
+             timeline_persons.append(row)
+
+    from operator import itemgetter
+
+    timeline_persons = sorted(timeline_persons, key=itemgetter(1))
+    timeline_persons = json.dumps(timeline_persons)
+
+    return render_to_response('r/visual_timeline.html', {'tei_documents': qs, 'timeline_persons': timeline_persons, 'juan': juan, })

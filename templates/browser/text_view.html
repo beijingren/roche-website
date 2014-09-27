@@ -28,6 +28,7 @@ Visuals
 <span class="caret"></span>
 </button>
 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+<li role="presentation"><a role="menuitem" tabindex="-1" href="visual/timeline">Timeline</a></li>
 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Page Layout</a></li>
 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rhyme</a></li>
 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Rhyme Groups</a></li>
@@ -228,7 +229,7 @@ BrowserView.prototype.keyUp = function (event) {
 		var current_juan;
 		var url;
 
-		var matcher = location.pathname.match('(.*)/([0-9]+)$');
+		var matcher = location.pathname.match('(.*)/([0-9]+)/$');
 		if (matcher == null) {
 			url = location.pathname;
 			current_juan = 1;
@@ -250,9 +251,9 @@ BrowserView.prototype.keyUp = function (event) {
 
 		var new_url = null;
 		if (pressedKey == 39) {
-			new_url = url + '/' + next_juan.toString();
+			new_url = url + '/' + next_juan.toString() + '/';
 		} else {
-			new_url = url + '/' + prev_juan.toString();
+			new_url = url + '/' + prev_juan.toString() + '/';
 		}
 
 		location.assign(new_url);
