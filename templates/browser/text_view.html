@@ -159,12 +159,12 @@ BrowserView.prototype.keyUp = function (event) {
 	}
 
 	if (pressedKey == 83) {
-		if (this.hidingInterpuction) {
+		if (this.hidingPagebreak) {
 			$(".pb").removeClass("hide");
-			this.hidingInterpuction = false;
+			this.hidingPagebreak  = false;
 		} else {
 			$(".pb").addClass("hide");
-			this.hidingInterpuction = true;
+			this.hidingPagebreak = true;
 		}
 		console.log("Hiding 'pb' elems");
 	} else if (pressedKey == 190) {
