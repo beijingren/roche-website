@@ -158,7 +158,16 @@ BrowserView.prototype.keyUp = function (event) {
 		url_term = '/annotate/{{text_title}}/' + juan + '/term/' + lemma;
 	}
 
-	if (pressedKey == 190) {
+	if (pressedKey == 83) {
+		if (this.hidingInterpuction) {
+			$(".pb").removeClass("hide");
+			this.hidingInterpuction = false;
+		} else {
+			$(".pb").addClass("hide");
+			this.hidingInterpuction = true;
+		}
+		console.log("Hiding 'pb' elems");
+	} else if (pressedKey == 190) {
 		if (this.hidingInterpuction) {
 			$(".pc").removeClass("hide");
 			this.hidingInterpuction = false;
