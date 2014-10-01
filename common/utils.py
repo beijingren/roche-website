@@ -102,6 +102,15 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </span>
 </xsl:template>
 
+<xsl:template match="tei:date[@notBefore!='null']">
+<span class="date" data-toggle="tooltip">
+<xsl:attribute name="title">
+<xsl:value-of select="@notBefore" /> - <xsl:value-of select="@notAfter" />
+</xsl:attribute>
+<xsl:value-of select="."/>
+</span>
+</xsl:template>
+
 <xsl:template match="tei:date">
 <span class="date" data-toggle="tooltip">
 <xsl:attribute name="title">

@@ -32,7 +32,6 @@ def text_info(request, title):
     terms = []
     chapter_titles = []
     for q in qs:
-
         number_characters = 0
         for d in q.body.div:
             text = re.sub(RE_INTERPUCTION, '', d.text)
@@ -41,8 +40,18 @@ def text_info(request, title):
             number_characters += len(text)
 
 
-        chapter_titles.append([q.chapter,
-                               q.chapter_title.replace(" ", "").replace("\n", "")[:70],
+        if q.chapter_title:
+             content = q.chapter_title.replace(" ", "").replace("\n", "")[:70]
+        else:
+             content = 'XXX'
+
+	if q.chapter:
+             chapter = q.chapter
+        else:
+             chapter = 1
+
+        chapter_titles.append([chapter,
+                               content,
                                number_characters])
 
         place_names.extend(q.place_names)

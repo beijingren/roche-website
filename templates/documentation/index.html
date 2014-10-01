@@ -163,8 +163,18 @@ To provide the reader on the website with visual aids for a quicker understandin
 
 <h4>How To Markup Texts Automatically?</h4>
 <p>
-Use the UIMA analysis pipeline. Either the online version on this website or the standalone version at our developer site.
+Use the UIMA analysis pipeline. Either the online version on this website or the standalone version in the bertie-uima repo. For TEI documents the engines run in the following order:
 </p>
+
+<ol>
+<li>PreprocessAnalysisEngine</li>
+<li>AuxiliaryAnalysisEngine</li>
+<li>NumberUnitAnalysisEngine</li>
+<li>PersNameAnalysisEngine</li>
+<li>DateTimeAnalysisEngine</li>
+<li>PlaceNameAnalysisEngine</li>
+<li>DeduplicatorAnalysisEngine</li>
+</ol>
 
 </div>
 
