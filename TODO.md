@@ -20,3 +20,15 @@ in central
 遷晉州觀察推官
 
 expand 蓬、閬、渠、達 四州
+
+correct
+* <pc>，</pc>割金州豐陽縣<pc>、</pc>洋州<date notBefore="948" notAfter="950">乾祐</date>縣畀金人<pc>。
+
+
+annotate emperor if date given
+景德初，張知白安撫江南，以神童薦之。帝召殊與
+
+orgName 龍圖閣 觀文殿 國子監 天章閣 翰林
+
+BUG
+* 至皇朝大中祥符    庚戌歲

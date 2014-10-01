@@ -19,7 +19,7 @@ from eulexistdb.db import ExistDB
 #
 # YOU NEED TO INSERT THE USER AND PASSWORD HERE
 xmldb = ExistDB('http://admin:@46.137.59.250:8080/exist')
-xmldb = ExistDB('http://admin:@localhost:8080/exist')
+xmldb = ExistDB('http://admin:glen32@localhost:8080/exist')
 
 xmldb.createCollection('docker', True)
 xmldb.createCollection('docker/texts', True)
