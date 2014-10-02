@@ -147,20 +147,43 @@ XXX
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="..." alt="...">
+      <img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg">
       <div class="carousel-caption">
-        ...
+        <h3>UIMA Analysis Engine</h3>
+	<p class="carousel-caption">
+	{% if LANGUAGE_CODE == "de" %}
+	für automatische Auszeichnungen
+	{% elif LANGUAGE_CODE == "en" %}
+	for automatic annotations
+	{% elif LANGUAGE_CODE == "zh" %}
+	XXX
+	{% endif %}
+	</p>
       </div>
     </div>
-   <div class="item" href="/ocr/">
-  	<img src="http://studiompls.com/assets/homepage_slideshow_weinstein8.jpg">
+   <div class="item">
+  	<img href="/ocr/" src="http://studiompls.com/assets/homepage_slideshow_weinstein8.jpg">
   	<div class="carousel-caption">
-	<h3>OCR Service<</h3>
-	<p>
+	<h3 href="/ocr/">OCR Service</h3>
+	<p href="/ocr/">
    	 {% if LANGUAGE_CODE == "de" %}
 	für eine Volltexterkennung
 	{% elif LANGUAGE_CODE == "en" %}
 	for fulltext extraction
+	{% elif LANGUAGE_CODE == "zh" %}
+	XXX
+	{% endif %}
+	</p>	
+  </div>
+   <div class="item">
+  	<img src="http://studiompls.com/assets/homepage_slideshow_weinstein3.jpg">
+  	<div class="carousel-caption">
+	<h3>SPARQL Endpoint</h3>
+	<p>
+   	 {% if LANGUAGE_CODE == "de" %}
+	für komplexe Suchen
+	{% elif LANGUAGE_CODE == "en" %}
+	for complex queries
 	{% elif LANGUAGE_CODE == "zh" %}
 	XXX
 	{% endif %}
