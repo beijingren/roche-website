@@ -30,5 +30,9 @@ annotate emperor if date given
 
 orgName 龍圖閣 觀文殿 國子監 天章閣 翰林
 
+region 西戎
+
+% 十分之二
+
 BUG
 * 至皇朝大中祥符    庚戌歲

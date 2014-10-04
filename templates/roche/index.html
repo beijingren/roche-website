@@ -12,130 +12,6 @@ The Digital Siku Quanshu Project
 {% block content %}
 
 
-<!--
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h2>{% trans "Browse Library" %}</h2>
-          <p>
-          {% blocktrans %}Browse our library and explore collections, author or time frames.{% endblocktrans %}
-          </p>
-          <p><a class="btn btn-default" href="browse/" role="button">{% trans "View details" %} &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>{% trans "Full Text Search" %}</h2>
-          <p>
-          {% blocktrans %}Semantically search in <a href="browse/">{{ number_texts }} texts</a> by <a href="browse/author/">{{ number_authors }} authors</a>.{% endblocktrans %}
-          </p>
-          <p><a class="btn btn-default" href="search/" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>{% trans "OCR Service" %}</h2>
-          <p>We provide Optical Character Recognition for chinese.</p>
-          <p><a class="btn btn-default" href="ocr/" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <h2>{% trans "Semantic Editor" %}</h2>
-          <p>
-          {% blocktrans %}Annotate text in the semantic editor.{% endblocktrans %}
-          </p>
-          <p><a class="btn btn-default" href="#" role="button">{% trans "View details" %} &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>{% trans "Documentation" %}</h2>
-          <p>Learn how to contribute and use this site more efficiently.</p>
-          <p><a class="btn btn-default" href="documentation/" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>{% trans "Ontology" %}</h2>
-          <p>We run a SPARQL endpoint with #people #places.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
--->
-<!--
-<div class="slide-wrapper slide-featured">
-<div class="flexslider slide-direction-nav slide-auto" style="margin-top: 50px;">
-  <ul class="slides">
-
-
-<li class="cover-image">
-
-<a class="coverhomepage-slideshow-a" href="/uima/basic/">
-<div class="container">
-<div class="row">
-<div class="span5">
-<div class="slide-content">
-<h1 class="slide-title">UIMA Analysis Engine</h1>
-<p class="slide-caption">
-{% if LANGUAGE_CODE == "de" %}
-für automatische Auszeichnungen
-{% elif LANGUAGE_CODE == "en" %}
-for automatic annotations
-{% elif LANGUAGE_CODE == "zh" %}
-XXX
-{% endif %}
-</p>
-</div>
-</div>
-</div>
-</div>
-</a>
-
-    </li>
-
-
-    <li>
-<a class="coverhomepage-slideshow-a" href="/ocr/">
-<div class="container">
-<div class="row">
-<div class="span5">
-<div class="slide-content">
-<h1 class="slide-title">OCR Service</h1>
-<p class="slide-caption">
-{% if LANGUAGE_CODE == "de" %}
-für eine Volltexterkennung
-{% elif LANGUAGE_CODE == "en" %}
-for fulltext extraction
-{% elif LANGUAGE_CODE == "zh" %}
-XXX
-{% endif %}
-</p>
-</div>
-</div>
-</div>
-</div>
-</a>
-
-    </li>
-
-    <li>
-<a class="coverhomepage-slideshow-a" href="/documentation/sparql/">
-<div class="container">
-<div class="row">
-<div class="span5">
-<div class="slide-content">
-<h1 class="slide-title">SPARQL Endpoint</h1>
-<p class="slide-caption">to query an ontology for classic china</p>
-</div>
-</div>
-</div>
-</div>
-</a>
-
-    </li>
-
-    <li>
-      <img src="http://studiompls.com/assets/homepage_slideshow_weinstein8.jpg">
-    </li>
-  </ul>
-</div>
-</div>
--->
-
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -166,7 +42,7 @@ XXX
       	<a  href="/uima/basic/"><img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg" alt="UIMA"></a>
       	<div class="carousel-caption">
         <h3>UIMA Analysis Engine</h3>
-	<p class="carousel-caption">
+	<p>
 	{% if LANGUAGE_CODE == "de" %}
 	für automatische Auszeichnungen
 	{% elif LANGUAGE_CODE == "en" %}
