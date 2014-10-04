@@ -140,13 +140,29 @@ XXX
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"  class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"  class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
+      	<a  href="/browse/"><img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg" alt="UIMA"></a>
+      	<div class="carousel-caption">
+        <h3>Text Library</h3>
+	<p class="carousel-caption">
+	{% if LANGUAGE_CODE == "de" %}
+	Sammlung	
+	{% elif LANGUAGE_CODE == "en" %}
+	Collection
+	{% elif LANGUAGE_CODE == "zh" %}
+	集
+	{% endif %}
+	</p>
+      </div>
+   </div>/
+
+    <div class="item">
       	<a  href="/uima/basic/"><img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg" alt="UIMA"></a>
       	<div class="carousel-caption">
         <h3>UIMA Analysis Engine</h3>
@@ -156,7 +172,7 @@ XXX
 	{% elif LANGUAGE_CODE == "en" %}
 	for automatic annotations
 	{% elif LANGUAGE_CODE == "zh" %}
-	XXX
+	分析
 	{% endif %}
 	</p>
       </div>
@@ -171,7 +187,7 @@ XXX
 	{% elif LANGUAGE_CODE == "en" %}
 	for fulltext extraction
 	{% elif LANGUAGE_CODE == "zh" %}
-	XXX
+	
 	{% endif %}
 	</p>
 	</div>	
