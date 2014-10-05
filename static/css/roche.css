@@ -29,8 +29,8 @@
 	background-size: cover;
 }
 
-.carousel-inner {
-	padding: 50px;
+.carousel_slide {
+	margin-top: 30px;
 
 
 }
