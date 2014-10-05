@@ -29,6 +29,12 @@
 	background-size: cover;
 }
 
+.carousel-inner {
+	padding: 50px;
+
+
+}
+
 .homepage-slideshow-a {
 
 	background-image: url("/static/images/img_003.jpg");
