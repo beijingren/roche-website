@@ -23,6 +23,10 @@
   text-align: center;
 }
 
+.carousel-slide{
+	margin-top:35px;
+};
+
 .jumbotron {
 	height: 400px;
 	background-image: url("/static/images/img_003.jpg");
