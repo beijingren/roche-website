@@ -148,7 +148,7 @@ XXX
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      	<a  href="/browse/"><img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg" alt="TEXTS"></a>
+      	<a  href="/browse/"><img src="{% static 'images/LIBRARY.jpg' %}" alt="TEXTS"></a>
       	<div class="carousel-caption">
         <h3>Text Library</h3>
 	<p>
@@ -162,9 +162,24 @@ XXX
 	</p>
       </div>
    </div>
+   <div class="item">
+  	<a href="/documentation/sparql/"><img src="{% static 'images/SPARQL.jpg' %}" alt="SPARQL"></a>
+  	<div class="carousel-caption">
+	<h3>SPARQL Endpoint</h3>
+	<p>
+   	 {% if LANGUAGE_CODE == "de" %}
+	für komplexe Suchen
+	{% elif LANGUAGE_CODE == "en" %}
+	for complex queries
+	{% elif LANGUAGE_CODE == "zh" %}
+	XXX
+	{% endif %}
+	</p>	
+  	</div>
+   </div> 
 
     <div class="item">
-      	<a  href="/uima/basic/"><img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg" alt="UIMA"></a>
+      	<a  href="/uima/basic/"><img src="{% static 'images/UIMAbox.jpg' %}" alt="UIMA"></a>
       	<div class="carousel-caption">
         <h3>UIMA Analysis Engine</h3>
 	<p>
@@ -179,9 +194,9 @@ XXX
       </div>
    </div>
    <div class="item">
-  	<a  href="/ocr/"><img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg" alt="OCR"></a>
+  	<a  href="/ocr/"><img src="{% static 'images/OCR.jpg' %}" alt="OCR"></a>
   	<div class="carousel-caption">
-	<h3> OCR Service</h3>
+	<h3>OCR Service</h3>
 	<p>
    	 {% if LANGUAGE_CODE == "de" %}
 	für eine Volltexterkennung
@@ -193,28 +208,13 @@ XXX
 	</p>
 	</div>	
   </div>
-   <div class="item">
-  	<a href="/documentation/sparql/"><img src="http://studiompls.com/assets/homepage_slideshow_weinstein1.jpg" alt="SPARQL"></a>
-  	<div class="carousel-caption">
-	<h3>SPARQL Endpoint</h3>
-	<p>
-   	 {% if LANGUAGE_CODE == "de" %}
-	für komplexe Suchen
-	{% elif LANGUAGE_CODE == "en" %}
-	for complex queries
-	{% elif LANGUAGE_CODE == "zh" %}
-	XXX
-	{% endif %}
-	</p>	
-  	</div>
-   </div> 
 </div>
 
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+  <a class="left-carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
   </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+  <a class="right-carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div>
