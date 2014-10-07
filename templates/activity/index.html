@@ -1,0 +1,57 @@
+{% extends 'roche/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 60px;">
+<h1>Activity</h1>
+
+<h3>UIMA Annotated</h3>
+<table>
+<tbody>
+{% for uima in uima_latest %}
+<tr>
+<td>
+<div>
+<p style="margin: 0 0 4%;">
+{{uima.0.pub_date}}
+</p>
+</div>
+</td>
+<td>
+{{uima.1|truncatechars_html:30|safe}}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+
+<h3>User Annotations</h3>
+
+{% for annotation in annotation_latest %}
+
+{% ifequal annotation.tei_tag 'placename' %}
+<span class="placeName">
+{{ annotation.lemma }}
+</span>
+{% endifequal %}
+
+{% ifequal annotation.tei_tag 'persname' %}
+<span class="persName">
+{{ annotation.lemma }}
+</span>
+{% endifequal %}
+
+{% ifequal annotation.tei_tag 'term' %}
+<span class="term">
+{{ annotation.lemma }}
+</span>
+{% endifequal %}
+
+{% endfor %}
+
+ 
+</div>
+
+{% endblock %}
