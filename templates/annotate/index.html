@@ -7,6 +7,52 @@
 
 <h1>UIMA Basic</h1>
 
+<div class="nav navbar-right">
+<div class="container">
+
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+
+<li>
+<button class="btn btn-default" >
+<a href="/uima/advanced/" style="color: black;">Advanced</a>
+</button>
+</li>
+
+<li>
+<!-- Button trigger modal -->
+<button class="btn btn-default" data-toggle="modal" data-target="#myModal">
+  Help
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+<h4 class="modal-title" id="myModalLabel">UIMA Help</h4>
+</div>
+<div class="modal-body">
+<p>
+This is the interface to the UIMA analysis pipeline.
+</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+
+<div style="margin-top: 20px;">
 <form action="" method="post">
 	{% csrf_token %}
 
@@ -21,6 +67,7 @@
 	<input type="reset" value="Clean">
 	<input type="submit" value="Submit">
 </form>
+</div>
 
 </div>
 
