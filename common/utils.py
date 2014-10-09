@@ -152,7 +152,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </sup>
 </xsl:template>
 
-<xsl:template match="tei:num">
+<xsl:template match="tei:num[../@type!='poem']">
 <span class="num" data-toggle="tooltip">
 <xsl:attribute name="title">
 <xsl:value-of select="@value" />
@@ -161,7 +161,7 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 </span>
 </xsl:template>
 
-<xsl:template match="tei:measure">
+<xsl:template match="tei:measure[../@type!='poem']">
 <span class="measure" data-toggle="tooltip">
 <xsl:attribute name="title">
 <xsl:value-of select="@quantity" />
