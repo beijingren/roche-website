@@ -91,6 +91,32 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 <xsl:template match="tei:l[../@type='poem' or ../../@type='poem']">
 <xsl:value-of select="."/>
 <br/>
+<xsl:apply-templates/>
+<br/>
+</xsl:template>
+
+<xsl:template match="tei:rhyme[@type='平' and string-length(@label) > 0]">
+<span class="rhyme" style="background-color: black; color: white;">
+<xsl:value-of select="@label"/>
+</span>
+</xsl:template>
+
+<xsl:template match="tei:rhyme[@type='平' and string-length(@label) = 0]">
+<span class="rhyme" style="background-color: black; color: black;">
+<xsl:value-of select="."/>
+</span>
+</xsl:template>
+
+<xsl:template match="tei:rhyme[@type!='平' and string-length(@label) > 0]">
+<span class="rhyme" style="background-color: red; color: white;">
+<xsl:value-of select="@label"/>
+</span>
+</xsl:template>
+
+<xsl:template match="tei:rhyme[@type!='平' and string-length(@label) = 0]">
+<span class="rhyme" style="background-color: red; color: red;">
+<xsl:value-of select="."/>
+</span>
 </xsl:template>
 
 <xsl:template match="tei:l|tei:time">
