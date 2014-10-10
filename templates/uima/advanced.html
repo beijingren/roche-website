@@ -8,6 +8,10 @@
 <h1>UIMA Advanced</h1>
 {{ another_var }}
 
+{% if wizard.steps.current == "1" %}
+{{uima_result | safe}}
+{% endif %}
+
 <form action="" method="post">
 {% csrf_token %}
 

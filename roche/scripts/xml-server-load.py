@@ -18,7 +18,7 @@ from eulexistdb.db import ExistDB
 # http://username:password@54.220.97.75:8080/exist
 #
 # YOU NEED TO INSERT THE USER AND PASSWORD HERE
-xmldb = ExistDB('http://admin:@46.137.59.250:8080/exist')
+#xmldb = ExistDB('http://admin:@46.137.59.250:8080/exist')
 xmldb = ExistDB('http://admin:glen32@localhost:8080/exist')
 
 xmldb.createCollection('docker', True)
