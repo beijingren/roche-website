@@ -51,7 +51,7 @@ class UIMAWizard(SessionWizardView):
             uima_callback_queue = uima_result.method.queue
             uima_channel.basic_consume(uima_on_response, no_ack=True, queue=uima_callback_queue)
             uima_channel.basic_publish(exchange='',
-                                       routing_key='uima-plain-worker',
+                                       routing_key='uima_plain_worker',
                                        properties=BasicProperties(reply_to=uima_callback_queue,
                                                                   content_type='application/json',
                                                                   correlation_id=uima_corr_id, ),
