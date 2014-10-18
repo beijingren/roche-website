@@ -9,6 +9,10 @@ from pika import BasicProperties
 from pika import BlockingConnection
 from pika import ConnectionParameters
 
+from eulxml import xmlmap
+
+from browser.models import RocheTEI
+from common.utils import XSL_TRANSFORM_1
 from roche.settings import RABBITMQ_SERVER
 
 from .models import TextAnnotation
@@ -38,7 +42,7 @@ class UIMAWizard(SessionWizardView):
             uima_response = {}
             uima_response['response'] = None
             uima_corr_id = str(uuid.uuid4())
-            uima_body = json.dumps({'text': text, })
+            uima_body = json.dumps({'text': text, 'mode': text_type, })
 
             def uima_on_response(channel, method, props, body):
                 if uima_corr_id == props.correlation_id:
@@ -60,7 +64,11 @@ class UIMAWizard(SessionWizardView):
             while uima_response['response'] is None:
                 uima_connection.process_data_events()
 
-            self.uima_result = uima_response['response']
+            # Transform result into HTML
+            result = uima_response['response']
+            result = xmlmap.load_xmlobject_from_string(result, xmlclass=RocheTEI)
+            result = result.body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
+            self.uima_result = result
 
         return self.get_form_step_data(form)
 

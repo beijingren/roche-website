@@ -54,9 +54,9 @@ def text_info(request, title):
                                content,
                                number_characters])
 
-        place_names.extend(q.place_names)
-        persons.extend(q.persons)
-        terms.extend(q.terms)
+        #place_names.extend(q.place_names)
+        #persons.extend(q.persons)
+        #terms.extend(q.terms)
 
     place_names = list(set(place_names))
     persons = list(set(persons))

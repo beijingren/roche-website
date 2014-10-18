@@ -44,34 +44,6 @@
 
 </table>
 
-<h3>TEI Annotations</h3>
-<div class="panel panel-warning">
-<div class="panel-heading">Places</div>
-<div class="panel-body">
-{% for place in place_names %}
-<a href="{% url 'sparql.views.index' place %}">{{place}}</a>
-{% endfor %}
-</div>
-</div>
-
-<div class="panel panel-info">
-<div class="panel-heading">Persons</div>
-<div class="panel-body">
-{% for person in persons %}
-<a href="{% url 'sparql.views.index' person %}">{{ person }}</a>
-{% endfor %}
-</div>
-</div>
-
-<div class="panel panel-success">
-<div class="panel-heading">Terms</div>
-<div class="panel-body">
-{% for term in terms %}
-<a href="{% url 'sparql.views.index' term %}">{{ term }}</a>
-{% endfor %}
-</div>
-</div>
-
 <script type="text/javascript">
 
 function map_init_basic(map, options) {
