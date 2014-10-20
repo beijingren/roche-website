@@ -106,25 +106,25 @@ The Digital Siku Quanshu Project
 </div>
 
 <div class="container">
-<table 	class="table table-hover">
+<table 	class="table table-hover" style="margin-top: 20px;">
         <thead>
         <tr>
         <th>
 {% if LANGUAGE_CODE == "de" %}
 Titel
-{% elif LANGUAGE_CODE == "en" %}
-Title
 {% elif LANGUAGE_CODE == "zh" %}
 書名
+{% else %}
+Title
 {% endif %}
 	</th>
         <th>
 {% if LANGUAGE_CODE == "de" %}
 Verfasser
-{% elif LANGUAGE_CODE == "en" %}
-Author
 {% elif LANGUAGE_CODE == "zh" %}
 作者
+{% else %}
+Author
 {% endif %}
 	</th>
         <th></th>
@@ -134,7 +134,7 @@ Author
         <tbody>
         {% for document in tei_documents %}
         <tr>
-        <td><a href="{% url 'browser.views.text_view' document.title %}">{{document.title}} <small style="color: gray;">{{document.title_en}}</small></a></td>
+        <td><a href="{% url 'browser.views.text_view_juan' document.title 1 %}">{{document.title}} <small style="color: gray;">{{document.title_en}}</small></a></td>
         <td><a href="{% url 'browser.views.index_author' document.author %}">{{document.author}}</a></td>
         <td><a href="{% url 'r.views.text_info' document.title %}"><span class="glyphicon glyphicon-info-sign"></span></a></td>
         </tr>

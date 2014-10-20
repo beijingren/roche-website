@@ -83,9 +83,10 @@ XSL_TRANSFORM_1 = '''<?xml version="1.0" encoding="UTF-8" ?>
 -->
 
 <xsl:template match="tei:head">
-<h1 style="background-color: grey;">
+<h1>
 <xsl:value-of select="."/>
 </h1>
+<hr/>
 </xsl:template>
 
 <xsl:template match="tei:l[../@type='poem' or ../../@type='poem']">
