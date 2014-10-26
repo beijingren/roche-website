@@ -146,8 +146,9 @@ def visual_timeline(request, title, juan):
         sparql_result = {}
 
     sparql_persons = {} 
-    for binding in sparql_result.bindings:
-         sparql_persons[binding[u"person"].value] = [binding[u"birthYear"].value, binding[u"deathYear"].value]
+    if sparql_result:
+        for binding in sparql_result.bindings:
+            sparql_persons[binding[u"person"].value] = [binding[u"birthYear"].value, binding[u"deathYear"].value]
 
     #persons = [u"范仲淹", u"蘇舜欽", u"韓愈"]
     timeline_persons = []

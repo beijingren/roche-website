@@ -4,6 +4,7 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
+from django.views.generic.simple import direct_to_template
 
 from django.contrib import admin
 
@@ -52,5 +53,6 @@ urlpatterns = i18n_patterns('',
     url(r'^about/',
         TemplateView.as_view(template_name='about/index.html')),
 
+    url(r'^robots\.txt$', direct_to_template, {'template': 'robots.txt', 'mimetype': 'text/plain'}),
     url(r'^$', 'roche.views.index'),
 )
