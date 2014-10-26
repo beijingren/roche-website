@@ -217,7 +217,7 @@ def show_annotated(request, uima_id):
 
     # TODO: need an other template...
     data = {'tei_documents': [q], 'tei_transform': result, 'max_juan': 0, }
-    return render_to_response('browser/text_view.html', data)
+    return render_to_response('browser/text_view.html', data, context_instance=RequestContext(request))
 
 
 def annotated_download(request, uima_id, file_format):
