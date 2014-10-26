@@ -36,5 +36,8 @@ region 西戎
 
 自戊子至庚寅
 
+WARS
+http://zh.wikipedia.org/wiki/%E5%90%9B%E5%AD%90%E9%A6%86%E4%B9%8B%E6%88%98
+
 BUG
 * 至皇朝大中祥符    庚戌歲

@@ -1,3 +1,4 @@
 User-agent: Googlebot
 Disallow: /*pdf$
-Disallow: /timeline
+Disallow: /*timeline
+Disallow: /*annotate/
