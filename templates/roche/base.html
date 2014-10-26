@@ -25,11 +25,6 @@
 
 <script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/MediawikiJS.js' %}"></script>
-<script type="text/javascript" charset="utf-8">
-  $(window).load(function() {
-    $('.flexslider').flexslider();
-  });
-</script>
 
 	{% leaflet_js %}
 	{% leaflet_css %}
@@ -46,7 +41,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/{{ LANGUAGE_CODE }}/">
 {% if LANGUAGE_CODE == "de" %}
 Digitales Siku Quanshu Projekt
 {% elif LANGUAGE_CODE == "zh" %}
