@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.views.decorators.cache import cache_page
 
 from eulexistdb.db import ExistDB
@@ -18,7 +19,7 @@ def index(request):
     qs = qs.filter(chapter='1')
     qs = qs.only('title', 'title_en', 'author')
 
-    return render_to_response('browser/index.html', {'tei_documents': qs})
+    return render_to_response('browser/index.html', {'tei_documents': qs}, context_instance=RequestContext(request))
 
 
 def index_author(request, author, startswith):
@@ -30,7 +31,7 @@ def index_author(request, author, startswith):
     else:
         qs = qs.filter(author=author)
 
-    return render_to_response('browser/index.html', {'tei_documents': qs})
+    return render_to_response('browser/index.html', {'tei_documents': qs}, context_instance=RequestContext(request))
 
 def index_title(request, letter):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=Tei)
@@ -38,7 +39,8 @@ def index_title(request, letter):
     # filter by titles starting with letter
     qs = qs.filter(title__startswith=letter)
 
-    return render_to_response('browser/index.html', {'tei_documents': qs})
+    return render_to_response('browser/index.html', {'tei_documents': qs},
+                              context_instance=RequestContext(request))
 
 def text_view(request, title):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
@@ -54,9 +56,11 @@ def text_view(request, title):
 
     text_title = qs[0].title
 
-    return render_to_response('browser/text_view.html', {'tei_documents': qs,
-                              'tei_transform': result, 'text_title': text_title,
-                              'max_juan': max_juan, })
+    data = {'tei_documents': qs, 'tei_transform': result,
+            'text_title': text_title, 'max_juan': max_juan, }
+
+    return render_to_response('browser/text_view.html', data,
+                              context_instance=RequestContext(request))
 
 def text_view_juan(request, title, juan):
     """
@@ -74,6 +78,8 @@ def text_view_juan(request, title, juan):
     result = qs[0].body.xsl_transform(xsl=XSL_TRANSFORM_1).serialize()
     text_title = qs[0].title
 
-    return render_to_response('browser/text_view.html', {'tei_documents': qs,
-                              'tei_transform': result, 'text_title': text_title,
-                              'max_juan': max_juan, })
+    data = {'tei_documents': qs, 'tei_transform': result,
+            'text_title': text_title, 'max_juan': max_juan, }
+
+    return render_to_response('browser/text_view.html', data,
+                              context_instance=RequestContext(request))
