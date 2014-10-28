@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
@@ -20,5 +22,11 @@ def index(request):
     number_texts = qs.count()
     number_authors = qs.distinct().count()
 
-    data = {'number_texts': number_texts, 'number_authors': number_authors, 'tei_documents': qs}
+    wiki_pages = []
+    for page in sorted(os.listdir("/docker/dublin-store/sinology/mainSpace")):
+        wiki_pages.append([page.replace(" ", "%20"), page])
+
+    data = {'number_texts': number_texts, 'number_authors': number_authors,
+            'tei_documents': qs, "wiki_pages": wiki_pages, }
+
     return render(request, 'roche/index.html', data)

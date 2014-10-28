@@ -142,6 +142,11 @@ Author
         </tbody>
 </table>
 
+<h4 style="margin-top: 50px; text-align: center;"></h4>
+{% for pageurl, page in wiki_pages %}
+<a href="/{{LANGUAGE_CODE}}/sparql/{{page}}" style="margin-left: 3px; margin-right: 3px;">{{page}}</a>
+{% endfor %}
+
  </div> <!-- /container -->
 
 {% endblock %}

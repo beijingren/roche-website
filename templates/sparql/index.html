@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container" style="margin-top: 60px;">
+
 <h2>{{ r.lemma }}
 {% if r.is_person %}
 {% if r.birthYear and r.deathYear %}
@@ -36,12 +37,20 @@
 </ul>
 {% endif %}
 
-<h4 style="margin-top: 50px;"></h4>
+<p>
+{{ sinology |safe}}
+</p>
 
+{% if wikipedia_en or wikipedia_zh %}
+<h4 style="margin-top: 50px;"></h4>
 <ul id="myTab" class="nav nav-tabs" role="tablist">
+{% if wikipedia_zh %}
 <li class="active"><a href="#zh_wikipedia" role="tab" data-toggle="tab">维基百科</a></li>
+{% endif %}
+
+{% if wikipedia_en %}
 <li><a href="#en_wikipedia" role="tab" data-toggle="tab">Wikipedia</a></li>
-<li><a href="#sinology" role="tab" data-toggle="tab">Sinology</a></li>
+{% endif %}
 </ul>
 
 <div id="myTabContent" class="tab-content">
@@ -63,13 +72,8 @@
 </p>
 {% endif %}
 </div>
+{% endif %}
 
-
-<div class="tab-pane" id="sinology">
-<p>
-{{ sinology |safe}}
-</p>
-</div>
 </div>
 
 {% endblock %}
