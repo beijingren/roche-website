@@ -1,0 +1,46 @@
+{
+ "name": "四庫全書",
+ "children": [
+  {
+   "name": "史部",
+   "children": [
+    {
+     "name": "正史類",
+     "children": [
+      {"name": "宋史", "size": 3938}
+     ]
+    },
+    {
+     "name": "編年類",
+     "children": [
+      {"name": "資治通鑑", "size": 3534}
+     ]
+    }
+   ]
+  },
+  {
+   "name": "子部",
+   "children": [
+    {
+     "name": "道家類",
+     "children": [
+      {"name": "神仙傳", "size": 721}
+     ]
+    }
+   ]
+  },
+  {
+   "name": "集部",
+   "children": [
+    {
+     "name": "别集類",
+     "children": [
+      {"name": "敬業堂詩集"},
+      {"name": "秋聲集", "size": 8833}
+     ]
+    }
+   ]
+  }
+ ]
+}
+
