@@ -15,18 +15,6 @@
 }
 
 
-.dropdown-menu > li > a#annotation-person:hover {
-	background-color: blue;
-}
-
-.dropdown-menu > li > a#annotation-place:hover {
-	background-color: red;
-}
-
-.dropdown-menu > li > a#annotation-term:hover {
-	background-color: green;
-}
-
 #droparea {
 	border: 3px dashed #ccc;
 	padding: 10px;
