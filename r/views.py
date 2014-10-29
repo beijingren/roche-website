@@ -4,6 +4,7 @@ import json
 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from eulexistdb.db import ExistDB
 from eulexistdb.query import QuerySet
@@ -69,7 +70,7 @@ def text_info(request, title):
     return render_to_response('browser/text_view_info.html', {'tei_documents': qs,
                               'tei_transform': result, 'place_names': place_names,
                               'persons': persons, 'terms': terms, 'js_data': js_data,
-                              'chapter_titles': sorted(chapter_titles)})
+                              'chapter_titles': sorted(chapter_titles)}, context_instance=RequestContext(request))
 
 # TODO: colored pdf
 def text_download(request, title, file_format, juan=0):
@@ -164,4 +165,29 @@ def visual_timeline(request, title, juan):
     timeline_persons = sorted(timeline_persons, key=itemgetter(1))
     timeline_persons = json.dumps(timeline_persons)
 
-    return render_to_response('r/visual_timeline.html', {'tei_documents': qs, 'timeline_persons': timeline_persons, 'juan': juan, })
+    return render_to_response('r/visual_timeline.html',
+                              {'tei_documents': qs, 'timeline_persons': timeline_persons,
+                              'juan': juan}, context_instance=RequestContext(request))
+
+
+def visual_places(request, title, juan):
+    qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
+    qs = qs.filter(title=title, chapter=juan)
+
+    places = []
+    for q in qs:
+        places.extend(q.place_names)
+
+    sparql = SPARQLWrapper2(FUSEKI_QUERY_URL)
+    sparql.setQuery(SPARQL_TIMELINE_QUERY)
+
+    try:
+        sparql_result = sparql.query()
+    except:
+        sparql_result = {}
+
+    sparql_places = {} 
+
+    return render_to_response('r/visual_places.html',
+                              {'tei_documents': qs, 'places': places, 'juan': juan, },
+                              context_instance=RequestContext(request))

@@ -1,0 +1,33 @@
+{% extends 'roche/base.html' %}
+{% load i18n %}
+{% load leaflet_tags %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 70px;">
+
+<div class="page-header">
+  <h1>{{tei_documents.0.title}} <small>{{tei_documents.0.title_en}}</small></h1>
+</div>
+
+<h1 style="text-align: center; color: grey; margin: 20px 0px 30px 0px;">
+{{ juan }}
+</h1>
+
+<script type="text/javascript">
+
+function map_init_basic(map, options) {
+        data = {{ js_data | safe}};
+        console.log(data);
+        for (i = 0; i < data.length; i++) {
+                L.marker(data[i][0], { title: data[i][1] }).addTo(map);
+        }
+}
+</script>
+
+
+{% leaflet_map "placeNames" callback="window.map_init_basic" %}
+
+
+
+{% endblock %}

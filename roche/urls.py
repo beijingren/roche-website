@@ -34,6 +34,7 @@ urlpatterns = i18n_patterns('',
     url(r'^browse/', include('browser.urls', namespace='browse')),
 
     url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)/visual/timeline$', 'r.views.visual_timeline'),
+    url(r'^browse/text/(?P<title>([^/])+)/(?P<juan>[0-9]+)/visual/places$',   'r.views.visual_places'),
     url(r'^r/(?P<title>([^/])+)/info$', 'r.views.text_info'),
     url(r'^r/(?P<title>([^/])+)/(?P<file_format>(txt|pdf|tei))$', 'r.views.text_download'),
 
