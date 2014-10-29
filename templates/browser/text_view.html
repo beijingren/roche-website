@@ -143,8 +143,30 @@ Thanks for your contribution!
 function BrowserView() {
 	this.hidingInterpuction = false;
 	this.hidingPagebreak = false;
+	this.hidingPersName = false;
+	this.hidingTerm = false;
         this.selectedText = '';
 	this.selectedJuan;
+};
+
+BrowserView.prototype.persNameClick = function (event) {
+	if (this.hidingPersName) {
+		$(".persName").css("color", "blue");
+		this.hidingPersName = false;
+	} else {
+		$(".persName").css("color", "black");
+		this.hidingPersName = true;
+	}
+};
+
+BrowserView.prototype.termClick = function (event) {
+	if (this.hidingTerm) {
+		$(".term").css("color", "green");
+		this.hidingPersName = false;
+	} else {
+		$(".term").css("color", "black");
+		this.hidingPersName = true;
+	}
 };
 
 BrowserView.prototype.keyUp = function (event) {
@@ -322,6 +344,9 @@ var browserView = new BrowserView();
 
 $(document).bind('mouseup', browserView.mouseUp);
 $(document).bind('keyup', browserView.keyUp);
+
+$("#annotation-person").bind('click', browserView.persNameClick);
+$("#annotation-term").bind('click', browserView.termClick);
 
 $(function(){
 $('[data-toggle="tooltip"]').tooltip({
