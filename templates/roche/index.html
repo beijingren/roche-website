@@ -113,7 +113,7 @@ The Digital Siku Quanshu Project
 
 <div class="container">
 
-<table 	class="table table-hover" style="margin-top: 20px;">
+<table class="table table-hover" style="margin-top: 20px;">
         <thead>
         <tr>
         <th>
@@ -148,6 +148,58 @@ Author
         {% endfor %}
         </tbody>
 </table>
+
+<div class="input-group" style="margin-top: 1em;">
+  <span class="input-group-addon">
+  <span class="glyphicon glyphicon-search"></span>
+  </span>
+  <input id="solr-search" type="text" class="form-control" placeholder="Search here">
+</div>
+
+<div id="solr-result">
+</div>
+
+<script type="text/javascript">
+
+function SolrView() {
+	this.solrServer = "http://localhost:8983/solr";
+};
+
+SolrView.prototype.querySolr = function (event) {
+        console.log("querySolr");
+
+        $.ajax({
+                type: 'GET',
+		dataType: 'jsonp',
+		jsonp: 'json.wrf',
+		traditional: true,
+                url: "http://localhost:8983/solr/collection1/select/",
+                data: {"q": "書", "wt": "json"},
+                success: function(result, status) {
+			console.log(result);
+
+			var rs = $("#solr-result");
+
+			for (var i = 0; i < result.response.docs.length; i++) {
+				var title = result.response.docs[i]["title"];
+				console.log(title);
+
+				var newDiv = document.createElement('div');
+				var newContent = document.createTextNode(title);
+
+				newDiv.appendChild(newContent);
+				rs.append(newDiv);
+			}
+
+			},
+                });
+};
+
+var solrView = new SolrView();
+
+$("#solr-search").bind('keyup', solrView.querySolr);
+
+</script>
 
 </div> <!-- /container -->
 
