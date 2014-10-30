@@ -24,6 +24,9 @@ import sunburnt
 import libxslt
 import libxml2
 
+from browser.models import RocheTEI
+from eulexistdb.query import QuerySet
+
 #
 # Timeout higher?
 #
@@ -55,9 +58,6 @@ for (dirpath, dirnames, filenames) in walk('resources'):
 #
 # Load TEI into solr
 #
-from browser.models import RocheTEI
-from eulexistdb.query import QuerySet
-
 si = sunburnt.SolrInterface(SOLR_SERVER_URL + '/')
 
 qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
@@ -76,4 +76,3 @@ for q in qs:
     document = {"id": i, "text": text, "title": q.title, "author": q.author}
     si.add(document)
     si.commit()
-
