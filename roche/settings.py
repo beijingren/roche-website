@@ -16,6 +16,13 @@ PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '../')
 RABBITMQ_SERVER = os.environ['RABBITMQ_PORT_5672_TCP_ADDR']
 
 #
+# solr
+#
+SOLR_SERVER_URL = 'http://{0}:{1}/solr'.format(
+    os.environ['SOLR_PORT_8983_TCP_ADDR'],
+    os.environ['SOLR_PORT_8983_TCP_PORT'])
+
+#
 # eXist-db
 #
 EXISTDB_SERVER_USER = 'admin'

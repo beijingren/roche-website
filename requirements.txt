@@ -17,3 +17,5 @@ eulxml
 eulexistdb
 
 SPARQLWrapper
+
+t+https://github.com/arafalov/sunburnt

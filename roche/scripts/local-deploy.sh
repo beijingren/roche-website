@@ -18,6 +18,8 @@ export SPARQL_PORT_3030_TCP_ADDR='localhost'
 export SPARQL_PORT_3030_TCP_PORT='3030'
 export RABBITMQ_PORT_5672_TCP_ADDR='localhost'
 export RABBITMQ_PORT_5672_TCP_PORT='5672'
+export SOLR_PORT_8983_TCP_ADDR='localhost'
+export SOLR_PORT_8983_TCP_PORT='8983'
 export DJANGO_SETTINGS_MODULE=roche.settings
 
 python manage.py syncdb --noinput
