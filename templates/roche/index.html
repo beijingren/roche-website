@@ -27,14 +27,22 @@ The Digital Siku Quanshu Project
       <img src="{% static 'images/UIMA.jpg' %}" alt="UIMA">
       <div class="carousel-caption">
         <a href="/uima/basic/" style="color: white;">
-        <h1>UIMA Analysis Engine</h1>
+        <h1>
+	{% if LANGUAGE_CODE == "de" %}
+	UIMA Analyse Engine
+	{% elif LANGUAGE_CODE == "zh" %}
+	UIMA 分析引擎
+	{% elif LANGUAGE_CODE == "en" %}
+	UIMA Analysis Engine
+	{% endif %}
+	</h1>
 	<p>
 	{% if LANGUAGE_CODE == "de" %}
-	für automatische Auszeichnungen
+	Automatische Auszeichnungen
 	{% elif LANGUAGE_CODE == "zh" %}
-	分析
-	{% else %}
-	for automatic annotations
+	自動標記
+	{% elif LANGUAGE_CODE == "en" %}
+	automatic annotations
 	{% endif %}
 	</p>
         </a>
@@ -45,16 +53,15 @@ The Digital Siku Quanshu Project
       <img src="{% static 'images/LIBRARY.jpg' %}" alt="Texts">
       <div class="carousel-caption">
 	<a href="/browse/" style="color: white;">
-        <h1>Text Library</h1>
-	<p>
+        <h1>
 	{% if LANGUAGE_CODE == "de" %}
-	Sammlung	
+	Textsammlung
 	{% elif LANGUAGE_CODE == "zh" %}
-	集
-	{% else %}
-	Collection
+	文庫
+	{% elif LANGUAGE_CODE == "en" %}
+	Text Collection
 	{% endif %}
-	</p>
+	</h1>
 	</a>
       </div>
     </div>
@@ -63,16 +70,15 @@ The Digital Siku Quanshu Project
       <img src="{% static 'images/OCR.jpg' %}" alt="Texts">
       <div class="carousel-caption">
 	<a href="/ocr/" style="color: black;">
-	<h1>OCR Service</h1>
-	<p>
-   	 {% if LANGUAGE_CODE == "de" %}
-	für eine Volltexterkennung
+	<h1>
+  	 {% if LANGUAGE_CODE == "de" %}
+	Automatische Texterkennung
 	{% elif LANGUAGE_CODE == "zh" %}
-	XXX
-	{% else %}
-	for fulltext extraction
+	光學字符識别
+	{% elif LANGUAGE_CODE == "en" %}
+	OCR Service
 	{% endif %}
-	</p>
+	</h1>
 	</a>
       </div>
     </div>
@@ -84,11 +90,11 @@ The Digital Siku Quanshu Project
 	<h1>SPARQL Endpoint</h1>
 	<p>
    	 {% if LANGUAGE_CODE == "de" %}
-	für komplexe Suchen
+	komplexe Suchen
 	{% elif LANGUAGE_CODE == "en" %}
-	for complex queries
+	complex queries
 	{% elif LANGUAGE_CODE == "zh" %}
-	XXX
+	復合查詢
 	{% endif %}
 	</p>
 	</a>
