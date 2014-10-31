@@ -4,9 +4,9 @@
 # Must be called in roche root dir
 #
 
-import sys
+import collections
 import os
-
+import sys
 
 DJANGO_SETTINGS_MODULE="roche.settings"
 
@@ -64,15 +64,22 @@ qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', mod
 
 i=0
 for q in qs:
-    print i, q.title,
+    print i
 
-    text = ""
+    doc = collections.defaultdict(list)
     for div in q.body.div:
-        text = text + div.text
-
-    text.replace(" ", "")
+        text = div.text.replace(" ", "").replace("\n", "")
+        doc["text"].append(text)
 
     i = i + 1
-    document = {"id": i, "text": text, "title": q.title, "author": q.author}
-    si.add(document)
+    doc['id'] = q.title + '/' + str(q.chapter)
+    doc['title'] = q.title
+    doc['author'] = q.author
+
+    chapter = q.chapter
+    if chapter == None:
+        print "WARNING: " + q.title + " has empty chapter"
+        chapter = 1
+    doc['chapter'] = chapter
+    si.add(doc)
     si.commit()
