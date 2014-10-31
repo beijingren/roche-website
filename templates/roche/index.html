@@ -184,6 +184,7 @@ SolrView.prototype.querySolr = function (event) {
 			console.log(event.currentTarget.value);
 
 			var rs = $("#solr-result");
+			rs.empty();
 
 			$.each(result.highlighting, function(i, hitem) {
 				console.log(i, hitem.text[0]);
