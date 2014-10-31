@@ -91,3 +91,9 @@
 .pb {
 	color:  SlateGray;
 }
+
+#solr-result em {
+	color: red;
+	font-style: normal;
+	font-size: 1.2em;
+}

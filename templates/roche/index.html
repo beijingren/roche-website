@@ -156,8 +156,10 @@ Author
   <input id="solr-search" type="text" class="form-control" placeholder="Search here">
 </div>
 
-<div id="solr-result">
-</div>
+<table class="table table-striped">
+<tbody id="solr-result" style="em {color: red; size: 1.2em};">
+</tbody>
+</table>
 
 <script type="text/javascript">
 
@@ -168,28 +170,45 @@ function SolrView() {
 SolrView.prototype.querySolr = function (event) {
         console.log("querySolr");
 
+	var search_term = event.currentTarget.value;
+
         $.ajax({
                 type: 'GET',
 		dataType: 'jsonp',
 		jsonp: 'json.wrf',
 		traditional: true,
-                url: "http://localhost:8983/solr/collection1/select/",
-                data: {"q": "書", "wt": "json"},
+                //url: "http://localhost:8983/solr/collection1/select/",
+		url: "http://localhost:8000/solr/",
+                data: {"q": '"' + search_term + '"', "wt": "json", "hl": "true"},
                 success: function(result, status) {
 			console.log(result);
+			console.log(event.currentTarget.value);
 
 			var rs = $("#solr-result");
 
-			for (var i = 0; i < result.response.docs.length; i++) {
-				var title = result.response.docs[i]["title"];
-				console.log(title);
+			$.each(result.highlighting, function(i, hitem) {
+				console.log(i, hitem.text[0]);
 
+				var text = hitem.text[0];
+				var newRow = document.createElement('tr')
+				var newTd = document.createElement('td')
+				var newTd1 = document.createElement('td')
+				var newTd2 = document.createElement('td')
 				var newDiv = document.createElement('div');
-				var newContent = document.createTextNode(title);
+				var newContent = document.createTextNode(text);
 
-				newDiv.appendChild(newContent);
-				rs.append(newDiv);
-			}
+				var split_id = i.split('/');
+				var title = split_id[0];
+				var juan = split_id[1];
+
+				newTd.innerHTML = '<a href="/browse/text/' + title + '">' + title + "</a>";
+				newTd1.innerHTML = '<a href="/browse/text/' + title + '/' + juan + '/">' + juan + "</a>";
+				newTd2.innerHTML = text;
+				newRow.appendChild(newTd);
+				newRow.appendChild(newTd1);
+				newRow.appendChild(newTd2);
+				rs.append(newRow);
+			});
 
 			},
                 });
@@ -198,6 +217,7 @@ SolrView.prototype.querySolr = function (event) {
 var solrView = new SolrView();
 
 $("#solr-search").bind('keyup', solrView.querySolr);
+//$("#solr-search").change(solrView.querySolr);
 
 </script>
 
