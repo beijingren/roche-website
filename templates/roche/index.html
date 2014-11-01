@@ -178,7 +178,7 @@ SolrView.prototype.querySolr = function (event) {
 		jsonp: 'json.wrf',
 		traditional: true,
 		url: "http://sikuquanshu.eu/solr/",
-                data: {"q": '"' + search_term + '"', "wt": "json", "hl": "true"},
+                data: {"q": '"' + search_term + '"', "wt": "json", "hl": "true", "rows": "512"},
                 success: function(result, status) {
 			console.log(result);
 			console.log(event.currentTarget.value);
