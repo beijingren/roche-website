@@ -18,6 +18,8 @@ def index(request):
     qs = QuerySet(using=ExistDB(), xpath='/tei:TEI', collection='docker/texts/', model=RocheTEI)
     qs = qs.filter(chapter='1')
     qs = qs.only('title', 'title_en', 'author')
+    # TODO: order by title
+    qs = qs.order_by('title_en')
 
     number_texts = qs.count()
     number_authors = qs.distinct().count()
