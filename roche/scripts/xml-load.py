@@ -40,10 +40,13 @@ os.chdir('../dublin-store')
 for (dirpath, dirnames, filenames) in walk('浙江大學圖書館'):
     xmldb.createCollection('docker/texts' + '/' + dirpath, True)
     if filenames:
-        for filename in filenames:
-            with open(dirpath + '/' + filename) as f:
+        for filename in sorted(filenames):
+            with open(os.path.join(dirpath, filename)) as f:
                 print "--" + dirpath + '/' + filename
-                xmldb.load(f, 'docker/texts' + '/' + dirpath + '/' + filename, True)
+                try:
+                    xmldb.load(f, os.path.join('docker', 'texts', dirpath, filename), True)
+                except:
+                    print "FAILED TO LOAD!!!"
 
 #
 # Load resources
