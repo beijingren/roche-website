@@ -42,11 +42,11 @@ for (dirpath, dirnames, filenames) in walk('浙江大學圖書館'):
     if filenames:
         for filename in sorted(filenames):
             with open(os.path.join(dirpath, filename)) as f:
-                print "--" + dirpath + '/' + filename
+                print "--" + os.path.join(dirpath, filename)
                 try:
                     xmldb.load(f, os.path.join('docker', 'texts', dirpath, filename), True)
                 except:
-                    print "FAILED TO LOAD!!!"
+                    print "FAILED TO LOAD!!! " + filename
 
 #
 # Load resources
@@ -56,7 +56,7 @@ for (dirpath, dirnames, filenames) in walk('resources'):
     if filenames:
         for filename in filenames:
             with open(dirpath + '/' + filename) as f:
-                xmldb.load(f, 'docker' + '/' + dirpath + '/' + filename, True)
+                xmldb.load(f, os.path.join('docker', dirpath, filename), True)
 
 #
 # Load TEI into solr
